@@ -71,7 +71,6 @@ const config: Config = {
           "sans-serif",
         ],
         heading: [
-          "Plus Jakarta Sans",
           "Inter",
           "ui-sans-serif",
           "system-ui",
@@ -80,6 +79,10 @@ const config: Config = {
           "Segoe UI",
           "sans-serif",
         ],
+      },
+      letterSpacing: {
+        tightest: "-0.03em",
+        tighter: "-0.02em",
       },
       fontSize: {
         "display": ["clamp(2.5rem, 5vw, 3.75rem)", { lineHeight: "1.1", fontWeight: "800" }],

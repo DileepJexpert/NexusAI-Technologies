@@ -1,6 +1,6 @@
 import { Hero } from "@/components/home/Hero";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
-import { FeaturedProducts } from "@/components/home/FeaturedProducts";
+import { CategorySpotlight } from "@/components/home/CategorySpotlight";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { StatsCounter } from "@/components/home/StatsCounter";
 import { CompanyVideo } from "@/components/home/CompanyVideo";
@@ -13,7 +13,7 @@ export default function HomePage() {
     <>
       <Hero />
       <CategoryGrid />
-      <FeaturedProducts />
+      <CategorySpotlight />
       <HowItWorks />
       <StatsCounter />
       <CompanyVideo />
