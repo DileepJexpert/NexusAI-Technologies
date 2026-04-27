@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { categories } from "@/data/categories";
@@ -24,23 +26,42 @@ export function CategoryGrid() {
               <AnimateOnScroll key={c.id} delay={idx * 0.05}>
                 <Link
                   href={`/products/${c.id}`}
-                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card p-7 shadow-sm transition-all duration-300"
+                  style={
+                    {
+                      "--category-color": c.color,
+                      transition:
+                        "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, border-color 0.3s ease",
+                    } as React.CSSProperties
+                  }
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = c.color + "60";
+                    (e.currentTarget as HTMLElement).style.transform =
+                      "translateY(-4px)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 40px ${c.color}18`;
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "";
+                    (e.currentTarget as HTMLElement).style.transform = "";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "";
+                  }}
                 >
-                  {/* Accent bar */}
-                  <div
-                    aria-hidden
-                    className="absolute inset-x-0 top-0 h-1"
-                    style={{ backgroundColor: c.color }}
-                  />
-
                   <div className="flex items-start justify-between">
                     <div
-                      className="flex h-14 w-14 items-center justify-center rounded-xl text-3xl"
+                      className="flex h-14 w-14 items-center justify-center rounded-xl text-3xl transition-transform duration-500 group-hover:rotate-6"
                       style={{ backgroundColor: `${c.color}14` }}
                     >
                       {c.icon}
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-foreground" />
+                    <div
+                      className="flex h-8 w-8 items-center justify-center rounded-full border transition-colors duration-300"
+                      style={{ borderColor: `${c.color}40` }}
+                    >
+                      <ArrowUpRight
+                        className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                        style={{ color: c.color }}
+                      />
+                    </div>
                   </div>
 
                   <h3 className="mt-6 font-heading text-xl font-bold tracking-tight">
