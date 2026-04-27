@@ -102,9 +102,6 @@ export function Navbar() {
               )}
             </Button>
           )}
-          <span className="text-sm font-medium text-slate-400 hover:text-white cursor-pointer transition-colors">
-            Sign in
-          </span>
           <a
             href={whatsappLink}
             target="_blank"

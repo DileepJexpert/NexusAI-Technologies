@@ -3,8 +3,10 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { PageTracker } from "@/components/shared/PageTracker";
 import { Providers } from "@/components/providers";
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nexusai.in";
 
 export const metadata: Metadata = {
@@ -61,6 +63,16 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
+        {GA_ID && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA_ID}');`,
+              }}
+            />
+          </>
+        )}
       </head>
       <body className="font-sans antialiased">
         <Providers>
@@ -70,6 +82,7 @@ export default function RootLayout({
             <Footer />
           </div>
           <WhatsAppButton />
+          <PageTracker />
         </Providers>
       </body>
     </html>

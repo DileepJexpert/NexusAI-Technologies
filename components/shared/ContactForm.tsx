@@ -12,30 +12,28 @@ export function ContactForm() {
     e.preventDefault();
     setStatus("sending");
     const form = e.currentTarget;
-    const data = new FormData(form);
-    const key = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
-    if (key) {
-      data.append("access_key", key);
-      try {
-        const res = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          body: data,
-        });
-        if (res.ok) {
-          setStatus("success");
-          form.reset();
-          return;
-        }
-      } catch {
-        // fall through
-      }
-      setStatus("error");
-    } else {
-      // Demo: just show success locally if no key configured
-      setTimeout(() => {
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          subject: formData.get("subject"),
+          message: formData.get("message"),
+        }),
+      });
+
+      if (res.ok) {
         setStatus("success");
         form.reset();
-      }, 500);
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
     }
   }
 
@@ -85,7 +83,7 @@ export function ContactForm() {
       </Button>
       {status === "error" && (
         <p className="text-sm text-destructive">
-          Something went wrong. Please email us directly.
+          Something went wrong. Please try again or email us directly.
         </p>
       )}
     </form>
