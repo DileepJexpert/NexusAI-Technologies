@@ -71,7 +71,7 @@ export function Navbar() {
               Products
               <ChevronDown className="h-4 w-4" />
             </button>
-            {productsOpen && <MegaMenu />}
+            {productsOpen && <MegaMenu onClose={() => setProductsOpen(false)} />}
           </div>
           {mainNav
             .filter((link) => link.label !== "Products")
@@ -197,28 +197,31 @@ export function Navbar() {
   );
 }
 
-function MegaMenu() {
+function MegaMenu({ onClose }: { onClose: () => void }) {
   return (
-    <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2">
-      <div className="w-[min(90vw,900px)] rounded-xl border border-white/10 bg-[#0B1628]/95 shadow-2xl backdrop-blur-xl">
-        <div className="grid grid-cols-1 gap-4 p-6 md:grid-cols-3">
+    <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2 animate-fade-in">
+      <div className="w-[min(90vw,850px)] rounded-lg border border-white/10 bg-[#0B1628]/95 shadow-xl backdrop-blur-xl">
+        <div className="grid grid-cols-1 gap-3 px-5 py-4 md:grid-cols-3">
           {categories.map((c) => {
             const cats = sortByStatus(getProductsByCategory(c.id));
             return (
-              <div key={c.id}>
-                <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-white">
-                  <span className="text-lg">{c.icon}</span>
+              <div key={c.id} className="space-y-1.5">
+                <div className="flex items-center gap-1.5 px-1 text-xs font-bold uppercase tracking-wide text-slate-300">
+                  <span className="text-base">{c.icon}</span>
                   <span>{c.name}</span>
                 </div>
-                <div className="flex flex-col gap-1">
+                <div className="space-y-0.5">
                   {cats.map((p) => (
                     <Link
                       key={p.id}
                       href={`/products/${c.id}/${p.id}`}
-                      className="flex items-center justify-between rounded-md px-2 py-1.5 text-sm text-slate-400 transition-colors hover:bg-white/10 hover:text-white"
+                      onClick={onClose}
+                      className="flex items-center justify-between gap-2 rounded px-1.5 py-1 text-xs text-slate-400 transition-colors hover:bg-white/8 hover:text-white"
                     >
-                      <span>{p.name}</span>
-                      <StatusBadge status={p.status} />
+                      <span className="truncate">{p.name}</span>
+                      <div className="shrink-0">
+                        <StatusBadge status={p.status} />
+                      </div>
                     </Link>
                   ))}
                 </div>
@@ -226,12 +229,13 @@ function MegaMenu() {
             );
           })}
         </div>
-        <div className="border-t border-white/10 p-4 text-center">
+        <div className="border-t border-white/10 px-5 py-3 text-center">
           <Link
             href="/products"
-            className="text-sm font-semibold text-accent hover:underline"
+            onClick={onClose}
+            className="text-xs font-semibold text-accent transition-colors hover:text-accent/80"
           >
-            View All Products →
+            View all 12 products →
           </Link>
         </div>
       </div>
