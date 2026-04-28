@@ -102,6 +102,12 @@ export function Navbar() {
               )}
             </Button>
           )}
+          <Link
+            href="/admin/login"
+            className="text-xs font-medium text-slate-500 transition-colors hover:text-slate-300"
+          >
+            Sign in
+          </Link>
           <a
             href={whatsappLink}
             target="_blank"
