@@ -205,43 +205,38 @@ export function Navbar() {
 
 function MegaMenu({ onClose }: { onClose: () => void }) {
   return (
-    <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2 animate-fade-in">
-      <div className="w-[min(90vw,850px)] rounded-lg border border-white/10 bg-[#0B1628]/95 shadow-xl backdrop-blur-xl">
-        <div className="grid grid-cols-1 gap-3 px-5 py-4 md:grid-cols-3">
+    <div className="absolute left-0 top-full z-50 pt-2 animate-fade-in">
+      <div className="rounded-lg border border-white/10 bg-[#0B1628]/95 shadow-xl backdrop-blur-xl">
+        <div className="flex gap-0 divide-x divide-white/8">
           {categories.map((c) => {
-            const cats = sortByStatus(getProductsByCategory(c.id));
+            const prods = sortByStatus(getProductsByCategory(c.id));
             return (
-              <div key={c.id} className="space-y-1.5">
-                <div className="flex items-center gap-1.5 px-1 text-xs font-bold uppercase tracking-wide text-slate-300">
-                  <span className="text-base">{c.icon}</span>
-                  <span>{c.name}</span>
+              <div key={c.id} className="w-[140px] px-3 py-3">
+                <div className="mb-2 flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                  <span>{c.icon}</span>
+                  <span className="truncate">{c.name.split(" ")[0]}</span>
                 </div>
-                <div className="space-y-0.5">
-                  {cats.map((p) => (
-                    <Link
-                      key={p.id}
-                      href={`/products/${c.id}/${p.id}`}
-                      onClick={onClose}
-                      className="flex items-center justify-between gap-2 rounded px-1.5 py-1 text-xs text-slate-400 transition-colors hover:bg-white/8 hover:text-white"
-                    >
-                      <span className="truncate">{p.name}</span>
-                      <div className="shrink-0">
-                        <StatusBadge status={p.status} />
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+                {prods.map((p) => (
+                  <Link
+                    key={p.id}
+                    href={`/products/${c.id}/${p.id}`}
+                    onClick={onClose}
+                    className="block truncate rounded py-1 px-1 text-[11px] text-slate-400 transition-colors hover:bg-white/8 hover:text-white"
+                  >
+                    {p.name}
+                  </Link>
+                ))}
               </div>
             );
           })}
         </div>
-        <div className="border-t border-white/10 px-5 py-3 text-center">
+        <div className="border-t border-white/8 px-4 py-2 text-center">
           <Link
             href="/products"
             onClick={onClose}
-            className="text-xs font-semibold text-accent transition-colors hover:text-accent/80"
+            className="text-[11px] font-semibold text-accent transition-colors hover:text-accent/80"
           >
-            View all 12 products →
+            View all products →
           </Link>
         </div>
       </div>
