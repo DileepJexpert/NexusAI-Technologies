@@ -1,14 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" fill="none">
   <defs>
-    <linearGradient id="katixoMarkWhite" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E2E8F0"/>
-      <stop offset="0.55" stop-color="#93C5FD"/>
-      <stop offset="1" stop-color="#99F6E4"/>
+    <linearGradient id="emberBgLight" x1="6" y1="8" x2="58" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF7ED"/>
+      <stop offset="0.5" stop-color="#FEF3C7"/>
+      <stop offset="1" stop-color="#FED7AA"/>
+    </linearGradient>
+    <linearGradient id="outerFlameLight" x1="21" y1="14" x2="43" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FACC15"/>
+      <stop offset="0.45" stop-color="#F97316"/>
+      <stop offset="1" stop-color="#DC2626"/>
+    </linearGradient>
+    <linearGradient id="innerFlameLight" x1="27" y1="19" x2="38" y2="37" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FED7AA"/>
     </linearGradient>
   </defs>
-  <rect x="4" y="8" width="48" height="48" rx="14" fill="url(#katixoMarkWhite)"/>
-  <path d="M18 18H24V46H18V18Z" fill="#0F172A"/>
-  <path d="M25 32.2L38.5 18H46L32 32L46.5 46H38.8L25 32.2Z" fill="#0F172A"/>
-  <circle cx="42" cy="22" r="3" fill="#0F172A"/>
-  <text x="64" y="39" font-family="Plus Jakarta Sans, Inter, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">Katixo</text>
+  <rect x="4" y="8" width="56" height="48" rx="16" fill="url(#emberBgLight)"/>
+  <path d="M17 45L27.5 36" stroke="#7C2D12" stroke-width="4" stroke-linecap="round"/>
+  <path d="M47 45L36.5 36" stroke="#7C2D12" stroke-width="4" stroke-linecap="round"/>
+  <path d="M32.1 16C35.8 21 42 24.1 42 31C42 38 37.5 43 32 43C26.5 43 22 38.2 22 31.8C22 25.8 26.2 22.1 29.1 18.8C30.2 17.5 31.1 16.5 32.1 16Z" fill="url(#outerFlameLight)"/>
+  <path d="M31.7 23C33.8 25.8 37 28 37 32C37 35.9 34.7 38.7 31.8 38.7C28.7 38.7 26.6 36 26.6 32.8C26.6 29.8 28.4 27.8 29.8 26.2C30.5 25.4 31.1 24.3 31.7 23Z" fill="url(#innerFlameLight)"/>
+  <circle cx="20" cy="20" r="1.5" fill="#F97316" fill-opacity="0.85"/>
+  <circle cx="44" cy="18" r="1.5" fill="#DC2626" fill-opacity="0.75"/>
+  <text x="72" y="39" font-family="Plus Jakarta Sans, Inter, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">Katixo</text>
 </svg>
