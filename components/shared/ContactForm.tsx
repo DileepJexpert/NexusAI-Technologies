@@ -7,22 +7,38 @@ import { Textarea } from "@/components/ui/textarea";
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const web3formsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "";
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
     const form = e.currentTarget;
     const formData = new FormData(form);
+    const name = String(formData.get("name") || "");
+    const email = String(formData.get("email") || "");
+    const subject = String(formData.get("subject") || "");
+    const message = String(formData.get("message") || "");
 
     try {
-      const res = await fetch("/api/contact", {
+      if (!web3formsKey) {
+        const mailSubject = encodeURIComponent(`[${subject}] Website inquiry from ${name}`);
+        const mailBody = encodeURIComponent(`${message}\n\nFrom: ${name} <${email}>`);
+        window.location.href = `mailto:hello@katixo.com?subject=${mailSubject}&body=${mailBody}`;
+        setStatus("success");
+        form.reset();
+        return;
+      }
+
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: formData.get("name"),
-          email: formData.get("email"),
-          subject: formData.get("subject"),
-          message: formData.get("message"),
+          access_key: web3formsKey,
+          from_name: "Katixo website",
+          name,
+          email,
+          subject,
+          message,
         }),
       });
 

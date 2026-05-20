@@ -7,6 +7,8 @@ export function PageTracker() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (process.env.NEXT_PUBLIC_ENABLE_LOCAL_TRACKING !== "true") return;
+
     fetch("/api/track", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

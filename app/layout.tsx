@@ -7,7 +7,7 @@ import { PageTracker } from "@/components/shared/PageTracker";
 import { Providers } from "@/components/providers";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nexusai.in";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://katixo.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

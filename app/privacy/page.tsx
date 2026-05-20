@@ -47,14 +47,14 @@ export default function PrivacyPage() {
         <p className="mt-3 leading-relaxed">
           You have the right to access, correct and delete your data at any time.
           Send a message saying &quot;delete my data&quot; on WhatsApp or email
-          privacy@nexusai.in and we will comply within 7 days.
+          privacy@katixo.com and we will comply within 7 days.
         </p>
 
         <h2 className="mt-10 font-heading text-2xl font-bold">Contact</h2>
         <p className="mt-3 leading-relaxed">
           For privacy questions, email{" "}
-          <a className="text-primary underline-offset-4 hover:underline" href="mailto:privacy@nexusai.in">
-            privacy@nexusai.in
+          <a className="text-primary underline-offset-4 hover:underline" href="mailto:privacy@katixo.com">
+            privacy@katixo.com
           </a>
           .
         </p>

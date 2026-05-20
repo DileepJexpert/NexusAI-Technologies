@@ -32,7 +32,7 @@ npm run dev
 
 | Variable | Description |
 | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (e.g. https://nexusai.in) |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (e.g. https://katixo.com) |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | WhatsApp number without `+`, e.g. `919876543210` |
 | `NEXT_PUBLIC_WEB3FORMS_KEY` | Web3Forms access key for the contact form |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics measurement ID (optional) |
@@ -113,17 +113,19 @@ Search and replace:
 
 Done — no code changes needed.
 
-## Deployment — Cloudflare Pages (free)
+## Deployment - Cloudflare Pages (free)
 
 1. Push the repo to GitHub.
-2. Cloudflare Dashboard → Pages → Create project → Connect to Git.
+2. Cloudflare Dashboard -> Pages -> Create project -> Connect to Git.
 3. Build settings:
-   - Framework preset: **Next.js**
+   - Framework preset: **Next.js (Static HTML Export)**, or choose **None** and use the values below.
    - Build command: `npm run build`
-   - Build output: `.next`
-4. Add environment variables from `.env.local`.
+   - Build output: `out`
+4. Add environment variables from `.env.local`, especially `NEXT_PUBLIC_SITE_URL=https://katixo.com`, `NEXT_PUBLIC_WHATSAPP_NUMBER`, and optional `NEXT_PUBLIC_WEB3FORMS_KEY`.
 5. Deploy. Cloudflare auto-builds on every push to `main`.
-6. Add your custom domain in Pages → Custom domains.
+6. Add `katixo.com` in Pages -> Custom domains.
+
+The public website is exported as static HTML for Cloudflare Pages. The old local SQLite admin/tracking APIs are disabled in this hosting mode; use Cloudflare Web Analytics and Web3Forms for the hosted static site.
 
 Total deploy time: ~5 minutes. Cost: ₹0/month.
 

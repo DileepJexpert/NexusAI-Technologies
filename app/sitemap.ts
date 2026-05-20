@@ -3,7 +3,9 @@ import { products } from "@/data/products";
 import { categories } from "@/data/categories";
 import { getAllPosts } from "@/lib/blog";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://nexusai.in";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://katixo.com";
+
+export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

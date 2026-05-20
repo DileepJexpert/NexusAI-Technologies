@@ -50,9 +50,9 @@ export default function ContactPage() {
               <InfoCard
                 icon={<Mail className="h-5 w-5 text-primary" />}
                 title="Email"
-                description="hello@nexusai.in"
+                description="hello@katixo.com"
                 cta="Send email →"
-                href="mailto:hello@nexusai.in"
+                href="mailto:hello@katixo.com"
               />
               <InfoCard
                 icon={<MapPin className="h-5 w-5 text-secondary" />}

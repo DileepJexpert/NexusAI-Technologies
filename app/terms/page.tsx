@@ -56,8 +56,8 @@ export default function TermsPage() {
         <h2 className="mt-10 font-heading text-2xl font-bold">7. Contact</h2>
         <p className="mt-3 leading-relaxed">
           For any questions about these Terms, email{" "}
-          <a className="text-primary underline-offset-4 hover:underline" href="mailto:hello@nexusai.in">
-            hello@nexusai.in
+          <a className="text-primary underline-offset-4 hover:underline" href="mailto:hello@katixo.com">
+            hello@katixo.com
           </a>
           .
         </p>
