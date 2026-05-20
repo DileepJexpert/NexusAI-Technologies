@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { categories } from "@/data/categories";
-import { WAChat } from "./WAChat";
+import { HeroWorkspace } from "./HeroWorkspace";
 import { brand } from "@/lib/brand";
 
 export function Hero() {
@@ -45,14 +45,15 @@ export function Hero() {
             {brand.heroEyebrow}
           </div>
 
-          <h1 className="font-heading text-4xl font-bold leading-[1.06] sm:text-5xl md:text-6xl lg:text-[3.75rem] text-balance">
-            One umbrella.
+          <h1 className="font-heading text-4xl font-bold leading-[1.06] text-balance sm:text-5xl md:text-6xl lg:text-[3.75rem]">
+            Finance clarity.
             <br />
-            <span className="grad-text-animated">Many digital businesses.</span>
+            <span className="grad-text-animated">One modern operating layer.</span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-base text-slate-300 sm:text-lg text-balance">
-            {brand.heroSubtitle}
+          <p className="mt-6 max-w-xl text-base text-balance text-slate-300 sm:text-lg">
+            Katixo brings accounting workflows, operating visibility, and AI-assisted review
+            into one polished workspace built for growing businesses.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -76,7 +77,7 @@ export function Hero() {
             className="mt-10"
           >
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-slate-500">
-              Multiple ventures · one operating layer
+              Finance, approvals, reporting, and daily operations
             </p>
             <div className="flex flex-wrap gap-2">
               {categories.map((c) => (
@@ -99,7 +100,7 @@ export function Hero() {
           transition={{ duration: 0.75, delay: 0.25, ease: "easeOut" }}
           className="float-a hidden items-center justify-center lg:flex"
         >
-          <WAChat />
+          <HeroWorkspace />
         </motion.div>
       </div>
 
