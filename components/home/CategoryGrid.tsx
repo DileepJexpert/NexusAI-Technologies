@@ -13,9 +13,9 @@ export function CategoryGrid() {
     <section className="section-padding">
       <div className="container-wide">
         <SectionHeading
-          eyebrow="The Platform"
-          title="Six domains. Twelve assistants. One WhatsApp."
-          subtitle="Every product we ship is built for an Indian domain — with workflows, compliance and language support tailored to it."
+          eyebrow="The Portfolio"
+          title="Focused products under one parent brand"
+          subtitle="Each Katixo product is built around a specific workflow, market and operating need."
         />
 
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -36,8 +36,7 @@ export function CategoryGrid() {
                   }
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLElement).style.borderColor = c.color + "60";
-                    (e.currentTarget as HTMLElement).style.transform =
-                      "translateY(-4px)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
                     (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 40px ${c.color}18`;
                   }}
                   onMouseLeave={(e) => {
@@ -77,14 +76,10 @@ export function CategoryGrid() {
                     {c.description}
                   </p>
 
-                  {/* Mini product list */}
                   <div className="mt-5 flex-1 border-t pt-4">
                     <ul className="space-y-2">
                       {prods.slice(0, 3).map((p) => (
-                        <li
-                          key={p.id}
-                          className="flex items-center justify-between text-sm"
-                        >
+                        <li key={p.id} className="flex items-center justify-between text-sm">
                           <span className="flex items-center gap-2 text-foreground">
                             <span className="text-base">{p.icon}</span>
                             <span className="font-medium">{p.name}</span>

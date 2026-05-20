@@ -5,43 +5,41 @@ import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { PageTracker } from "@/components/shared/PageTracker";
 import { Providers } from "@/components/providers";
+import { brand } from "@/lib/brand";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://katixo.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || brand.siteUrl;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "NexusAI Technologies — AI-Powered Tools for Every Indian",
-    template: "%s | NexusAI Technologies",
+    default: brand.metaTitle,
+    template: `%s | ${brand.name}`,
   },
-  description:
-    "NexusAI builds WhatsApp AI assistants that help Indians navigate government schemes, finance, legal and daily challenges — in their own language.",
+  description: brand.metaDescription,
   keywords: [
-    "AI for India",
-    "Indian AI startup",
-    "WhatsApp AI assistant",
-    "government scheme finder",
-    "mandi prices",
-    "KisanMitra",
-    "NiyamMitra",
+    "Katixo",
+    "umbrella company",
+    "venture studio",
+    "digital products",
+    "AI products",
+    "software brands",
+    "Indian startup",
   ],
-  authors: [{ name: "NexusAI Technologies" }],
+  authors: [{ name: brand.legalName }],
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: siteUrl,
-    siteName: "NexusAI Technologies",
-    title: "NexusAI Technologies — AI-Powered Tools for Every Indian",
-    description:
-      "WhatsApp AI assistants for Indian farmers, MSMEs, students and citizens — in 10+ Indian languages.",
+    siteName: brand.name,
+    title: brand.metaTitle,
+    description: brand.metaDescription,
     images: ["/images/og/default.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NexusAI Technologies — AI-Powered Tools for Every Indian",
-    description:
-      "WhatsApp AI assistants for Indian farmers, MSMEs, students and citizens.",
+    title: brand.metaTitle,
+    description: brand.metaDescription,
     images: ["/images/og/default.png"],
   },
   icons: {

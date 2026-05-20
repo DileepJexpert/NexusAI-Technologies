@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How NexusAI Technologies collects, uses and protects your data.",
+  description: "How Katixo collects, uses and protects your data.",
 };
 
 export default function PrivacyPage() {
@@ -14,40 +14,27 @@ export default function PrivacyPage() {
       <div className="prose prose-slate mt-10 max-w-none dark:prose-invert">
         <h2 className="mt-10 font-heading text-2xl font-bold">Who we are</h2>
         <p className="mt-3 leading-relaxed">
-          NexusAI Technologies (&quot;NexusAI&quot;, &quot;we&quot;, &quot;us&quot;) provides
-          AI-powered assistants on WhatsApp under product names including
-          KisanMitra, NiyamMitra, LoanSathi and UdyamSathi.
+          Katixo ("Katixo", "we", "us") operates digital products, services and AI-assisted workflows across multiple customer use cases.
         </p>
 
         <h2 className="mt-10 font-heading text-2xl font-bold">What we collect</h2>
         <p className="mt-3 leading-relaxed">
-          We collect the minimum data required to provide our services: your
-          WhatsApp phone number, the messages you send us and any optional
-          profile details you choose to share (state, crop, business type).
+          We collect the minimum information needed to operate our products, respond to inquiries and improve the customer experience.
         </p>
         <p className="mt-3 leading-relaxed">
-          We <strong>do not</strong> ask for, store, or process Aadhaar numbers,
-          bank passwords, OTPs or PAN numbers.
+          We do not intentionally collect highly sensitive information unless a specific product clearly requires it and states so.
         </p>
 
         <h2 className="mt-10 font-heading text-2xl font-bold">How we use your data</h2>
         <ul className="mt-3 list-disc space-y-2 pl-6">
-          <li>To answer your questions and personalise responses.</li>
-          <li>To improve our AI models (only on anonymised, aggregated data).</li>
-          <li>To send service-related notifications.</li>
+          <li>To operate and improve our products and services.</li>
+          <li>To respond to inquiries, demos and support requests.</li>
+          <li>To measure usage patterns and make better product decisions.</li>
         </ul>
 
-        <h2 className="mt-10 font-heading text-2xl font-bold">Where your data lives</h2>
+        <h2 className="mt-10 font-heading text-2xl font-bold">Your choices</h2>
         <p className="mt-3 leading-relaxed">
-          All data is stored on servers located in India (AWS Mumbai and
-          Cloudflare India edge). We never sell or rent your data to third parties.
-        </p>
-
-        <h2 className="mt-10 font-heading text-2xl font-bold">Your rights under DPDP Act 2023</h2>
-        <p className="mt-3 leading-relaxed">
-          You have the right to access, correct and delete your data at any time.
-          Send a message saying &quot;delete my data&quot; on WhatsApp or email
-          privacy@katixo.com and we will comply within 7 days.
+          You may request access, correction or deletion of your data where applicable. We aim to respond within a reasonable period.
         </p>
 
         <h2 className="mt-10 font-heading text-2xl font-bold">Contact</h2>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X, Moon, Sun, ChevronDown } from "lucide-react";
@@ -10,6 +11,7 @@ import { mainNav } from "@/data/navigation";
 import { categories } from "@/data/categories";
 import { getProductsByCategory, sortByStatus } from "@/data/products";
 import { StatusBadge } from "@/components/shared/StatusBadge";
+import { brand } from "@/lib/brand";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -29,11 +31,13 @@ export function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210";
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi NexusAI")}`;
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(brand.whatsappGreeting)}`;
 
   return (
     <header
@@ -45,22 +49,17 @@ export function Navbar() {
       )}
     >
       <div className="container-wide flex h-16 items-center justify-between">
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5">
-          <div
-            className="flex h-9 w-9 items-center justify-center rounded-lg font-heading text-lg font-bold text-white shadow-md"
-            style={{
-              background: "linear-gradient(135deg, #1B2A4A 0%, #2E5090 60%, #16A34A 100%)",
-            }}
-          >
-            N
-          </div>
-          <span className="font-heading text-lg font-bold text-white">
-            NexusAI
-          </span>
+          <Image
+            src="/images/logo-white.svg"
+            alt={`${brand.name} logo`}
+            width={124}
+            height={32}
+            priority
+            className="h-8 w-auto"
+          />
         </Link>
 
-        {/* Desktop nav */}
         <nav className="hidden items-center gap-0.5 lg:flex">
           <div
             className="relative"
@@ -95,11 +94,7 @@ export function Navbar() {
               aria-label="Toggle theme"
               className="text-slate-300 hover:bg-white/10 hover:text-white"
             >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
+              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
           )}
           <Link
@@ -118,13 +113,7 @@ export function Navbar() {
               boxShadow: "0 4px 14px rgba(37,211,102,0.3)",
             }}
           >
-            <svg
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden
-            >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
               <path d="M11.5 2C6.261 2 2 6.261 2 11.5c0 1.898.526 3.673 1.44 5.187L2 22l5.45-1.428A9.446 9.446 0 0011.5 21C16.739 21 21 16.739 21 11.5S16.739 2 11.5 2zm0 17.25a7.73 7.73 0 01-3.942-1.08l-.284-.168-2.924.767.78-2.851-.185-.292A7.712 7.712 0 013.75 11.5C3.75 7.224 7.224 3.75 11.5 3.75S19.25 7.224 19.25 11.5 15.776 19.25 11.5 19.25z" />
             </svg>
@@ -132,7 +121,6 @@ export function Navbar() {
           </a>
         </div>
 
-        {/* Mobile menu button */}
         <button
           className="text-white lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -142,7 +130,6 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <div className="fixed inset-x-0 top-16 z-40 h-[calc(100vh-4rem)] overflow-y-auto border-t border-white/10 bg-[#0B1628] lg:hidden">
           <div className="container-wide flex flex-col gap-2 py-6">
@@ -205,9 +192,9 @@ export function Navbar() {
 
 function MegaMenu({ onClose }: { onClose: () => void }) {
   return (
-    <div className="absolute left-0 top-full z-50 pt-2 animate-fade-in">
+    <div className="absolute left-0 top-full z-50 animate-fade-in pt-2">
       <div className="rounded-lg border border-white/10 bg-[#0B1628]/95 shadow-xl backdrop-blur-xl">
-        <div className="flex gap-0 divide-x divide-white/8">
+        <div className="flex divide-x divide-white/8 gap-0">
           {categories.map((c) => {
             const prods = sortByStatus(getProductsByCategory(c.id));
             return (
@@ -221,7 +208,7 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
                     key={p.id}
                     href={`/products/${c.id}/${p.id}`}
                     onClick={onClose}
-                    className="block truncate rounded py-1 px-1 text-[11px] text-slate-400 transition-colors hover:bg-white/8 hover:text-white"
+                    className="block truncate rounded px-1 py-1 text-[11px] text-slate-400 transition-colors hover:bg-white/8 hover:text-white"
                   >
                     {p.name}
                   </Link>

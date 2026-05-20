@@ -27,7 +27,7 @@ export function Testimonials() {
         <SectionHeading
           eyebrow="Testimonials"
           title="What our users say"
-          subtitle="Real stories from farmers, business owners and compliance professionals who use NexusAI every day."
+          subtitle="Feedback from operators, founders and teams using Katixo products in the field."
         />
 
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -43,14 +43,9 @@ export function Testimonials() {
             return (
               <AnimateOnScroll key={idx} delay={idx * 0.07}>
                 <div className="group flex h-full flex-col overflow-hidden rounded-2xl border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                  {/* Top accent bar */}
-                  <div
-                    className="h-1 w-full"
-                    style={{ backgroundColor: color }}
-                  />
+                  <div className="h-1 w-full" style={{ backgroundColor: color }} />
 
                   <div className="flex flex-1 flex-col p-6">
-                    {/* Product tag */}
                     <div className="mb-4 flex items-center justify-between">
                       <span
                         className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em]"

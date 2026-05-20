@@ -7,51 +7,50 @@ const steps = [
   {
     icon: Phone,
     number: "01",
-    title: "Save Our Number",
+    title: "Start the conversation",
     description:
-      "Add our WhatsApp number to your contacts. No app download or registration required.",
+      "Reach Katixo on WhatsApp to share your use case, team context or product question.",
     color: "#2E5090",
   },
   {
     icon: MessageCircle,
     number: "02",
-    title: "Send a Message",
+    title: "Get routed clearly",
     description:
-      "Type or send a voice message in Hindi, English or any of 10+ supported Indian languages.",
+      "We quickly narrow your need to the right product, workflow or partner path.",
     color: "#16A34A",
   },
   {
     icon: Sparkles,
     number: "03",
-    title: "Get AI Help Instantly",
+    title: "Move into action",
     description:
-      "Our AI agents answer questions, fill forms, find schemes and guide you — all on WhatsApp.",
+      "From there, Katixo turns the conversation into next steps, product fit and rollout momentum.",
     color: "#7C3AED",
   },
 ];
 
 const phoneChips = [
   { icon: "🌾", label: "KisanMitra", color: "#16A34A" },
-  { icon: "💰", label: "LoanSathi",  color: "#2563EB" },
+  { icon: "💼", label: "LoanSathi", color: "#2563EB" },
   { icon: "⚖️", label: "NiyamMitra", color: "#DC2626" },
   { icon: "🎪", label: "EventKhata", color: "#EA580C" },
 ];
 
 export function HowItWorks() {
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210";
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi NexusAI")}`;
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi Katixo")}`;
 
   return (
     <section className="section-padding bg-muted/30">
       <div className="container-wide">
         <SectionHeading
           eyebrow="How It Works"
-          title="Three steps to AI on WhatsApp"
-          subtitle="No app download. No registration forms. No setup fees."
+          title="Three steps to the right product path"
+          subtitle="Fast entry, clear routing and practical next steps."
         />
 
         <div className="mt-16 grid items-center gap-16 lg:grid-cols-2">
-          {/* Left — steps */}
           <div className="flex flex-col gap-10">
             {steps.map((step, idx) => {
               const Icon = step.icon;
@@ -79,9 +78,7 @@ export function HowItWorks() {
                       <div className="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                         Step {step.number}
                       </div>
-                      <h3 className="font-heading text-xl font-bold">
-                        {step.title}
-                      </h3>
+                      <h3 className="font-heading text-xl font-bold">{step.title}</h3>
                       <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                         {step.description}
                       </p>
@@ -94,16 +91,14 @@ export function HowItWorks() {
             <AnimateOnScroll delay={0.38}>
               <Button variant="accent" size="lg" asChild className="self-start">
                 <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                  Start Now on WhatsApp <ArrowRight className="h-5 w-5" />
+                  Start on WhatsApp <ArrowRight className="h-5 w-5" />
                 </a>
               </Button>
             </AnimateOnScroll>
           </div>
 
-          {/* Right — phone frame */}
-          <AnimateOnScroll delay={0.1} className="hidden lg:flex justify-center">
+          <AnimateOnScroll delay={0.1} className="hidden justify-center lg:flex">
             <div className="relative">
-              {/* Floating chips */}
               {phoneChips.map((chip, i) => {
                 const positions = [
                   "-top-4 -left-8",
@@ -126,10 +121,8 @@ export function HowItWorks() {
                 );
               })}
 
-              {/* Phone frame */}
               <div className="relative flex h-[480px] w-[240px] flex-col overflow-hidden rounded-[2.5rem] border-4 border-foreground/10 bg-[#0B1628] shadow-2xl">
-                {/* Status bar */}
-                <div className="flex items-center justify-between px-6 pt-3 pb-1">
+                <div className="flex items-center justify-between px-6 pb-1 pt-3">
                   <span className="text-[10px] font-semibold text-white/50">9:41</span>
                   <div className="h-3 w-20 rounded-full bg-foreground/10" />
                   <div className="flex gap-1">
@@ -138,29 +131,21 @@ export function HowItWorks() {
                     ))}
                   </div>
                 </div>
-                {/* WhatsApp header */}
-                <div
-                  className="flex items-center gap-2 px-4 py-2"
-                  style={{ background: "#075E54" }}
-                >
+                <div className="flex items-center gap-2 px-4 py-2" style={{ background: "#075E54" }}>
                   <div className="h-7 w-7 rounded-full bg-white/20 text-center text-sm leading-7">
-                    🤖
+                    K
                   </div>
                   <div>
-                    <div className="text-[11px] font-semibold text-white">NexusAI</div>
-                    <div className="text-[9px] text-white/60">online</div>
+                    <div className="text-[11px] font-semibold text-white">Katixo</div>
+                    <div className="text-[9px] text-white/60">concierge</div>
                   </div>
                 </div>
-                {/* Chat bg */}
-                <div
-                  className="flex flex-1 flex-col gap-2 px-3 py-3"
-                  style={{ background: "#E5DDD5" }}
-                >
+                <div className="flex flex-1 flex-col gap-2 px-3 py-3" style={{ background: "#E5DDD5" }}>
                   {[
-                    { from: "user", text: "Hello! I need help 🌾" },
-                    { from: "bot",  text: "Hi! How can NexusAI assist you today?" },
-                    { from: "user", text: "KCC loan status?" },
-                    { from: "bot",  text: "Sure! Please share your application ID." },
+                    { from: "user", text: "We need better lead handling." },
+                    { from: "bot", text: "Got it. I'll route you to the right product." },
+                    { from: "user", text: "We also want faster follow-up." },
+                    { from: "bot", text: "Perfect. I'll show the best-fit Katixo path." },
                   ].map((m, i) => (
                     <div
                       key={i}
@@ -174,18 +159,11 @@ export function HowItWorks() {
                     </div>
                   ))}
                 </div>
-                {/* Input bar */}
-                <div
-                  className="flex items-center gap-1.5 px-2 py-2"
-                  style={{ background: "#F0F0F0" }}
-                >
+                <div className="flex items-center gap-1.5 px-2 py-2" style={{ background: "#F0F0F0" }}>
                   <div className="flex flex-1 items-center rounded-full bg-white px-3 py-1 text-[10px] text-gray-400">
-                    Message…
+                    Message...
                   </div>
-                  <div
-                    className="flex h-7 w-7 items-center justify-center rounded-full text-white"
-                    style={{ background: "#25D366" }}
-                  >
+                  <div className="flex h-7 w-7 items-center justify-center rounded-full text-white" style={{ background: "#25D366" }}>
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M2 21l21-9L2 3v7l15 2-15 2z" />
                     </svg>

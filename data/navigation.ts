@@ -51,8 +51,8 @@ export const footerLinks: FooterColumn[] = [
 ];
 
 export const socialLinks = {
-  linkedin: "https://linkedin.com/company/nexusai",
-  twitter: "https://twitter.com/nexusai",
-  youtube: "https://youtube.com/@nexusai",
-  github: "https://github.com/nexusai",
+  linkedin: "",
+  twitter: "",
+  youtube: "",
+  github: "https://github.com/DileepJexpert/NexusAI-Technologies",
 };

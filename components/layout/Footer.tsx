@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Linkedin, Twitter, Youtube, Github } from "lucide-react";
 import { footerLinks, socialLinks } from "@/data/navigation";
 import { NewsletterForm } from "@/components/shared/NewsletterForm";
+import { brand } from "@/lib/brand";
 
 export function Footer() {
   return (
@@ -10,36 +12,39 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-white font-heading text-xl font-bold">
-                N
-              </div>
-              <span className="font-heading text-xl font-bold text-white">
-                NexusAI
-              </span>
+              <Image
+                src="/images/logo-white.svg"
+                alt={`${brand.name} logo`}
+                width={132}
+                height={36}
+                className="h-9 w-auto"
+              />
             </Link>
-            <p className="mt-4 max-w-sm text-sm text-slate-400">
-              AI-powered tools for every Indian. We build WhatsApp AI
-              assistants that help farmers, businesses and students navigate
-              government schemes and daily challenges in their own language.
-            </p>
+            <p className="mt-4 max-w-sm text-sm text-slate-400">{brand.footerSummary}</p>
             <div className="mt-6 flex items-center gap-3">
-              <SocialIcon href={socialLinks.linkedin} label="LinkedIn">
-                <Linkedin className="h-4 w-4" />
-              </SocialIcon>
-              <SocialIcon href={socialLinks.twitter} label="Twitter">
-                <Twitter className="h-4 w-4" />
-              </SocialIcon>
-              <SocialIcon href={socialLinks.youtube} label="YouTube">
-                <Youtube className="h-4 w-4" />
-              </SocialIcon>
-              <SocialIcon href={socialLinks.github} label="GitHub">
-                <Github className="h-4 w-4" />
-              </SocialIcon>
+              {socialLinks.linkedin ? (
+                <SocialIcon href={socialLinks.linkedin} label="LinkedIn">
+                  <Linkedin className="h-4 w-4" />
+                </SocialIcon>
+              ) : null}
+              {socialLinks.twitter ? (
+                <SocialIcon href={socialLinks.twitter} label="Twitter">
+                  <Twitter className="h-4 w-4" />
+                </SocialIcon>
+              ) : null}
+              {socialLinks.youtube ? (
+                <SocialIcon href={socialLinks.youtube} label="YouTube">
+                  <Youtube className="h-4 w-4" />
+                </SocialIcon>
+              ) : null}
+              {socialLinks.github ? (
+                <SocialIcon href={socialLinks.github} label="GitHub">
+                  <Github className="h-4 w-4" />
+                </SocialIcon>
+              ) : null}
             </div>
             <div className="mt-6 max-w-sm">
-              <div className="mb-2 text-sm font-semibold text-white">
-                Join our newsletter
-              </div>
+              <div className="mb-2 text-sm font-semibold text-white">Join our newsletter</div>
               <NewsletterForm />
             </div>
           </div>
@@ -66,11 +71,8 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm text-slate-500 md:flex-row">
-          <div>© {new Date().getFullYear()} NexusAI Technologies. All rights reserved.</div>
-          <div>
-            Made with <span className="text-red-400">❤</span> in India{" "}
-            <span aria-hidden>🇮🇳</span>
-          </div>
+          <div>© {new Date().getFullYear()} {brand.legalName}. All rights reserved.</div>
+          <div>Built for focused digital brands.</div>
         </div>
       </div>
     </footer>

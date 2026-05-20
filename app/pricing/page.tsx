@@ -14,25 +14,25 @@ import {
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Simple, transparent pricing across every NexusAI product. Free tiers, monthly subscriptions and enterprise plans.",
+    "Simple, transparent pricing across Katixo products, plans and service layers.",
 };
 
 const billingFaq = [
   {
     question: "Can I try for free?",
-    answer: "Yes, all products have a free tier. No credit card required.",
+    answer: "Yes, several products have a free or entry-level starting point.",
   },
   {
     question: "How do I pay?",
-    answer: "We accept UPI, debit card and net banking via Razorpay.",
+    answer: "We support standard digital payment and invoicing options depending on the product or engagement.",
   },
   {
     question: "Can I cancel anytime?",
-    answer: "Yes, there is no lock-in period. Cancel any time with a single message.",
+    answer: "Yes. Subscription-style products do not require long lock-in periods by default.",
   },
   {
     question: "Do I need to download an app?",
-    answer: "No. Every NexusAI product works entirely on WhatsApp.",
+    answer: "No. Many Katixo products are delivered through lightweight messaging and web-first experiences.",
   },
 ];
 
@@ -44,10 +44,10 @@ export default function PricingPage() {
       <section className="gradient-primary py-20 text-white">
         <div className="container-wide text-center">
           <h1 className="font-heading text-4xl font-extrabold sm:text-5xl md:text-6xl text-balance">
-            Simple, transparent pricing
+            Clear pricing, flexible adoption
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-200 text-balance">
-            Free to start. Pay only for what you need. No lock-in.
+            Start small, expand when the workflow proves itself, and keep your costs aligned with value.
           </p>
         </div>
       </section>
@@ -104,16 +104,8 @@ export default function PricingPage() {
                         </li>
                       ))}
                     </ul>
-                    <Button
-                      variant={tier.highlighted ? "default" : "outline"}
-                      className="mt-8 w-full"
-                      asChild
-                    >
-                      <a
-                        href={p.whatsapp_link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                    <Button variant={tier.highlighted ? "default" : "outline"} className="mt-8 w-full" asChild>
+                      <a href={p.whatsapp_link} target="_blank" rel="noopener noreferrer">
                         {tier.cta}
                       </a>
                     </Button>
@@ -122,10 +114,7 @@ export default function PricingPage() {
               </div>
 
               <div className="mt-6 text-sm">
-                <Link
-                  href={`/products/${p.category_id}/${p.id}`}
-                  className="font-semibold text-primary hover:underline"
-                >
+                <Link href={`/products/${p.category_id}/${p.id}`} className="font-semibold text-primary hover:underline">
                   Learn more about {p.name} →
                 </Link>
               </div>

@@ -6,39 +6,39 @@ import { ContactForm } from "@/components/shared/ContactForm";
 export const metadata: Metadata = {
   title: "Partners",
   description:
-    "Partner with NexusAI — banks, FPOs, CSC centres, NGOs and government agencies building AI-powered services for India.",
+    "Partner with Katixo to launch, distribute or scale digital products with a stronger operating backbone.",
 };
 
 const partnerTypes = [
   {
-    icon: "🏦",
-    title: "Banks & NBFCs",
-    description: "Offer AI-powered financial advisory to your customers over WhatsApp.",
+    icon: "🏢",
+    title: "Operators & Teams",
+    description: "Work with Katixo on automation, workflow tooling and productized operational systems.",
   },
   {
-    icon: "🌾",
-    title: "FPOs & Co-operatives",
-    description: "Help your member farmers access schemes, mandi prices and loans.",
+    icon: "🚀",
+    title: "Founders & Ventures",
+    description: "Shape new products with a parent brand built around execution, not just ideas.",
   },
   {
-    icon: "🏪",
-    title: "CSC Centres",
-    description: "Add AI assistance to your service offerings and increase footfall.",
+    icon: "🤝",
+    title: "Channel Partners",
+    description: "Distribute focused products through your customer base with clearer positioning and support.",
   },
   {
-    icon: "🏛️",
-    title: "Government",
-    description: "Deploy citizen-facing AI for scheme discovery and grievance redressal.",
+    icon: "🧩",
+    title: "Implementation Partners",
+    description: "Integrate Katixo products into larger service, software or transformation programs.",
   },
 ];
 
 const benefits = [
-  "Revenue sharing with partners",
-  "White-label deployment options",
-  "Dedicated partner success manager",
-  "Co-marketing and training support",
-  "Priority product roadmap input",
-  "Custom integrations with your systems",
+  "Shared go-to-market thinking and operating support",
+  "Clearer product positioning across multiple offerings",
+  "Faster rollout with reusable systems and templates",
+  "White-label and integration-friendly collaboration",
+  "Direct access to product and delivery conversations",
+  "Long-term partnership, not one-off handoff work",
 ];
 
 export default function PartnersPage() {
@@ -47,11 +47,10 @@ export default function PartnersPage() {
       <section className="gradient-primary py-20 text-white">
         <div className="container-wide text-center">
           <h1 className="font-heading text-4xl font-extrabold sm:text-5xl md:text-6xl text-balance">
-            Partner with NexusAI
+            Partner with Katixo
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-200 text-balance">
-            We work with banks, FPOs, CSC centres, NGOs and government agencies
-            to bring AI-powered services to every Indian.
+            We collaborate with teams, operators and venture partners who want stronger digital products and cleaner execution.
           </p>
         </div>
       </section>
@@ -61,14 +60,11 @@ export default function PartnersPage() {
           <SectionHeading
             eyebrow="Partner types"
             title="Who we work with"
-            subtitle="If you serve Indian citizens or small businesses, we probably have a product for you."
+            subtitle="Katixo is designed for organizations that need better product thinking and better operating systems at the same time."
           />
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {partnerTypes.map((t) => (
-              <div
-                key={t.title}
-                className="rounded-2xl border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
-              >
+              <div key={t.title} className="rounded-2xl border bg-card p-6 shadow-sm transition-shadow hover:shadow-md">
                 <div className="text-4xl">{t.icon}</div>
                 <h3 className="mt-4 font-heading text-lg font-bold">{t.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{t.description}</p>
@@ -82,11 +78,7 @@ export default function PartnersPage() {
         <div className="container-wide">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <SectionHeading
-                eyebrow="Benefits"
-                title="Why partner with us"
-                align="left"
-              />
+              <SectionHeading eyebrow="Benefits" title="Why work with us" align="left" />
               <ul className="mt-8 space-y-4">
                 {benefits.map((b) => (
                   <li key={b} className="flex items-start gap-3">

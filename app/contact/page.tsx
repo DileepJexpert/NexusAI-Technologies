@@ -6,12 +6,12 @@ import { socialLinks } from "@/data/navigation";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with NexusAI Technologies. Reach out for partnerships, support or general questions.",
+    "Get in touch with Katixo for partnerships, product discussions or general business inquiries.",
 };
 
 export default function ContactPage() {
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210";
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi NexusAI")}`;
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi Katixo")}`;
 
   return (
     <>
@@ -21,7 +21,7 @@ export default function ContactPage() {
             Let&apos;s talk
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-200 text-balance">
-            Got a question, a partnership idea or feedback? We&apos;d love to hear from you.
+            Reach out for product conversations, partnerships or parent-brand opportunities.
           </p>
         </div>
       </section>
@@ -32,7 +32,7 @@ export default function ContactPage() {
             <div>
               <h2 className="font-heading text-2xl font-bold">Send us a message</h2>
               <p className="mt-2 text-muted-foreground">
-                Fill out the form and we&apos;ll respond within 24 hours.
+                Tell us what you&apos;re building, fixing or exploring. We&apos;ll respond within 24 hours.
               </p>
               <div className="mt-6">
                 <ContactForm />
@@ -43,7 +43,7 @@ export default function ContactPage() {
               <InfoCard
                 icon={<MessageCircle className="h-5 w-5 text-accent" />}
                 title="Chat on WhatsApp"
-                description="The fastest way to reach us."
+                description="The fastest way to reach the Katixo team."
                 cta="Start chat →"
                 href={whatsappLink}
               />
@@ -62,22 +62,26 @@ export default function ContactPage() {
               <div className="rounded-2xl border bg-card p-6 shadow-sm">
                 <div className="mb-3 font-heading text-base font-bold">Follow us</div>
                 <div className="flex items-center gap-3">
-                  <a
-                    href={socialLinks.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border text-muted-foreground hover:border-primary hover:text-primary"
-                  >
-                    <Linkedin className="h-4 w-4" />
-                  </a>
-                  <a
-                    href={socialLinks.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border text-muted-foreground hover:border-primary hover:text-primary"
-                  >
-                    <Twitter className="h-4 w-4" />
-                  </a>
+                  {socialLinks.linkedin ? (
+                    <a
+                      href={socialLinks.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-10 w-10 items-center justify-center rounded-full border text-muted-foreground hover:border-primary hover:text-primary"
+                    >
+                      <Linkedin className="h-4 w-4" />
+                    </a>
+                  ) : null}
+                  {socialLinks.twitter ? (
+                    <a
+                      href={socialLinks.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-10 w-10 items-center justify-center rounded-full border text-muted-foreground hover:border-primary hover:text-primary"
+                    >
+                      <Twitter className="h-4 w-4" />
+                    </a>
+                  ) : null}
                 </div>
               </div>
             </div>

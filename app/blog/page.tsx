@@ -7,7 +7,7 @@ import { getCategoryById } from "@/data/categories";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Guides, deep dives and product updates from the NexusAI team — covering Indian schemes, finance, compliance and AI for Bharat.",
+    "Notes, product thinking and operating insights from the Katixo team.",
 };
 
 export default function BlogPage() {
@@ -18,10 +18,10 @@ export default function BlogPage() {
       <section className="gradient-primary py-20 text-white">
         <div className="container-wide text-center">
           <h1 className="font-heading text-4xl font-extrabold sm:text-5xl md:text-6xl text-balance">
-            The NexusAI Blog
+            The Katixo Journal
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-200 text-balance">
-            Practical guides for farmers, businesses and curious Indians.
+            Product notes, operating ideas and practical lessons from building digital businesses.
           </p>
         </div>
       </section>
