@@ -44,10 +44,11 @@ const cashFlowData = [
 ];
 
 const phoneMetrics = [
-  { label: "Total Revenue", value: "₹83,40,569", sub: "This month", change: "+12.6%" },
-  { label: "Net Profit", value: "₹12,30,859", sub: "", change: "+8.4%" },
-  { label: "Cash flow", value: "₹4.25M", sub: "Total", change: "" },
+  { label: "Revenue", value: "₹83.4L", change: "+12.6%" },
+  { label: "Profit", value: "₹12.3L", change: "+8.4%" },
 ];
+
+const phoneSparkline = [28, 35, 30, 42, 38, 52, 48, 58, 55, 65, 60, 68];
 
 export function HeroWorkspace() {
   const reduceMotion = useReducedMotion();
@@ -68,6 +69,18 @@ export function HeroWorkspace() {
     return revenuePoints
       .map((p, i) => {
         const x = (i / (revenuePoints.length - 1)) * w;
+        const y = h - (p / 75) * h;
+        return `${i === 0 ? "M" : "L"}${x},${y}`;
+      })
+      .join(" ");
+  }, []);
+
+  const phoneSparkPath = useMemo(() => {
+    const w = 80;
+    const h = 24;
+    return phoneSparkline
+      .map((p, i) => {
+        const x = (i / (phoneSparkline.length - 1)) * w;
         const y = h - (p / 75) * h;
         return `${i === 0 ? "M" : "L"}${x},${y}`;
       })
@@ -111,7 +124,7 @@ export function HeroWorkspace() {
       </AnimatePresence>
 
       {/* Devices */}
-      <div className="relative w-full" style={{ perspective: "2200px" }}>
+      <div className="relative w-full" style={{ perspective: "1600px" }}>
         {/* Base glow */}
         <div aria-hidden className="pointer-events-none absolute -bottom-4 left-[2%] right-[2%] h-24 rounded-[50%] bg-[radial-gradient(ellipse,rgba(34,211,238,0.35),rgba(56,189,248,0.15)_40%,transparent_70%)] blur-2xl" />
         <div aria-hidden className="pointer-events-none absolute -bottom-1 left-[5%] right-[5%] h-[3px] rounded-full bg-cyan-300/40 shadow-[0_0_30px_rgba(103,232,249,0.4)]" />
@@ -125,12 +138,12 @@ export function HeroWorkspace() {
           {/* ─── LAPTOP ─── */}
           <motion.div
             animate={{
-              rotateX: isOpen ? 5 : 10,
-              rotateY: isOpen ? -6 : -10,
+              rotateX: isOpen ? 14 : 20,
+              rotateY: isOpen ? -12 : -16,
               scale: isOpen ? 1 : 0.96,
             }}
             transition={{ duration: reduceMotion ? 0.3 : 2.2, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mx-auto w-[92%] max-w-[720px]"
+            className="relative mx-auto w-[88%] max-w-[680px]"
             style={{ transformStyle: "preserve-3d" }}
           >
             {/* Screen */}
@@ -246,7 +259,6 @@ export function HeroWorkspace() {
                               transition={{ duration: reduceMotion ? 0.3 : 1.5, delay: reduceMotion ? 0 : 1.3 }}
                             />
                           </svg>
-                          {/* X-axis labels */}
                           <div className="absolute bottom-0 left-0 right-0 flex justify-between px-0.5">
                             {months.map((m) => (
                               <span key={m} className="text-[4px] text-slate-300 sm:text-[5px]">{m}</span>
@@ -333,18 +345,28 @@ export function HeroWorkspace() {
 
             {/* Keyboard base */}
             <div className="relative z-10 -mt-px w-full">
-              <div className="h-[12px] rounded-t-[12px] border border-white/10 bg-gradient-to-b from-[#a4b0c0] via-[#8b9aaf] to-[#78879b] sm:h-[16px] sm:rounded-t-[16px]" />
-              <div className="h-[24px] rounded-b-[18px] border-x border-b border-white/8 bg-gradient-to-b from-[#8493a7] to-[#637287] shadow-[0_20px_50px_rgba(0,0,0,0.35)] sm:h-[30px] sm:rounded-b-[22px]">
-                <div className="mx-auto mt-[8px] h-[2px] w-[18%] rounded-full bg-white/35 sm:mt-[11px] sm:h-[3px]" />
+              <div
+                className="rounded-b-[16px] border border-t-0 border-white/8 bg-gradient-to-b from-[#9ba8b9] to-[#6b7a8e] shadow-[0_20px_50px_rgba(0,0,0,0.35)] sm:rounded-b-[20px]"
+                style={{ padding: "2.5% 7% 5%" }}
+              >
+                {/* Key rows */}
+                <div className="flex flex-col gap-[1.5px] sm:gap-[2px]">
+                  {[12, 12, 11, 8].map((cols, r) => (
+                    <div key={r} className="flex gap-[1px] sm:gap-[1.5px]">
+                      {Array.from({ length: cols }).map((_, k) => (
+                        <div
+                          key={k}
+                          className={`h-[3px] rounded-[1px] bg-[#586878] shadow-[inset_0_0.5px_0_rgba(255,255,255,0.08)] sm:h-[4px] ${
+                            r === 3 && k === 3 ? "flex-[4]" : "flex-1"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+                {/* Trackpad */}
+                <div className="mx-auto mt-[4px] h-[10px] w-[30%] rounded-md bg-[#7a899c] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),inset_0_-1px_0_rgba(0,0,0,0.08)] sm:mt-[6px] sm:h-[14px]" />
               </div>
-              {/* Keys */}
-              <div className="absolute left-[8%] right-[8%] top-[3px] grid grid-cols-12 gap-[2px] opacity-75 sm:top-[4px] sm:gap-1">
-                {Array.from({ length: 36 }).map((_, i) => (
-                  <div key={i} className="h-[3px] rounded-[1.5px] border border-slate-900/20 bg-[#4f5f74] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] sm:h-[4px]" />
-                ))}
-              </div>
-              {/* Trackpad */}
-              <div className="absolute inset-x-[32%] bottom-[4px] h-[12px] rounded-lg border border-slate-900/15 bg-[#78879b] shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] sm:bottom-[5px] sm:h-[14px]" />
             </div>
           </motion.div>
 
@@ -357,83 +379,61 @@ export function HeroWorkspace() {
               x: isOpen ? 0 : 20,
             }}
             transition={{ duration: reduceMotion ? 0.25 : 0.9, delay: reduceMotion ? 0 : 1.8 }}
-            className="absolute bottom-[8%] right-[2%] z-30 w-[22%] min-w-[110px] max-w-[160px] sm:right-[0%]"
-            style={{ transform: "rotateY(-4deg)", transformStyle: "preserve-3d" }}
+            className="absolute bottom-[2%] right-[1%] z-30 w-[16%] min-w-[86px] max-w-[120px]"
+            style={{ transform: "rotateY(-5deg)", transformStyle: "preserve-3d" }}
           >
-            <div className="rounded-[20px] border-[4px] border-[#111827] bg-white shadow-[0_30px_60px_rgba(0,0,0,0.4)] sm:rounded-[24px] sm:border-[5px]">
+            <div className="rounded-[16px] border-[3px] border-[#111827] bg-white shadow-[0_30px_60px_rgba(0,0,0,0.4)] sm:rounded-[20px] sm:border-[4px]">
               {/* Notch */}
-              <div className="mx-auto mt-1.5 h-[14px] w-[48px] rounded-full bg-[#0f172a] sm:h-[16px] sm:w-[56px]" />
+              <div className="mx-auto mt-1 h-[10px] w-[36px] rounded-full bg-[#0f172a] sm:h-[12px] sm:w-[44px]" />
 
-              <div className="p-2 sm:p-2.5">
+              <div className="p-1.5 sm:p-2">
                 {/* Phone header */}
-                <div className="mb-2 flex items-center justify-between">
-                  <div className="text-[8px] font-semibold text-slate-800 sm:text-[10px]">Overview</div>
-                  <div className="flex items-center gap-1">
-                    <span className="text-[6px] text-slate-400 sm:text-[7px]">Due month</span>
-                    <div className="h-4 w-4 rounded-full bg-slate-100" />
-                  </div>
+                <div className="mb-1.5 flex items-center justify-between">
+                  <div className="text-[7px] font-semibold text-slate-800 sm:text-[9px]">Dashboard</div>
+                  <div className="h-3 w-3 rounded-full bg-slate-100 sm:h-3.5 sm:w-3.5" />
                 </div>
 
                 {/* Phone metrics */}
-                <div className="space-y-1.5">
-                  {phoneMetrics.map((m, i) => (
-                    <div key={m.label} className="rounded-xl border border-slate-100 bg-slate-50/80 p-1.5 sm:p-2">
-                      <div className="flex items-center justify-between">
-                        <div className="text-[5px] text-slate-400 sm:text-[6px]">{m.label}</div>
-                        {m.sub && <div className="text-[5px] text-slate-400 sm:text-[6px]">{m.sub}</div>}
+                <div className="space-y-1">
+                  {phoneMetrics.map((m) => (
+                    <div key={m.label} className="rounded-lg border border-slate-100 bg-slate-50/80 p-1.5">
+                      <div className="text-[5px] text-slate-400 sm:text-[6px]">{m.label}</div>
+                      <div className="flex items-end justify-between">
+                        <div className="text-[8px] font-bold text-slate-800 sm:text-[10px]">{m.value}</div>
+                        <div className="text-[5px] font-medium text-emerald-500 sm:text-[6px]">{m.change}</div>
                       </div>
-                      <div className="text-[9px] font-bold text-slate-800 sm:text-[11px]">{m.value}</div>
-                      {m.change && (
-                        <div className="text-[5px] font-medium text-emerald-500 sm:text-[6px]">{m.change} <span className="text-slate-400">vs last month</span></div>
-                      )}
-                      {i === 2 && (
-                        <div className="mt-1 flex items-center justify-center">
-                          <div className="relative h-[28px] w-[28px] sm:h-[32px] sm:w-[32px]">
-                            <svg viewBox="0 0 36 36" className="h-full w-full -rotate-90">
-                              <circle cx="18" cy="18" r="14" fill="none" stroke="#e2e8f0" strokeWidth="4" />
-                              <circle cx="18" cy="18" r="14" fill="none" stroke="#0D9488" strokeWidth="4" strokeDasharray="88" strokeDashoffset="33" />
-                            </svg>
-                          </div>
-                        </div>
-                      )}
                     </div>
                   ))}
                 </div>
 
-                {/* Phone bills */}
-                <div className="mt-2">
-                  <div className="mb-1 flex items-center justify-between">
-                    <div className="text-[6px] font-semibold text-slate-700 sm:text-[7px]">Bills to approve</div>
-                    <div className="text-[5px] text-[#0D9488] sm:text-[6px]">View all</div>
-                  </div>
-                  <div className="space-y-1">
-                    {bills.map((b) => (
-                      <div key={b.vendor} className="rounded-lg border border-slate-100 bg-slate-50 p-1.5">
-                        <div className="flex items-start justify-between gap-1">
-                          <div>
-                            <div className="text-[6px] font-medium text-slate-700 sm:text-[7px]">{b.vendor}</div>
-                            <div className="text-[5px] text-slate-400 sm:text-[6px]">{b.amount} · due {b.due}</div>
-                          </div>
-                          <div className="shrink-0 rounded-md bg-emerald-500 px-1.5 py-0.5 text-[5px] font-semibold text-white sm:text-[6px]">Approve</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                {/* Mini sparkline */}
+                <div className="mt-1.5 rounded-lg border border-slate-100 p-1.5">
+                  <div className="text-[5px] font-semibold text-slate-600 sm:text-[6px]">Trend</div>
+                  <svg viewBox="0 0 80 24" fill="none" className="mt-0.5 h-[16px] w-full sm:h-[20px]" preserveAspectRatio="none">
+                    <path d={`${phoneSparkPath} L80,24 L0,24 Z`} fill="url(#phoneGrad)" opacity="0.5" />
+                    <path d={phoneSparkPath} stroke="#0D9488" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                    <defs>
+                      <linearGradient id="phoneGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#0D9488" stopOpacity="0.2" />
+                        <stop offset="100%" stopColor="#0D9488" stopOpacity="0" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
                 </div>
               </div>
 
               {/* Bottom nav */}
-              <div className="flex items-center justify-around border-t border-slate-100 px-2 py-1.5">
-                {["Overview", "Txns", "Contacts", "More"].map((tab, i) => (
+              <div className="flex items-center justify-around border-t border-slate-100 px-1.5 py-1">
+                {["Home", "Txns", "More"].map((tab, i) => (
                   <div key={tab} className="flex flex-col items-center gap-0.5">
-                    <div className={`h-2.5 w-2.5 rounded-full sm:h-3 sm:w-3 ${i === 0 ? "bg-[#0D9488]" : "bg-slate-200"}`} />
+                    <div className={`h-2 w-2 rounded-full sm:h-2.5 sm:w-2.5 ${i === 0 ? "bg-[#0D9488]" : "bg-slate-200"}`} />
                     <span className={`text-[4px] sm:text-[5px] ${i === 0 ? "font-semibold text-[#0D9488]" : "text-slate-400"}`}>{tab}</span>
                   </div>
                 ))}
               </div>
 
               {/* Home indicator */}
-              <div className="mx-auto mb-1.5 h-1 w-8 rounded-full bg-slate-200" />
+              <div className="mx-auto mb-1 h-[3px] w-6 rounded-full bg-slate-200" />
             </div>
           </motion.div>
         </motion.div>
