@@ -124,10 +124,9 @@ export function HeroWorkspace() {
       </AnimatePresence>
 
       {/* Devices */}
-      <div className="relative w-full" style={{ perspective: "1600px" }}>
-        {/* Base glow */}
-        <div aria-hidden className="pointer-events-none absolute -bottom-4 left-[2%] right-[2%] h-24 rounded-[50%] bg-[radial-gradient(ellipse,rgba(34,211,238,0.35),rgba(56,189,248,0.15)_40%,transparent_70%)] blur-2xl" />
-        <div aria-hidden className="pointer-events-none absolute -bottom-1 left-[5%] right-[5%] h-[3px] rounded-full bg-cyan-300/40 shadow-[0_0_30px_rgba(103,232,249,0.4)]" />
+      <div className="relative w-full" style={{ perspective: "1200px" }}>
+        {/* Soft shadow beneath laptop */}
+        <div aria-hidden className="pointer-events-none absolute -bottom-6 left-[8%] right-[8%] h-20 rounded-[50%] bg-black/30 blur-2xl" />
 
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 30 }}
@@ -138,19 +137,18 @@ export function HeroWorkspace() {
           {/* ─── LAPTOP ─── */}
           <motion.div
             animate={{
-              rotateX: isOpen ? 18 : 24,
-              rotateY: isOpen ? 14 : 18,
+              rotateY: isOpen ? 10 : 14,
               scale: isOpen ? 1 : 0.96,
             }}
             transition={{ duration: reduceMotion ? 0.3 : 2.2, ease: [0.22, 1, 0.36, 1] }}
             className="relative mx-auto w-[88%] max-w-[680px]"
             style={{ transformStyle: "preserve-3d" }}
           >
-            {/* Screen */}
+            {/* Screen (lid) — opens slowly like a real laptop */}
             <motion.div
-              animate={{ rotateX: isOpen ? 0 : -88 }}
-              transition={{ duration: reduceMotion ? 0.3 : 2.5, delay: reduceMotion ? 0 : 0.3, ease: [0.2, 0.9, 0.24, 1] }}
-              className="relative z-20 origin-bottom rounded-t-[16px] border border-[#1e3148] bg-[#0f1923] shadow-[0_-10px_60px_rgba(0,0,0,0.5)]"
+              animate={{ rotateX: isOpen ? 0 : -92 }}
+              transition={{ duration: reduceMotion ? 0.3 : 3.5, delay: reduceMotion ? 0 : 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative z-20 origin-bottom rounded-t-[16px] border border-[#1e3148] bg-[#0f1923] shadow-[0_-8px_40px_rgba(0,0,0,0.45),0_-2px_10px_rgba(0,0,0,0.3)]"
               style={{ transformStyle: "preserve-3d", aspectRatio: "16/10" }}
             >
               <div className="absolute inset-[5px] sm:inset-[7px] overflow-hidden rounded-[12px] bg-[#f4f7fa]">
@@ -343,29 +341,54 @@ export function HeroWorkspace() {
               </div>
             </motion.div>
 
-            {/* Keyboard base — counter-rotate to keep it visually horizontal */}
-            <div className="relative z-10 -mt-px w-full" style={{ transform: "rotateX(-12deg)", transformOrigin: "top center" }}>
+            {/* Keyboard base */}
+            <div className="relative z-10 -mt-px w-full">
               <div
-                className="rounded-b-[16px] border border-t-0 border-white/8 bg-gradient-to-b from-[#9ba8b9] to-[#6b7a8e] shadow-[0_20px_50px_rgba(0,0,0,0.35)] sm:rounded-b-[20px]"
-                style={{ padding: "2.5% 7% 5%" }}
+                className="rounded-b-[16px] border border-t-0 border-white/8 bg-gradient-to-b from-[#a0aebf] to-[#6d7d92] shadow-[0_20px_50px_rgba(0,0,0,0.35)] sm:rounded-b-[20px]"
+                style={{ padding: "3% 5% 5%" }}
               >
-                {/* Key rows */}
-                <div className="flex flex-col gap-[1.5px] sm:gap-[2px]">
-                  {[12, 12, 11, 8].map((cols, r) => (
-                    <div key={r} className="flex gap-[1px] sm:gap-[1.5px]">
-                      {Array.from({ length: cols }).map((_, k) => (
-                        <div
-                          key={k}
-                          className={`h-[3px] rounded-[1px] bg-[#586878] shadow-[inset_0_0.5px_0_rgba(255,255,255,0.08)] sm:h-[4px] ${
-                            r === 3 && k === 3 ? "flex-[4]" : "flex-1"
-                          }`}
-                        />
-                      ))}
-                    </div>
+                {/* Function row */}
+                <div className="mb-[2px] flex gap-[1.5px] sm:mb-[3px] sm:gap-[2px]">
+                  {Array.from({ length: 14 }).map((_, k) => (
+                    <div key={k} className="h-[4px] flex-1 rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#6a7a8e] to-[#576779] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[5px]" />
                   ))}
                 </div>
+                {/* Main key rows */}
+                <div className="flex flex-col gap-[1.5px] sm:gap-[2px]">
+                  {/* Row 1 - number row */}
+                  <div className="flex gap-[1.5px] sm:gap-[2px]">
+                    {Array.from({ length: 13 }).map((_, k) => (
+                      <div key={k} className={`h-[5px] rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#5e6e82] to-[#4d5d71] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[7px] ${k === 12 ? "flex-[1.5]" : "flex-1"}`} />
+                    ))}
+                  </div>
+                  {/* Row 2 - QWERTY */}
+                  <div className="flex gap-[1.5px] sm:gap-[2px]">
+                    <div className="h-[5px] flex-[1.4] rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#5e6e82] to-[#4d5d71] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[7px]" />
+                    {Array.from({ length: 12 }).map((_, k) => (
+                      <div key={k} className="h-[5px] flex-1 rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#5e6e82] to-[#4d5d71] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[7px]" />
+                    ))}
+                  </div>
+                  {/* Row 3 - home row */}
+                  <div className="flex gap-[1.5px] sm:gap-[2px]">
+                    <div className="h-[5px] flex-[1.6] rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#5e6e82] to-[#4d5d71] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[7px]" />
+                    {Array.from({ length: 11 }).map((_, k) => (
+                      <div key={k} className="h-[5px] flex-1 rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#5e6e82] to-[#4d5d71] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[7px]" />
+                    ))}
+                    <div className="h-[5px] flex-[1.8] rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#5e6e82] to-[#4d5d71] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[7px]" />
+                  </div>
+                  {/* Row 4 - bottom row with spacebar */}
+                  <div className="flex gap-[1.5px] sm:gap-[2px]">
+                    <div className="h-[5px] flex-[1.2] rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#5e6e82] to-[#4d5d71] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[7px]" />
+                    <div className="h-[5px] flex-[1.2] rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#5e6e82] to-[#4d5d71] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[7px]" />
+                    <div className="h-[5px] flex-[1.2] rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#5e6e82] to-[#4d5d71] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[7px]" />
+                    <div className="h-[5px] flex-[6] rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#5e6e82] to-[#4d5d71] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[7px]" />
+                    <div className="h-[5px] flex-[1.2] rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#5e6e82] to-[#4d5d71] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[7px]" />
+                    <div className="h-[5px] flex-[1.2] rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#5e6e82] to-[#4d5d71] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[7px]" />
+                    <div className="h-[5px] flex-[1.2] rounded-[1.5px] border border-[#4a5a6e]/40 bg-gradient-to-b from-[#5e6e82] to-[#4d5d71] shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] sm:h-[7px]" />
+                  </div>
+                </div>
                 {/* Trackpad */}
-                <div className="mx-auto mt-[4px] h-[10px] w-[30%] rounded-md bg-[#7a899c] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),inset_0_-1px_0_rgba(0,0,0,0.08)] sm:mt-[6px] sm:h-[14px]" />
+                <div className="mx-auto mt-[5px] h-[12px] w-[32%] rounded-lg border border-[#5a6a7e]/30 bg-gradient-to-b from-[#8494a8] to-[#7a8a9e] shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_1px_2px_rgba(0,0,0,0.15)] sm:mt-[7px] sm:h-[16px]" />
               </div>
             </div>
           </motion.div>
