@@ -23,7 +23,7 @@ export function Hero() {
         style={{ backgroundSize: "62px 62px" }}
       />
 
-      <div className="container-wide relative z-10 flex min-h-screen items-center py-20 md:py-24">
+      <div className="container-wide relative z-10 flex min-h-screen items-start pt-28 pb-20 md:pt-32 md:pb-24">
         <div className="grid w-full items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10 xl:gap-14">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

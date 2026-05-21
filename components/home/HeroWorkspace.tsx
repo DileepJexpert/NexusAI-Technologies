@@ -138,8 +138,8 @@ export function HeroWorkspace() {
           {/* ─── LAPTOP ─── */}
           <motion.div
             animate={{
-              rotateX: isOpen ? 14 : 20,
-              rotateY: isOpen ? -12 : -16,
+              rotateX: isOpen ? 18 : 24,
+              rotateY: isOpen ? 14 : 18,
               scale: isOpen ? 1 : 0.96,
             }}
             transition={{ duration: reduceMotion ? 0.3 : 2.2, ease: [0.22, 1, 0.36, 1] }}
@@ -343,8 +343,8 @@ export function HeroWorkspace() {
               </div>
             </motion.div>
 
-            {/* Keyboard base */}
-            <div className="relative z-10 -mt-px w-full">
+            {/* Keyboard base — counter-rotate to keep it visually horizontal */}
+            <div className="relative z-10 -mt-px w-full" style={{ transform: "rotateX(-12deg)", transformOrigin: "top center" }}>
               <div
                 className="rounded-b-[16px] border border-t-0 border-white/8 bg-gradient-to-b from-[#9ba8b9] to-[#6b7a8e] shadow-[0_20px_50px_rgba(0,0,0,0.35)] sm:rounded-b-[20px]"
                 style={{ padding: "2.5% 7% 5%" }}
