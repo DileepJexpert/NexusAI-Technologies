@@ -101,8 +101,14 @@ export function HeroWorkspace() {
         />
 
         <div className="relative mx-auto w-full max-w-[780px]">
-          <div className="absolute bottom-[7%] left-[1%] right-[1%] h-[25%] rounded-t-[26px] border border-cyan-300/12 bg-gradient-to-b from-[#0f6f79] to-[#0b4f59] shadow-[0_45px_90px_rgba(3,13,20,0.42)]" />
-          <div className="absolute bottom-[6.2%] left-[1%] right-[1%] h-[1.2%] rounded-full bg-cyan-300/70 blur-[2px]" />
+          <div
+            aria-hidden
+            className="absolute bottom-[12%] left-[6%] right-[4%] h-[16%] rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(125,211,252,0.22),rgba(14,165,233,0.08)_45%,transparent_72%)] blur-2xl"
+          />
+          <div
+            aria-hidden
+            className="absolute bottom-[10%] left-[10%] right-[8%] h-[2px] rounded-full bg-cyan-200/35 shadow-[0_0_28px_rgba(103,232,249,0.35)]"
+          />
 
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: 24 }}
@@ -113,19 +119,21 @@ export function HeroWorkspace() {
           >
             <motion.div
               animate={{
-                rotateX: isOpen ? 7 : 13,
-                rotateY: isOpen ? -28 : -32,
-                scale: isOpen ? 0.91 : 0.88,
-                x: isOpen ? -44 : -56,
+                rotateX: isOpen ? 4 : 8,
+                scale: isOpen ? 0.92 : 0.88,
+                x: isOpen ? -34 : -46,
               }}
               transition={{ duration: reduceMotion ? 0.35 : 2.4, ease: [0.22, 1, 0.36, 1] }}
               className="relative w-full max-w-[760px]"
               style={{ transformStyle: "preserve-3d" }}
             >
               <motion.div
-                animate={{ rotateX: isOpen ? 0 : -102 }}
+                animate={{
+                  rotateX: isOpen ? 0 : -102,
+                  rotateY: isOpen ? -24 : -28,
+                }}
                 transition={{ duration: reduceMotion ? 0.4 : 2.8, delay: reduceMotion ? 0 : 0.28, ease: [0.2, 0.9, 0.24, 1] }}
-                className="relative z-20 ml-[4%] h-[195px] w-[76%] origin-bottom rounded-[26px] border border-[#253a4e] bg-[#101a2b] shadow-[0_45px_80px_rgba(1,8,20,0.46)] sm:h-[250px] md:h-[310px]"
+                className="relative z-20 ml-[3%] h-[195px] w-[78%] origin-bottom rounded-[26px] border border-[#253a4e] bg-[#101a2b] shadow-[0_45px_80px_rgba(1,8,20,0.46)] sm:h-[250px] md:h-[310px]"
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <div className="absolute inset-[10px] overflow-hidden rounded-[22px] border border-[#d9e5f3] bg-[#f6f8fb]">
@@ -221,22 +229,22 @@ export function HeroWorkspace() {
                 </div>
               </motion.div>
 
-              <div className="relative z-10 ml-[1%] -mt-1.5 w-[82%]">
-                <div className="h-[18px] rounded-t-[22px] border border-white/14 bg-gradient-to-b from-[#a0acbd] to-[#7f8da1]" />
-                <div className="h-[34px] rounded-b-[30px] border-x border-b border-white/10 bg-gradient-to-b from-[#8290a4] to-[#69788d] shadow-[0_32px_64px_rgba(0,0,0,0.34)]">
-                  <div className="mx-auto mt-[11px] h-[3px] w-[20%] rounded-full bg-white/45" />
+              <div className="relative z-10 ml-[1%] -mt-1 w-[88%]">
+                <div className="h-[24px] rounded-t-[26px] border border-white/14 bg-gradient-to-b from-[#a9b5c4] via-[#8b9aaf] to-[#76869b]" />
+                <div className="h-[42px] rounded-b-[32px] border-x border-b border-white/10 bg-gradient-to-b from-[#8493a7] to-[#637287] shadow-[0_34px_66px_rgba(0,0,0,0.34)]">
+                  <div className="mx-auto mt-[15px] h-[3px] w-[22%] rounded-full bg-white/50" />
                 </div>
-                <div className="absolute left-[8%] right-[8%] top-[4px] grid grid-cols-12 gap-1.5 opacity-85">
-                  {Array.from({ length: 36 }).map((_, idx) => (
+                <div className="absolute left-[7%] right-[7%] top-[6px] grid grid-cols-12 gap-1.5 opacity-95">
+                  {Array.from({ length: 48 }).map((_, idx) => (
                     <div
                       key={idx}
-                      className={`h-[6px] rounded-[3px] border border-white/8 bg-[#6f7d92] ${
-                        idx >= 24 ? "hidden sm:block" : ""
+                      className={`h-[6px] rounded-[3px] border border-slate-900/25 bg-[#4f5f74] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] ${
+                        idx >= 36 ? "hidden sm:block" : ""
                       }`}
                     />
                   ))}
                 </div>
-                <div className="absolute inset-x-[32%] bottom-[7px] h-[18px] rounded-2xl border border-white/8 bg-[#728198]" />
+                <div className="absolute inset-x-[30%] bottom-[8px] h-[21px] rounded-2xl border border-slate-900/20 bg-[#78879b] shadow-[inset_0_1px_0_rgba(255,255,255,0.22)]" />
               </div>
 
               <motion.div
