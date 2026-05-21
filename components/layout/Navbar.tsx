@@ -48,7 +48,7 @@ export function Navbar() {
           : "bg-transparent"
       )}
     >
-      <div className="container-wide flex h-16 items-center justify-between">
+      <div className="container-wide flex h-12 items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
             src="/images/logo-white.svg"
@@ -56,7 +56,7 @@ export function Navbar() {
             width={124}
             height={32}
             priority
-            className="h-8 w-auto"
+            className="h-6 w-auto"
           />
         </Link>
 
@@ -66,7 +66,7 @@ export function Navbar() {
             onMouseEnter={() => setProductsOpen(true)}
             onMouseLeave={() => setProductsOpen(false)}
           >
-            <button className="flex items-center gap-1 rounded-md px-4 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">
+            <button className="flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">
               Products
               <ChevronDown className="h-4 w-4" />
             </button>
@@ -78,7 +78,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-md px-4 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
+                className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
               >
                 {link.label}
               </Link>
@@ -92,7 +92,7 @@ export function Navbar() {
               size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle theme"
-              className="text-slate-300 hover:bg-white/10 hover:text-white"
+              className="h-8 w-8 text-slate-300 hover:bg-white/10 hover:text-white"
             >
               {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
@@ -107,7 +107,7 @@ export function Navbar() {
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-green-500/25"
+            className="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-green-500/25"
             style={{
               background: "linear-gradient(135deg, #075E54 0%, #25D366 100%)",
               boxShadow: "0 4px 14px rgba(37,211,102,0.3)",
@@ -131,7 +131,7 @@ export function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="fixed inset-x-0 top-16 z-40 h-[calc(100vh-4rem)] overflow-y-auto border-t border-white/10 bg-[#0B1628] lg:hidden">
+        <div className="fixed inset-x-0 top-12 z-40 h-[calc(100vh-3rem)] overflow-y-auto border-t border-white/10 bg-[#0B1628] lg:hidden">
           <div className="container-wide flex flex-col gap-2 py-6">
             {mainNav.map((link) => (
               <Link

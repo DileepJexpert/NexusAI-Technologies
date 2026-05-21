@@ -2,106 +2,66 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { categories } from "@/data/categories";
 import { HeroWorkspace } from "./HeroWorkspace";
-import { brand } from "@/lib/brand";
 
 export function Hero() {
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210";
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(brand.whatsappGreeting)}`;
-
   return (
-    <section className="relative overflow-hidden bg-[#0B1628] pb-14 text-white">
+    <section className="relative overflow-hidden bg-[#07111f] text-white">
       <div
         aria-hidden
-        className="blob pointer-events-none absolute -left-48 -top-48 h-[600px] w-[600px] opacity-[0.18]"
-        style={{ background: "radial-gradient(circle, #2E5090 0%, transparent 70%)" }}
-      />
-      <div
-        aria-hidden
-        className="blob float-b pointer-events-none absolute -bottom-40 right-0 h-[480px] w-[480px] opacity-[0.14]"
+        className="pointer-events-none absolute inset-0"
         style={{
-          background: "radial-gradient(circle, #16A34A 0%, transparent 70%)",
-          animationDelay: "4s",
+          background:
+            "radial-gradient(circle at 20% 18%, rgba(59,130,246,0.22), transparent 32%), radial-gradient(circle at 80% 18%, rgba(16,185,129,0.18), transparent 28%), linear-gradient(180deg, rgba(9,18,34,0.2), rgba(7,17,31,0.96))",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-[0.055]"
-        style={{ backgroundSize: "56px 56px" }}
+        className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-[0.045]"
+        style={{ backgroundSize: "62px 62px" }}
       />
 
-      <div className="container-wide relative z-10 grid min-h-[88vh] items-center gap-12 py-24 lg:grid-cols-[1fr_auto]">
-        <motion.div
-          initial={{ opacity: 0, x: -28 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.65, ease: "easeOut" }}
-          className="flex flex-col items-start"
-        >
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-300 backdrop-blur-sm">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
-            {brand.heroEyebrow}
-          </div>
-
-          <h1 className="font-heading text-4xl font-bold leading-[1.06] text-balance sm:text-5xl md:text-6xl lg:text-[3.75rem]">
-            Finance clarity.
-            <br />
-            <span className="grad-text-animated">One modern operating layer.</span>
-          </h1>
-
-          <p className="mt-6 max-w-xl text-base text-balance text-slate-300 sm:text-lg">
-            Katixo brings accounting workflows, operating visibility, and AI-assisted review
-            into one polished workspace built for growing businesses.
-          </p>
-
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <Button variant="accent" size="lg" asChild>
-              <Link href="/products">
-                Explore the portfolio <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <Button variant="whiteOutline" size="lg" asChild>
-              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="h-4 w-4" />
-                Talk to Katixo
-              </a>
-            </Button>
-          </div>
-
+      <div className="container-wide relative z-10 flex min-h-screen items-center py-20 md:py-24">
+        <div className="grid w-full items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10 xl:gap-14">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-10"
+            transition={{ duration: 0.7, ease: "easeOut", delay: 1.65 }}
+            className="order-1 flex max-w-md flex-col items-start text-left"
           >
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-slate-500">
-              Finance, approvals, reporting, and daily operations
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.05] px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-300 backdrop-blur-sm sm:text-xs">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+              Smart accounting workspace
+            </div>
+
+            <h1 className="font-heading text-3xl font-bold leading-[1.02] text-balance sm:text-4xl md:text-5xl lg:text-[3.1rem]">
+              Open faster.
+              <br />
+              <span className="grad-text-animated">See more.</span>
+            </h1>
+
+            <p className="mt-5 max-w-md text-sm leading-6 text-slate-300 sm:text-base sm:leading-7">
+              A clean finance dashboard for review, reporting, and daily control.
             </p>
-            <div className="flex flex-wrap gap-2">
-              {categories.map((c) => (
-                <Link
-                  key={c.id}
-                  href={`/products/${c.id}`}
-                  className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-slate-300 backdrop-blur-sm transition-all hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
-                >
-                  <span className="text-sm">{c.icon}</span>
-                  <span>{c.name}</span>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Button variant="accent" size="lg" asChild>
+                <Link href="/contact">
+                  Book a demo <ArrowRight className="h-4 w-4" />
                 </Link>
-              ))}
+              </Button>
+              <Button variant="whiteOutline" size="lg" asChild>
+                <Link href="/contact?intent=register">Register</Link>
+              </Button>
             </div>
           </motion.div>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24, scale: 0.97 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.75, delay: 0.25, ease: "easeOut" }}
-          className="float-a hidden items-center justify-center lg:flex"
-        >
-          <HeroWorkspace />
-        </motion.div>
+          <div className="order-2">
+            <HeroWorkspace />
+          </div>
+        </div>
       </div>
 
       <div
