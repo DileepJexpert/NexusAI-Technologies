@@ -3,25 +3,18 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Bot, CheckCircle2, Sparkles } from "lucide-react";
 
 const metrics = [
-  { label: "Cash view", value: "98.4%", tone: "bg-emerald-400" },
-  { label: "Auto matched", value: "1,284", tone: "bg-sky-400" },
-  { label: "Needs review", value: "12", tone: "bg-amber-400" },
+  { label: "Outstanding receivables", value: "₹5.38Cr", change: "+3.5%" },
+  { label: "Outstanding payables", value: "₹3.07Cr", change: "+2.9%" },
+  { label: "Net profit", value: "₹2.18Cr", change: "+4.1%" },
 ];
 
-const queue = [
-  { name: "Close checklist", status: "Ready to approve" },
-  { name: "Vendor review", status: "4 exceptions grouped" },
-  { name: "Revenue sync", status: "Live with bank feed" },
-];
-
-const rows = [
-  { company: "Northline Logistics", amount: "$84,200", tag: "Revenue" },
-  { company: "Meridian Foods", amount: "$22,440", tag: "Payables" },
-  { company: "Aster Retail", amount: "$41,980", tag: "Collections" },
-  { company: "Valence Health", amount: "$18,600", tag: "Review" },
+const phoneRows = [
+  { name: "Acme Industries", amount: "₹1,20,000", status: "Approve" },
+  { name: "GST sync", amount: "₹3,65,000", status: "Approve" },
+  { name: "Data Services", amount: "₹53,000", status: "Review" },
+  { name: "Northline", amount: "₹87,000", status: "Approve" },
 ];
 
 export function HeroWorkspace() {
@@ -30,8 +23,8 @@ export function HeroWorkspace() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const loaderMs = reduceMotion ? 180 : 1600;
-    const openMs = reduceMotion ? 220 : 3200;
+    const loaderMs = reduceMotion ? 180 : 1500;
+    const openMs = reduceMotion ? 220 : 3000;
 
     const loaderTimer = window.setTimeout(() => setShowLoader(false), loaderMs);
     const openTimer = window.setTimeout(() => setIsOpen(true), openMs);
@@ -42,7 +35,7 @@ export function HeroWorkspace() {
     };
   }, [reduceMotion]);
 
-  const bars = useMemo(() => [42, 58, 55, 74, 63, 88, 94, 86, 110, 102, 118, 132], []);
+  const bars = useMemo(() => [18, 22, 26, 25, 32, 38, 42, 51, 49, 56], []);
 
   return (
     <>
@@ -101,226 +94,123 @@ export function HeroWorkspace() {
         ) : null}
       </AnimatePresence>
 
-      <div className="relative ml-auto w-full max-w-[860px] px-0 sm:px-2">
+      <div className="relative ml-auto w-full max-w-[820px]">
         <div
           aria-hidden
-          className="pointer-events-none absolute left-1/2 top-[76%] h-24 w-[68%] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.22),transparent_68%)] blur-3xl"
+          className="pointer-events-none absolute inset-x-[10%] bottom-[10%] h-24 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.26),transparent_68%)] blur-3xl"
         />
 
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: reduceMotion ? 0 : 1.7, ease: "easeOut" }}
-          className="relative mx-auto flex w-full max-w-[820px] justify-center"
-          style={{ perspective: 3000 }}
-        >
+        <div className="relative mx-auto w-full max-w-[780px]">
+          <div className="absolute bottom-[7%] left-[1%] right-[1%] h-[25%] rounded-t-[26px] border border-cyan-300/12 bg-gradient-to-b from-[#0f6f79] to-[#0b4f59] shadow-[0_45px_90px_rgba(3,13,20,0.42)]" />
+          <div className="absolute bottom-[6.2%] left-[1%] right-[1%] h-[1.2%] rounded-full bg-cyan-300/70 blur-[2px]" />
+
           <motion.div
-            animate={{
-              rotateX: isOpen ? 10 : 16,
-              rotateY: isOpen ? -18 : -22,
-              scale: isOpen ? 0.96 : 0.92,
-              x: isOpen ? 6 : -4,
-            }}
-            transition={{ duration: reduceMotion ? 0.35 : 2.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-[760px]"
-            style={{ transformStyle: "preserve-3d" }}
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: reduceMotion ? 0 : 1.65, ease: "easeOut" }}
+            className="relative z-10 mx-auto flex min-h-[350px] w-full items-end justify-center sm:min-h-[410px] lg:min-h-[455px]"
+            style={{ perspective: 3300 }}
           >
             <motion.div
-              initial={false}
               animate={{
-                opacity: isOpen ? 1 : 0,
-                y: isOpen ? 0 : 24,
+                rotateX: isOpen ? 7 : 13,
+                rotateY: isOpen ? -28 : -32,
+                scale: isOpen ? 0.91 : 0.88,
+                x: isOpen ? -44 : -56,
               }}
-              transition={{ duration: reduceMotion ? 0.2 : 0.7, delay: reduceMotion ? 0 : 1.55 }}
-              className="absolute -left-3 top-12 z-20 hidden rounded-2xl border border-white/15 bg-[#11233e]/82 px-4 py-3 shadow-2xl backdrop-blur-xl md:block"
-            >
-              <div className="flex items-center gap-3 text-white">
-                <div className="rounded-xl bg-emerald-400/15 p-2 text-emerald-300">
-                  <Bot className="h-5 w-5" />
-                </div>
-                <div>
-                  <div className="text-xs uppercase tracking-[0.14em] text-slate-400">
-                    Katixo Assist
-                  </div>
-                  <div className="text-sm font-semibold">11 approvals bundled for review</div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={false}
-              animate={{
-                opacity: isOpen ? 1 : 0,
-                y: isOpen ? 0 : -20,
-              }}
-              transition={{ duration: reduceMotion ? 0.2 : 0.7, delay: reduceMotion ? 0 : 1.75 }}
-              className="absolute -right-2 top-20 z-20 hidden rounded-2xl border border-white/10 bg-white/92 px-4 py-3 shadow-2xl md:block"
-            >
-              <div className="flex items-center gap-3 text-slate-900">
-                <div className="rounded-xl bg-orange-100 p-2 text-orange-500">
-                  <Sparkles className="h-5 w-5" />
-                </div>
-                <div>
-                  <div className="text-xs uppercase tracking-[0.14em] text-slate-500">
-                    Daily review
-                  </div>
-                  <div className="text-sm font-semibold">Close tasks reduced by 37%</div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              animate={{
-                rotateX: isOpen ? 0 : -104,
-              }}
-              transition={{ duration: reduceMotion ? 0.38 : 2.7, delay: reduceMotion ? 0 : 0.28, ease: [0.2, 0.9, 0.24, 1] }}
-              className="relative z-10 mx-auto h-[184px] w-[90%] origin-bottom rounded-[26px] border border-[#2d4360] bg-[#0c182b] shadow-[0_45px_80px_rgba(1,8,20,0.45)] sm:h-[232px] md:h-[292px]"
+              transition={{ duration: reduceMotion ? 0.35 : 2.4, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full max-w-[760px]"
               style={{ transformStyle: "preserve-3d" }}
             >
-              <div className="absolute inset-[12px] overflow-hidden rounded-[20px] border border-white/8 bg-[#0f1c32]">
-                <div className="flex items-center justify-between border-b border-white/8 bg-[#101d35] px-4 py-3">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2.5 w-2.5 rounded-full bg-rose-400/80" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-amber-300/80" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
-                  </div>
-                  <div className="rounded-full bg-white/6 px-3 py-1 text-[11px] font-medium text-slate-300">
-                    Katixo Finance OS
-                  </div>
-                </div>
-
-                <div className="grid h-[calc(100%-49px)] grid-cols-[70px_1fr_170px] sm:grid-cols-[82px_1fr_185px]">
-                  <div className="border-r border-white/8 bg-[#0a1526] px-2 py-3">
-                    <div className="space-y-2">
-                      {["Overview", "Ledger", "Close", "Cash", "Reports"].map((item, idx) => (
-                        <div
-                          key={item}
-                          className={`rounded-lg px-2.5 py-2 text-[10px] font-medium sm:text-[11px] ${
-                            idx === 0 ? "bg-white text-slate-900" : "text-slate-400"
-                          }`}
-                        >
-                          {item}
-                        </div>
-                      ))}
+              <motion.div
+                animate={{ rotateX: isOpen ? 0 : -102 }}
+                transition={{ duration: reduceMotion ? 0.4 : 2.8, delay: reduceMotion ? 0 : 0.28, ease: [0.2, 0.9, 0.24, 1] }}
+                className="relative z-20 ml-[4%] h-[195px] w-[76%] origin-bottom rounded-[26px] border border-[#253a4e] bg-[#101a2b] shadow-[0_45px_80px_rgba(1,8,20,0.46)] sm:h-[250px] md:h-[310px]"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                <div className="absolute inset-[10px] overflow-hidden rounded-[22px] border border-[#d9e5f3] bg-[#f6f8fb]">
+                  <div className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3">
+                    <div className="flex items-center gap-2">
+                      <span className="h-2.5 w-2.5 rounded-full bg-rose-300" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-emerald-300" />
                     </div>
+                    <div className="w-[34%] rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[10px] text-slate-400">
+                      Search or jump to...
+                    </div>
+                    <div className="h-6 w-6 rounded-full bg-slate-100" />
                   </div>
 
-                  <div className="bg-[#0f1b31] p-3 sm:p-4">
-                    <div className="grid h-full gap-3">
-                      <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                        {metrics.map((metric) => (
+                  <div className="grid h-[calc(100%-49px)] grid-cols-[46px_1fr]">
+                    <div className="border-r border-slate-200 bg-[#fbfcfd] px-2 py-3">
+                      <div className="space-y-2">
+                        {Array.from({ length: 9 }).map((_, idx) => (
                           <div
-                            key={metric.label}
-                            className="rounded-2xl border border-white/8 bg-white/[0.04] p-2.5 sm:p-3"
-                          >
-                            <div className="mb-2 flex items-center justify-between">
-                              <div className="text-[9px] uppercase tracking-[0.12em] text-slate-400 sm:text-[10px]">
-                                {metric.label}
-                              </div>
-                              <span className={`h-2.5 w-2.5 rounded-full ${metric.tone}`} />
-                            </div>
-                            <div className="text-sm font-semibold text-white sm:text-xl">
-                              {metric.value}
-                            </div>
-                          </div>
+                            key={idx}
+                            className={`h-6 rounded-lg ${idx === 1 ? "bg-slate-200" : "bg-slate-100"}`}
+                          />
                         ))}
                       </div>
+                    </div>
 
-                      <div className="grid min-h-0 grid-cols-[1.15fr_0.85fr] gap-3">
-                        <div className="rounded-3xl border border-white/8 bg-white/[0.04] p-3">
-                          <div className="mb-3 flex items-center justify-between">
-                            <div>
-                              <div className="text-[10px] uppercase tracking-[0.12em] text-slate-400">
-                                Throughput
-                              </div>
-                              <div className="mt-1 text-sm font-semibold text-white sm:text-base">
-                                Accounting dashboard
-                              </div>
-                            </div>
-                            <div className="rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300">
-                              Live sync
-                            </div>
-                          </div>
-
-                          <div className="rounded-2xl bg-[#09111f] p-3">
-                            <div className="mb-3 flex items-end justify-between">
-                              <div>
-                                <div className="text-[10px] uppercase tracking-[0.12em] text-slate-500">
-                                  Monthly volume
-                                </div>
-                                <div className="text-lg font-semibold text-white sm:text-2xl">
-                                  $1.82M
-                                </div>
-                              </div>
-                              <div className="text-xs font-medium text-emerald-300">+18.2%</div>
-                            </div>
-                            <div className="flex h-20 items-end gap-1.5 sm:h-24">
-                              {bars.map((height, idx) => (
-                                <motion.div
-                                  key={idx}
-                                  initial={false}
-                                  animate={{ height: isOpen ? height : 0 }}
-                                  transition={{
-                                    duration: reduceMotion ? 0.2 : 0.55,
-                                    delay: reduceMotion ? 0 : 0.03 * idx + 1.35,
-                                  }}
-                                  className="flex-1 rounded-t-lg bg-gradient-to-t from-emerald-400 to-sky-400/70"
-                                />
-                              ))}
-                            </div>
+                    <div className="bg-white p-4 sm:p-5">
+                      <div className="mb-4 flex items-start justify-between">
+                        <div>
+                          <div className="text-[11px] text-slate-400">Home</div>
+                          <div className="mt-1 text-xl font-semibold text-slate-800 sm:text-3xl">
+                            Dashboard
                           </div>
                         </div>
-
-                        <div className="rounded-3xl border border-white/8 bg-white/[0.04] p-3">
-                          <div className="text-[10px] uppercase tracking-[0.12em] text-slate-400">
-                            Priority queue
+                        <div className="flex gap-2">
+                          <div className="rounded-lg border border-slate-200 px-3 py-1.5 text-[10px] text-slate-500 sm:text-xs">
+                            Export PDF
                           </div>
-                          <div className="mt-3 space-y-2.5">
-                            {queue.map((task) => (
-                              <div key={task.name} className="rounded-2xl bg-[#09111f] px-3 py-2.5">
-                                <div className="flex items-center justify-between gap-2">
-                                  <div className="text-[11px] font-medium text-white sm:text-xs">
-                                    {task.name}
-                                  </div>
-                                  <CheckCircle2 className="h-4 w-4 text-emerald-300" />
-                                </div>
-                                <div className="mt-1 text-[10px] text-slate-400 sm:text-[11px]">
-                                  {task.status}
-                                </div>
-                              </div>
+                          <div className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-[10px] text-slate-500 sm:text-xs">
+                            Edit dashboard
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mb-4 flex flex-wrap gap-4 text-[10px] text-slate-400 sm:text-xs">
+                        <span className="border-b-2 border-slate-700 pb-1 text-slate-700">Executive summary</span>
+                        <span>Cash management</span>
+                        <span>Revenue</span>
+                        <span>Custom</span>
+                        <span>New dashboard</span>
+                      </div>
+
+                      <div className="grid h-[calc(100%-94px)] grid-cols-[1.3fr_0.8fr] gap-3">
+                        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                          <div className="text-[10px] text-slate-400">Month to date</div>
+                          <div className="mt-1 text-sm font-medium text-slate-500">Revenue</div>
+                          <div className="mt-2 text-xl font-semibold text-slate-800 sm:text-2xl">
+                            ₹8,34,93,450
+                          </div>
+                          <div className="mt-4 flex h-[120px] items-end gap-2 sm:h-[150px]">
+                            {bars.map((height, idx) => (
+                              <motion.div
+                                key={idx}
+                                initial={false}
+                                animate={{ height: isOpen ? `${height}%` : "0%" }}
+                                transition={{
+                                  duration: reduceMotion ? 0.2 : 0.55,
+                                  delay: reduceMotion ? 0 : 1.3 + idx * 0.04,
+                                }}
+                                className="flex-1 rounded-t-xl bg-gradient-to-t from-[#7dd3fc] to-[#cdefff]"
+                              />
                             ))}
                           </div>
                         </div>
-                      </div>
 
-                      <div className="rounded-3xl border border-white/8 bg-white/[0.04] p-3">
-                        <div className="mb-3 flex items-center justify-between">
-                          <div>
-                            <div className="text-[10px] uppercase tracking-[0.12em] text-slate-400">
-                              Reconciliation
-                            </div>
-                            <div className="mt-1 text-sm font-semibold text-white sm:text-base">
-                              Review and clear faster
-                            </div>
-                          </div>
-                          <ArrowUpRight className="h-4 w-4 text-slate-400" />
-                        </div>
-                        <div className="overflow-hidden rounded-2xl border border-white/6">
-                          {rows.map((row, idx) => (
-                            <div
-                              key={row.company}
-                              className={`grid grid-cols-[1.15fr_0.75fr_0.65fr] items-center gap-2 px-3 py-2.5 ${
-                                idx !== rows.length - 1 ? "border-b border-white/6" : ""
-                              }`}
-                            >
-                              <div className="truncate text-[10px] font-medium text-white sm:text-[11px]">
-                                {row.company}
+                        <div className="grid gap-3">
+                          {metrics.map((metric) => (
+                            <div key={metric.label} className="rounded-2xl border border-slate-200 bg-white p-3">
+                              <div className="text-[10px] text-slate-400 sm:text-xs">{metric.label}</div>
+                              <div className="mt-1 text-xl font-semibold text-slate-800 sm:text-2xl">
+                                {metric.value}
                               </div>
-                              <div className="text-[10px] text-slate-300 sm:text-[11px]">
-                                {row.amount}
-                              </div>
-                              <div className="justify-self-start rounded-full bg-white/8 px-2 py-1 text-[9px] text-slate-300 sm:text-[10px]">
-                                {row.tag}
+                              <div className="mt-1 text-[10px] font-medium text-emerald-500 sm:text-xs">
+                                {metric.change}
                               </div>
                             </div>
                           ))}
@@ -328,43 +218,73 @@ export function HeroWorkspace() {
                       </div>
                     </div>
                   </div>
-
-                  <div className="border-l border-white/8 bg-[#0b1629] p-3 sm:p-4">
-                    <div className="rounded-3xl border border-white/8 bg-white/[0.04] p-3">
-                      <div className="text-[10px] uppercase tracking-[0.12em] text-slate-400">
-                        Today at Katixo
-                      </div>
-                      <div className="mt-3 space-y-2.5">
-                        {[
-                          "Revenue exceptions grouped",
-                          "Approvals queued by priority",
-                          "Cash snapshot updated",
-                          "14 anomalies summarized",
-                        ].map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-2xl bg-[#09111f] px-3 py-2.5 text-[10px] text-slate-200 sm:text-[11px]"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
                 </div>
+              </motion.div>
+
+              <div className="relative z-10 ml-[1%] -mt-1.5 w-[82%]">
+                <div className="h-[18px] rounded-t-[22px] border border-white/14 bg-gradient-to-b from-[#a0acbd] to-[#7f8da1]" />
+                <div className="h-[34px] rounded-b-[30px] border-x border-b border-white/10 bg-gradient-to-b from-[#8290a4] to-[#69788d] shadow-[0_32px_64px_rgba(0,0,0,0.34)]">
+                  <div className="mx-auto mt-[11px] h-[3px] w-[20%] rounded-full bg-white/45" />
+                </div>
+                <div className="absolute left-[8%] right-[8%] top-[4px] grid grid-cols-12 gap-1.5 opacity-85">
+                  {Array.from({ length: 36 }).map((_, idx) => (
+                    <div
+                      key={idx}
+                      className={`h-[6px] rounded-[3px] border border-white/8 bg-[#6f7d92] ${
+                        idx >= 24 ? "hidden sm:block" : ""
+                      }`}
+                    />
+                  ))}
+                </div>
+                <div className="absolute inset-x-[32%] bottom-[7px] h-[18px] rounded-2xl border border-white/8 bg-[#728198]" />
               </div>
 
-              <div
-                className="absolute inset-0 rounded-[26px] border border-white/5"
-                style={{ transform: "translateZ(-1px)" }}
-              />
-            </motion.div>
+              <motion.div
+                initial={false}
+                animate={{
+                  opacity: isOpen ? 1 : 0,
+                  y: isOpen ? 0 : 20,
+                  x: isOpen ? 0 : 12,
+                  rotateZ: isOpen ? 0 : 3,
+                }}
+                transition={{ duration: reduceMotion ? 0.25 : 0.9, delay: reduceMotion ? 0 : 1.85 }}
+                className="absolute bottom-[10%] right-[0%] z-30 w-[20%] min-w-[108px] max-w-[148px] rounded-[28px] border-[5px] border-[#111827] bg-white shadow-[0_30px_60px_rgba(0,0,0,0.32)]"
+              >
+                <div className="mx-auto mt-2 h-5 w-16 rounded-full bg-[#0f172a]" />
+                <div className="p-3">
+                  <div className="mb-3 flex items-center justify-between">
+                    <div>
+                      <div className="text-[10px] text-slate-400">Inbox</div>
+                      <div className="mt-1 text-sm font-semibold text-slate-800">Mobile</div>
+                    </div>
+                    <div className="h-7 w-7 rounded-full bg-slate-100" />
+                  </div>
 
-            <div className="relative mx-auto -mt-3 h-[14px] w-[90%] rounded-b-[24px] border border-white/10 bg-gradient-to-b from-[#8a97ab] to-[#66758a] shadow-[0_22px_50px_rgba(0,0,0,0.34)] sm:h-[16px]">
-              <div className="absolute inset-x-[38%] top-[4px] h-[2px] rounded-full bg-white/45" />
-            </div>
+                  <div className="mb-3 flex gap-2 text-[9px] text-slate-400">
+                    <span className="rounded-full bg-slate-100 px-2 py-1 text-slate-700">Transactions</span>
+                    <span>Receipts</span>
+                  </div>
+
+                  <div className="space-y-2.5">
+                    {phoneRows.map((row) => (
+                      <div key={row.name} className="rounded-2xl border border-slate-200 bg-slate-50 px-2.5 py-2">
+                        <div className="flex items-start justify-between gap-2">
+                          <div>
+                            <div className="text-[9px] font-medium text-slate-700">{row.name}</div>
+                            <div className="mt-1 text-[8px] text-slate-400">{row.amount}</div>
+                          </div>
+                          <div className="rounded-md bg-emerald-500 px-2 py-1 text-[8px] font-semibold text-white">
+                            {row.status}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </>
   );
