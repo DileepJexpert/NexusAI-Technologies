@@ -59,8 +59,20 @@ function KatixoLoadingLogo() {
   const sparks = ["M21 26L29 18", "M149 16L154 5", "M163 142L174 151"];
 
   return (
-    <div className="relative mx-auto flex w-full max-w-[620px] items-center justify-center px-4">
-      <div className="relative w-full overflow-hidden rounded-[2rem] border border-white/10 bg-[#f8fbf8] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:p-8">
+    <div className="relative flex min-h-screen w-screen items-center justify-center overflow-hidden px-5">
+      <div
+        aria-hidden
+        className="absolute inset-0 scale-105 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "linear-gradient(90deg, rgba(6,16,29,0.72), rgba(6,16,29,0.34) 48%, rgba(6,16,29,0.74)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=85')",
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(255,255,255,0.18),transparent_34%)]"
+      />
+      <div className="relative w-full max-w-[760px] p-2 sm:p-4">
         <div
           aria-hidden
           className="absolute inset-0 opacity-70"
@@ -74,7 +86,7 @@ function KatixoLoadingLogo() {
           viewBox="0 0 720 260"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="relative z-10 h-auto w-full"
+          className="relative z-10 h-auto w-full drop-shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
           role="img"
           aria-label="Katixo animated accounting AI logo"
         >
@@ -198,6 +210,14 @@ function KatixoLoadingLogo() {
             </div>
           ))}
         </div>
+        <div className="relative z-10 mt-5 h-1 overflow-hidden rounded-full bg-white/25">
+          <motion.div
+            className="h-full w-1/2 rounded-full bg-gradient-to-r from-[#FF8A3D] via-[#1FD6A5] to-[#2F7DF6]"
+            initial={{ x: "-100%" }}
+            animate={{ x: ["-100%", "200%"] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
       </div>
     </div>
   );
@@ -250,8 +270,8 @@ export function HeroWorkspace() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const loaderMs = reduceMotion ? 180 : 1500;
-    const openMs = reduceMotion ? 220 : 2200;
+    const loaderMs = reduceMotion ? 180 : 4200;
+    const openMs = reduceMotion ? 220 : 5000;
     const t1 = setTimeout(() => setShowLoader(false), loaderMs);
     const t2 = setTimeout(() => setIsOpen(true), openMs);
     return () => {
