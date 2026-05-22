@@ -6,7 +6,6 @@ import { HowItWorks } from "@/components/home/HowItWorks";
 import { StatsCounter } from "@/components/home/StatsCounter";
 import { CompanyVideo } from "@/components/home/CompanyVideo";
 import { Testimonials } from "@/components/home/Testimonials";
-import { Recognition } from "@/components/home/Recognition";
 import { CTABanner } from "@/components/home/CTABanner";
 
 export default function HomePage() {
@@ -20,7 +19,6 @@ export default function HomePage() {
       <StatsCounter />
       <CompanyVideo />
       <Testimonials />
-      <Recognition />
       <CTABanner />
     </>
   );
