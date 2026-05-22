@@ -1,13 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [initialSubject, setInitialSubject] = useState("Demo");
   const web3formsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "";
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setInitialSubject(params.get("intent") === "register" ? "Register" : "Demo");
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -20,6 +26,18 @@ export function ContactForm() {
     const message = String(formData.get("message") || "");
 
     try {
+      const siteRes = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+
+      if (siteRes.ok) {
+        setStatus("success");
+        form.reset();
+        return;
+      }
+
       if (!web3formsKey) {
         const mailSubject = encodeURIComponent(`[${subject}] Website inquiry from ${name}`);
         const mailBody = encodeURIComponent(`${message}\n\nFrom: ${name} <${email}>`);
@@ -82,12 +100,14 @@ export function ContactForm() {
         <select
           name="subject"
           required
+          defaultValue={initialSubject}
           className="h-11 w-full rounded-lg border border-input bg-background px-4 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
         >
           <option value="General">General inquiry</option>
+          <option value="Demo">Book a demo</option>
+          <option value="Register">Register interest</option>
           <option value="Partnership">Partnership</option>
           <option value="Support">Support</option>
-          <option value="Media">Media / Press</option>
         </select>
       </div>
       <div>

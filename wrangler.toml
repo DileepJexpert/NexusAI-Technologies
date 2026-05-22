@@ -1,0 +1,8 @@
+name = "katixo"
+pages_build_output_dir = "out"
+compatibility_date = "2026-05-22"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "katixo_admin"
+database_id = "e18cb7ca-7be2-4afb-ba33-e7fa60c1004e"

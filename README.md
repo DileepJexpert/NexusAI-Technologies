@@ -12,7 +12,7 @@ Built with **Next.js 15 (App Router)**, **Tailwind CSS**, **Framer Motion** and 
 - **Animations**: Framer Motion
 - **Content**: MDX for the blog
 - **Search**: Fuse.js for client-side fuzzy search
-- **Forms**: Web3Forms integration for contact and partner inquiries
+- **Forms & tracking**: Cloudflare Pages Functions + D1 for contact/demo leads and visitor analytics
 
 ## Getting started
 
@@ -29,13 +29,26 @@ npm run dev
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | WhatsApp number without `+`, for example `919876543210` |
 | `NEXT_PUBLIC_WEB3FORMS_KEY` | Web3Forms access key for the contact form |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics measurement ID (optional) |
+| `ADMIN_PASSWORD` | Cloudflare Pages secret used for `/admin/login` |
 
 ## Notes
 
 - Product pages are generated from `data/products.ts`.
 - Blog posts live in `content/blog/`.
 - The site is exported as static HTML for Cloudflare Pages.
-- Local SQLite-backed admin and tracking routes are disabled in hosted static mode.
+- Admin, contact and page tracking APIs run through Cloudflare Pages Functions with D1.
+
+## Admin and Tracking
+
+Create and initialize the D1 database:
+
+```bash
+npx wrangler d1 create katixo_admin
+npx wrangler d1 execute katixo_admin --remote --file=schema.sql
+npx wrangler pages secret put ADMIN_PASSWORD --project-name=katixo
+```
+
+The current production D1 database binding is configured in `wrangler.toml`.
 
 ## Deployment
 
