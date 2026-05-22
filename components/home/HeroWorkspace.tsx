@@ -313,7 +313,7 @@ export function HeroWorkspace() {
             key="hero-loader"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: reduceMotion ? 0.18 : 0.5 } }}
-            className="fixed inset-0 z-[90] flex items-center justify-center bg-[#f8fafc]"
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-[#f8fafc] dark:bg-[#1C1917]"
           >
             <motion.div
               initial={reduceMotion ? false : { scale: 0.96, opacity: 0, y: 14 }}
