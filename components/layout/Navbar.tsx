@@ -44,14 +44,14 @@ export function Navbar() {
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "border-b border-white/10 bg-[#0B1628]/80 backdrop-blur-xl"
+          ? "border-b border-slate-200 bg-white/80 shadow-sm backdrop-blur-xl"
           : "bg-transparent"
       )}
     >
       <div className="container-wide flex h-12 items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
-            src="/images/logo-white.svg"
+            src="/images/logo.svg"
             alt={`${brand.name} logo`}
             width={124}
             height={32}
@@ -66,7 +66,7 @@ export function Navbar() {
             onMouseEnter={() => setProductsOpen(true)}
             onMouseLeave={() => setProductsOpen(false)}
           >
-            <button className="flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">
+            <button className="flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900">
               Products
               <ChevronDown className="h-4 w-4" />
             </button>
@@ -78,7 +78,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
+                className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
               >
                 {link.label}
               </Link>
@@ -92,14 +92,14 @@ export function Navbar() {
               size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle theme"
-              className="h-8 w-8 text-slate-300 hover:bg-white/10 hover:text-white"
+              className="h-8 w-8 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
             >
               {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
           )}
           <Link
             href="/admin/login"
-            className="text-xs font-medium text-slate-500 transition-colors hover:text-slate-300"
+            className="text-xs font-medium text-slate-400 transition-colors hover:text-slate-700"
           >
             Sign in
           </Link>
@@ -122,7 +122,7 @@ export function Navbar() {
         </div>
 
         <button
-          className="text-white lg:hidden"
+          className="text-slate-700 lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -131,20 +131,20 @@ export function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="fixed inset-x-0 top-12 z-40 h-[calc(100vh-3rem)] overflow-y-auto border-t border-white/10 bg-[#0B1628] lg:hidden">
+        <div className="fixed inset-x-0 top-12 z-40 h-[calc(100vh-3rem)] overflow-y-auto border-t border-slate-200 bg-white lg:hidden">
           <div className="container-wide flex flex-col gap-2 py-6">
             {mainNav.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="rounded-md px-4 py-3 text-base font-medium text-slate-300 hover:bg-white/10 hover:text-white"
+                className="rounded-md px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-slate-900"
               >
                 {link.label}
               </Link>
             ))}
-            <div className="my-4 h-px bg-white/10" />
-            <div className="px-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <div className="my-4 h-px bg-slate-200" />
+            <div className="px-4 text-xs font-semibold uppercase tracking-wider text-slate-400">
               Live products
             </div>
             {categories.map((c) => {
@@ -154,7 +154,7 @@ export function Navbar() {
               if (liveProducts.length === 0) return null;
               return (
                 <div key={c.id} className="mt-2">
-                  <div className="px-4 py-1 text-xs font-semibold text-slate-400">
+                  <div className="px-4 py-1 text-xs font-semibold text-slate-500">
                     {c.icon} {c.name}
                   </div>
                   {liveProducts.map((p) => (
@@ -162,7 +162,7 @@ export function Navbar() {
                       key={p.id}
                       href={`/products/${c.id}/${p.id}`}
                       onClick={() => setMobileOpen(false)}
-                      className="flex items-center justify-between px-6 py-2 text-sm text-slate-300 hover:bg-white/10 hover:text-white"
+                      className="flex items-center justify-between px-6 py-2 text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900"
                     >
                       {p.name}
                       <StatusBadge status={p.status} />
@@ -171,7 +171,7 @@ export function Navbar() {
                 </div>
               );
             })}
-            <div className="my-4 h-px bg-white/10" />
+            <div className="my-4 h-px bg-slate-200" />
             <a
               href={whatsappLink}
               target="_blank"
@@ -193,8 +193,8 @@ export function Navbar() {
 function MegaMenu({ onClose }: { onClose: () => void }) {
   return (
     <div className="absolute left-0 top-full z-50 animate-fade-in pt-2">
-      <div className="rounded-lg border border-white/10 bg-[#0B1628]/95 shadow-xl backdrop-blur-xl">
-        <div className="flex divide-x divide-white/8 gap-0">
+      <div className="rounded-lg border border-slate-200 bg-white shadow-xl backdrop-blur-xl">
+        <div className="flex divide-x divide-slate-100 gap-0">
           {categories.map((c) => {
             const prods = sortByStatus(getProductsByCategory(c.id));
             return (
@@ -208,7 +208,7 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
                     key={p.id}
                     href={`/products/${c.id}/${p.id}`}
                     onClick={onClose}
-                    className="block truncate rounded px-1 py-1 text-[11px] text-slate-400 transition-colors hover:bg-white/8 hover:text-white"
+                    className="block truncate rounded px-1 py-1 text-[11px] text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900"
                   >
                     {p.name}
                   </Link>
@@ -217,7 +217,7 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
             );
           })}
         </div>
-        <div className="border-t border-white/8 px-4 py-2 text-center">
+        <div className="border-t border-slate-100 px-4 py-2 text-center">
           <Link
             href="/products"
             onClick={onClose}

@@ -8,18 +8,18 @@ import { HeroWorkspace } from "./HeroWorkspace";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#07111f] text-white">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#f8fafc] to-[#e8edf4] text-slate-900">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 20% 18%, rgba(59,130,246,0.22), transparent 32%), radial-gradient(circle at 80% 18%, rgba(16,185,129,0.18), transparent 28%), linear-gradient(180deg, rgba(9,18,34,0.2), rgba(7,17,31,0.96))",
+            "radial-gradient(circle at 20% 18%, rgba(59,130,246,0.08), transparent 32%), radial-gradient(circle at 80% 18%, rgba(16,185,129,0.06), transparent 28%)",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-[0.045]"
+        className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-[0.03]"
         style={{ backgroundSize: "62px 62px" }}
       />
 
@@ -31,18 +31,18 @@ export function Hero() {
             transition={{ duration: 0.7, ease: "easeOut", delay: 1.65 }}
             className="order-1 flex max-w-md flex-col items-start text-left"
           >
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.05] px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-300 backdrop-blur-sm sm:text-xs">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-500 backdrop-blur-sm sm:text-xs">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
               Smart accounting workspace
             </div>
 
-            <h1 className="font-heading text-3xl font-bold leading-[1.02] text-balance sm:text-4xl md:text-5xl lg:text-[3.1rem]">
+            <h1 className="font-heading text-3xl font-bold leading-[1.02] text-balance text-slate-900 sm:text-4xl md:text-5xl lg:text-[3.1rem]">
               Open faster.
               <br />
               <span className="grad-text-animated">See more.</span>
             </h1>
 
-            <p className="mt-5 max-w-md text-sm leading-6 text-slate-300 sm:text-base sm:leading-7">
+            <p className="mt-5 max-w-md text-sm leading-6 text-slate-500 sm:text-base sm:leading-7">
               A clean finance dashboard for review, reporting, and daily control.
             </p>
 
@@ -78,7 +78,7 @@ export function Hero() {
         >
           <path
             d="M0,28 C360,52 1080,0 1440,28 L1440,52 L0,52 Z"
-            fill="hsl(var(--background))"
+            fill="white"
           />
         </svg>
       </div>

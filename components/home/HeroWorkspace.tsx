@@ -140,7 +140,7 @@ export function HeroWorkspace() {
             key="hero-loader"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: reduceMotion ? 0.18 : 0.5 } }}
-            className="fixed inset-0 z-[90] flex items-center justify-center bg-[#06101d]"
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-[#f8fafc]"
           >
             <div className="flex flex-col items-center gap-6">
               <motion.div
@@ -151,12 +151,12 @@ export function HeroWorkspace() {
               >
                 <div
                   aria-hidden
-                  className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.18),transparent_65%)] blur-3xl"
+                  className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(13,148,136,0.1),transparent_65%)] blur-3xl"
                 />
                 <div className="relative flex flex-col items-center">
-                  <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+                  <div className="rounded-[30px] border border-slate-200 bg-white p-5 shadow-[0_30px_90px_rgba(0,0,0,0.08)] backdrop-blur-xl">
                     <Image
-                      src="/images/logo-white.svg"
+                      src="/images/logo.svg"
                       alt="Katixo logo"
                       width={180}
                       height={44}
@@ -170,9 +170,9 @@ export function HeroWorkspace() {
                   {[0, 1, 2].map((d) => (
                     <motion.span
                       key={d}
-                      animate={{ opacity: [0.28, 1, 0.28], y: [0, -2, 0] }}
+                      animate={{ opacity: [0.3, 1, 0.3], y: [0, -2, 0] }}
                       transition={{ duration: 1, repeat: Infinity, delay: d * 0.12 }}
-                      className="h-2.5 w-2.5 rounded-full bg-white/70"
+                      className="h-2.5 w-2.5 rounded-full bg-slate-400"
                     />
                   ))}
                 </div>
