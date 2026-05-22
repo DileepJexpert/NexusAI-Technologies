@@ -33,17 +33,18 @@ export function Hero() {
           >
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.05] px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-300 backdrop-blur-sm sm:text-xs">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-              Smart accounting workspace
+              AI-native accounting workspace
             </div>
 
             <h1 className="font-heading text-3xl font-bold leading-[1.02] text-balance sm:text-4xl md:text-5xl lg:text-[3.1rem]">
-              Open faster.
+              Close books faster.
               <br />
-              <span className="grad-text-animated">See more.</span>
+              <span className="grad-text-animated">Review only exceptions.</span>
             </h1>
 
             <p className="mt-5 max-w-md text-sm leading-6 text-slate-300 sm:text-base sm:leading-7">
-              A clean finance dashboard for review, reporting, and daily control.
+              Katixo helps Indian businesses manage accounting, GST review, bank
+              reconciliation, and finance control from one clean AI workspace.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">

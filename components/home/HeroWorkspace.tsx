@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
@@ -49,6 +48,160 @@ const phoneMetrics = [
 ];
 
 const phoneSparkline = [28, 35, 30, 42, 38, 52, 48, 58, 55, 65, 60, 68];
+
+function KatixoLoadingLogo() {
+  const ledgerLines = ["M88 61H132", "M94 84H139", "M88 107H132"];
+  const nodes = [
+    { cx: 134, cy: 39, fill: "#FF8A3D", delay: 0 },
+    { cx: 150, cy: 84, fill: "#1FD6A5", delay: 0.25 },
+    { cx: 133, cy: 130, fill: "#2F7DF6", delay: 0.5 },
+  ];
+  const sparks = ["M21 26L29 18", "M149 16L154 5", "M163 142L174 151"];
+
+  return (
+    <div className="relative mx-auto flex w-full max-w-[620px] items-center justify-center px-4">
+      <div className="relative w-full overflow-hidden rounded-[2rem] border border-white/10 bg-[#f8fbf8] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:p-8">
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-70"
+          style={{
+            background:
+              "radial-gradient(circle at 24% 20%, rgba(255,138,61,0.18), transparent 28%), radial-gradient(circle at 76% 30%, rgba(31,214,165,0.14), transparent 28%)",
+          }}
+        />
+
+        <svg
+          viewBox="0 0 720 260"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="relative z-10 h-auto w-full"
+          role="img"
+          aria-label="Katixo animated accounting AI logo"
+        >
+          <defs>
+            <linearGradient id="katixoGradient" x1="114" y1="66" x2="236" y2="194" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stopColor="#FF8A3D" />
+              <stop offset="0.48" stopColor="#1FD6A5" />
+              <stop offset="1" stopColor="#2F7DF6" />
+            </linearGradient>
+            <linearGradient id="ledgerGlow" x1="90" y1="78" x2="236" y2="178" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stopColor="#FF8A3D" />
+              <stop offset="1" stopColor="#1FD6A5" />
+            </linearGradient>
+            <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feColorMatrix
+                in="blur"
+                type="matrix"
+                values="0 0 0 0 0.12  0 0 0 0 0.84  0 0 0 0 0.65  0 0 0 0.55 0"
+              />
+              <feBlend in="SourceGraphic" mode="normal" />
+            </filter>
+          </defs>
+
+          <g transform="translate(66 46)" filter="url(#softGlow)">
+            <motion.path
+              d="M84 8C126 8 160 42 160 84C160 126 126 160 84 160C42 160 8 126 8 84C8 42 42 8 84 8Z"
+              stroke="url(#katixoGradient)"
+              strokeWidth="8"
+              strokeLinecap="round"
+              strokeDasharray="430"
+              initial={{ strokeDashoffset: 430, opacity: 0.6 }}
+              animate={{ strokeDashoffset: [430, 0, 0, 430], opacity: [0.6, 1, 1, 0.6] }}
+              transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            <motion.path
+              d="M58 42V126M116 42L67 84L119 126"
+              stroke="#142D25"
+              strokeWidth="16"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeDasharray="270"
+              initial={{ strokeDashoffset: 270 }}
+              animate={{ strokeDashoffset: [270, 270, 0, 0, 270] }}
+              transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            {ledgerLines.map((d, index) => (
+              <motion.path
+                key={d}
+                d={d}
+                stroke="url(#ledgerGlow)"
+                strokeWidth="8"
+                strokeLinecap="round"
+                strokeDasharray="150"
+                initial={{ strokeDashoffset: 150, opacity: 0.2 }}
+                animate={{ strokeDashoffset: [150, 150, 0, 0, 150], opacity: [0.2, 0.2, 1, 1, 0.2] }}
+                transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: index * 0.08 }}
+              />
+            ))}
+
+            <motion.path
+              d="M42 139L58 154L90 122"
+              stroke="#1FD6A5"
+              strokeWidth="8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeDasharray="90"
+              initial={{ strokeDashoffset: 90, opacity: 0.2 }}
+              animate={{ strokeDashoffset: [90, 90, 0, 0, 90], opacity: [0.2, 0.2, 1, 1, 0.2] }}
+              transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            {nodes.map((node) => (
+              <motion.circle
+                key={`${node.cx}-${node.cy}`}
+                cx={node.cx}
+                cy={node.cy}
+                r="7"
+                fill={node.fill}
+                animate={{ scale: [0.75, 1.12, 0.75], opacity: [0.45, 1, 0.45] }}
+                transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: node.delay }}
+                style={{ transformOrigin: `${node.cx}px ${node.cy}px` }}
+              />
+            ))}
+
+            {sparks.map((d, index) => (
+              <motion.path
+                key={d}
+                d={d}
+                stroke="#FF8A3D"
+                strokeWidth="4"
+                strokeLinecap="round"
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: [0, 0, 1, 1, 0], y: [4, 4, 0, 0, 4] }}
+                transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: index * 0.12 }}
+              />
+            ))}
+          </g>
+
+          <g transform="translate(270 96)">
+            <text x="0" y="0" fill="#142D25" fontSize="64" fontWeight="760" letterSpacing="-2">
+              Katixo
+            </text>
+            <text x="2" y="40" fill="#557066" fontSize="19" fontWeight="500" letterSpacing="0.2">
+              AI-native finance ERP for India
+            </text>
+          </g>
+        </svg>
+
+        <div className="relative z-10 mt-5 grid gap-3 sm:grid-cols-3">
+          {[
+            { label: "GST checks", value: "Live" },
+            { label: "AI Inbox", value: "6 items" },
+            { label: "Books status", value: "Clean" },
+          ].map((item) => (
+            <div key={item.label} className="rounded-2xl border border-[#142D25]/10 bg-white/70 p-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#557066]">{item.label}</p>
+              <p className="mt-1 text-sm font-bold text-[#142D25]">{item.value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function Keyboard() {
   const rows: Array<{ keys: number[]; tall?: boolean }> = [
@@ -142,42 +295,13 @@ export function HeroWorkspace() {
             exit={{ opacity: 0, transition: { duration: reduceMotion ? 0.18 : 0.5 } }}
             className="fixed inset-0 z-[90] flex items-center justify-center bg-[#06101d]"
           >
-            <div className="flex flex-col items-center gap-6">
-              <motion.div
-                initial={reduceMotion ? false : { scale: 0.98, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.45 }}
-                className="relative"
-              >
-                <div
-                  aria-hidden
-                  className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.18),transparent_65%)] blur-3xl"
-                />
-                <div className="relative flex flex-col items-center">
-                  <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-xl">
-                    <Image
-                      src="/images/logo-white.svg"
-                      alt="Katixo logo"
-                      width={180}
-                      height={44}
-                      className="h-11 w-auto sm:h-12"
-                      priority
-                    />
-                  </div>
-                  <div className="mt-5 text-sm font-medium tracking-[0.28em] text-slate-400">KATIXO</div>
-                </div>
-                <div className="mt-8 flex items-center justify-center gap-2">
-                  {[0, 1, 2].map((d) => (
-                    <motion.span
-                      key={d}
-                      animate={{ opacity: [0.28, 1, 0.28], y: [0, -2, 0] }}
-                      transition={{ duration: 1, repeat: Infinity, delay: d * 0.12 }}
-                      className="h-2.5 w-2.5 rounded-full bg-white/70"
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            </div>
+            <motion.div
+              initial={reduceMotion ? false : { scale: 0.96, opacity: 0, y: 14 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease: "easeOut" }}
+            >
+              <KatixoLoadingLogo />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
