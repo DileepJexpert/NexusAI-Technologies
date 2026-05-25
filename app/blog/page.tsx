@@ -5,9 +5,12 @@ import { getAllPosts } from "@/lib/blog";
 import { getCategoryById } from "@/data/categories";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Accounting and Finance Insights",
   description:
-    "Notes, product thinking and operating insights from the Katixo team.",
+    "Read Katixo insights on accounting automation, GST workflows, finance operations, reporting and business control for Indian companies.",
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default function BlogPage() {

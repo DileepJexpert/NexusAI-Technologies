@@ -4,9 +4,12 @@ import { ContactForm } from "@/components/shared/ContactForm";
 import { socialLinks } from "@/data/navigation";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Book a Demo",
   description:
-    "Get in touch with Katixo for partnerships, product discussions or general business inquiries.",
+    "Book a Katixo demo or register interest in an AI-native accounting and finance ERP workspace for Indian businesses.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default function ContactPage() {

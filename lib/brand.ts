@@ -5,13 +5,13 @@ export const brand = {
   supportEmail: "hello@katixo.com",
   privacyEmail: "privacy@katixo.com",
   whatsappGreeting: "Hi Katixo",
-  heroEyebrow: "Umbrella company for modern digital ventures",
-  heroTitle: "One umbrella. Many digital businesses.",
+  heroEyebrow: "AI-native accounting workspace",
+  heroTitle: "Close books faster. Review only exceptions.",
   heroSubtitle:
-    "Katixo is a venture platform that launches, operates and scales practical software, AI tools and service brands for Indian markets.",
-  metaTitle: "Katixo | Umbrella Company for Digital Products and Ventures",
+    "Katixo helps Indian businesses manage accounting, GST review, bank reconciliation and finance control from one clean AI workspace.",
+  metaTitle: "Katixo | AI-Native Finance ERP and Accounting Workspace",
   metaDescription:
-    "Katixo is a modern umbrella company building and operating AI products, workflow software and digital services across high-impact categories.",
+    "Katixo is an AI-native finance ERP for Indian businesses, built for accounting, GST review, bank reconciliation, reporting and finance control.",
   footerSummary:
-    "Katixo is a parent brand for focused digital products. We design, launch and grow software, AI assistants and service-led platforms with a practical business mindset.",
+    "Katixo helps growing Indian businesses manage accounting, GST review, bank reconciliation and finance operations from one clean workspace.",
 } as const;

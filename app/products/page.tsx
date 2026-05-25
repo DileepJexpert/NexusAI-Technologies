@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import { ProductGrid } from "@/components/products/ProductGrid";
 
 export const metadata: Metadata = {
-  title: "All Products",
+  title: "Finance ERP Products",
   description:
-    "Explore the Katixo portfolio of software, AI and service-led digital products.",
+    "Explore Katixo finance ERP modules for accounting, GST review, bank reconciliation, reporting and business finance control in India.",
+  alternates: {
+    canonical: "/products",
+  },
 };
 
 export default function ProductsPage() {

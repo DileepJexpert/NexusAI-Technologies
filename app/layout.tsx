@@ -9,6 +9,7 @@ import { brand } from "@/lib/brand";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || brand.siteUrl;
+const GOOGLE_SITE_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -19,14 +20,18 @@ export const metadata: Metadata = {
   description: brand.metaDescription,
   keywords: [
     "Katixo",
-    "umbrella company",
-    "venture studio",
-    "digital products",
-    "AI products",
-    "software brands",
-    "Indian startup",
+    "AI finance ERP India",
+    "accounting software India",
+    "GST accounting software",
+    "bank reconciliation software",
+    "finance dashboard",
+    "business accounting automation",
+    "AI accounting workspace",
   ],
   authors: [{ name: brand.legalName }],
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -45,6 +50,11 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  verification: GOOGLE_SITE_VERIFICATION
+    ? {
+        google: GOOGLE_SITE_VERIFICATION,
+      }
+    : undefined,
 };
 
 export default function RootLayout({
@@ -71,6 +81,58 @@ export default function RootLayout({
             />
           </>
         )}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": `${siteUrl}/#organization`,
+                  name: brand.name,
+                  legalName: brand.legalName,
+                  url: siteUrl,
+                  logo: `${siteUrl}/images/logo.svg`,
+                  email: brand.supportEmail,
+                  contactPoint: [
+                    {
+                      "@type": "ContactPoint",
+                      contactType: "sales",
+                      email: brand.supportEmail,
+                      areaServed: "IN",
+                      availableLanguage: ["en", "hi"],
+                    },
+                  ],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": `${siteUrl}/#website`,
+                  url: siteUrl,
+                  name: brand.name,
+                  description: brand.metaDescription,
+                  publisher: { "@id": `${siteUrl}/#organization` },
+                  inLanguage: "en-IN",
+                },
+                {
+                  "@type": "SoftwareApplication",
+                  "@id": `${siteUrl}/#software`,
+                  name: brand.name,
+                  applicationCategory: "BusinessApplication",
+                  operatingSystem: "Web",
+                  url: siteUrl,
+                  description: brand.metaDescription,
+                  offers: {
+                    "@type": "Offer",
+                    availability: "https://schema.org/PreOrder",
+                    priceCurrency: "INR",
+                  },
+                  publisher: { "@id": `${siteUrl}/#organization` },
+                },
+              ],
+            }),
+          }}
+        />
       </head>
       <body className="font-sans antialiased">
         <Providers>
