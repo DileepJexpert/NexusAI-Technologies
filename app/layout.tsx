@@ -9,7 +9,9 @@ import { brand } from "@/lib/brand";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || brand.siteUrl;
-const GOOGLE_SITE_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "";
+const GOOGLE_SITE_VERIFICATION =
+  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+  "NuHUrL1W9FwnppFLfuPIiDEOtWhJJsunS0D5FBUv3sc";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
