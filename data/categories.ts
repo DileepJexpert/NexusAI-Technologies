@@ -1,6 +1,6 @@
 import type { Category } from "./types";
 
-export const categories: Category[] = [
+const allCategories: Category[] = [
   {
     id: "agriculture",
     name: "Agriculture & Dairy",
@@ -62,6 +62,8 @@ export const categories: Category[] = [
     image: "/images/categories/health.webp",
   },
 ];
+
+export const categories: Category[] = allCategories.filter((c) => c.id !== "legal");
 
 export function getCategoryById(id: string): Category | undefined {
   return categories.find((c) => c.id === id);

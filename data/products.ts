@@ -4,7 +4,7 @@ const WHATSAPP_NUMBER = "919876543210";
 const WA = (text: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
-export const products: Product[] = [
+const allProducts: Product[] = [
   // ============ AGRICULTURE ============
   {
     id: "kisanmitra",
@@ -702,6 +702,8 @@ export const products: Product[] = [
     faq: [],
   },
 ];
+
+export const products: Product[] = allProducts.filter((p) => p.category_id !== "legal");
 
 export function getProductById(id: string): Product | undefined {
   return products.find((p) => p.id === id);
