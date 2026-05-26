@@ -5,6 +5,7 @@ export interface NavLink {
 
 export const mainNav: NavLink[] = [
   { label: "Products", href: "/products" },
+  { label: "Accounting POS", href: "/accounting-pos-software" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
   { label: "Pricing", href: "/pricing" },
@@ -21,12 +22,11 @@ export const footerLinks: FooterColumn[] = [
   {
     title: "Products",
     links: [
-      { label: "KisanMitra", href: "/products/agriculture/kisanmitra" },
-      { label: "NiyamMitra", href: "/products/finance/niyammitra" },
-      { label: "LoanSathi", href: "/products/finance/loansathi" },
-      { label: "EventKhata", href: "/products/events/eventkhata" },
-      { label: "UdyamSathi", href: "/products/legal/udyamsathi" },
-      { label: "All Products", href: "/products" },
+      { label: "Accounting POS Software", href: "/accounting-pos-software" },
+      { label: "GST Billing Software", href: "/accounting-pos-software#gst-ready-billing" },
+      { label: "MSME Accounting", href: "/accounting-pos-software" },
+      { label: "Inventory and Billing", href: "/accounting-pos-software" },
+      { label: "Book a Demo", href: "/contact" },
     ],
   },
   {
