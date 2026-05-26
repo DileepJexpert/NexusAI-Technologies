@@ -12,16 +12,16 @@ export const metadata: Metadata = {
 
 const timeline = [
   {
-    year: "2025",
-    title: "Operating thesis defined",
+    year: "2026",
+    title: "Katixo started",
     description:
-      "Katixo starts with a simple idea: strong umbrella brands can launch focused software businesses faster.",
+      "Katixo starts in Noida with a clear focus on practical accounting, billing and finance software for Indian businesses.",
   },
   {
     year: "2026 Q1",
-    title: "Katixo formed",
+    title: "Operating thesis defined",
     description:
-      "The company begins structuring product lines, reusable systems and go-to-market foundations.",
+      "The company begins structuring product systems, reusable workflows and go-to-market foundations.",
   },
   {
     year: "2026 Q2",

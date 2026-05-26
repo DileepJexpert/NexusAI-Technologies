@@ -60,7 +60,7 @@ export default function ContactPage() {
               <InfoCard
                 icon={<MapPin className="h-5 w-5 text-secondary" />}
                 title="Office"
-                description="Bengaluru, Karnataka, India"
+                description="Sector 143, Noida, Uttar Pradesh, India"
               />
               <div className="rounded-2xl border bg-card p-6 shadow-sm">
                 <div className="mb-3 font-heading text-base font-bold">Follow us</div>

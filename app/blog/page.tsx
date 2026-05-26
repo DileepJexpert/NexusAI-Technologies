@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Calendar, Clock } from "lucide-react";
+import { ArrowRight, Newspaper } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { getAllPosts } from "@/lib/blog";
-import { getCategoryById } from "@/data/categories";
 
 export const metadata: Metadata = {
-  title: "Accounting and Finance Insights",
+  title: "Katixo News and Updates",
   description:
-    "Read Katixo insights on accounting automation, GST workflows, finance operations, reporting and business control for Indian companies.",
+    "Verified Katixo product updates, accounting software notes and sourced business news for Indian MSME and small businesses.",
   alternates: {
     canonical: "/blog",
   },
@@ -21,72 +21,59 @@ export default function BlogPage() {
       <section className="gradient-primary py-20 text-white">
         <div className="container-wide text-center">
           <h1 className="font-heading text-4xl font-extrabold sm:text-5xl md:text-6xl text-balance">
-            The Katixo Journal
+            Katixo News and Updates
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-200 text-balance">
-            Product notes, operating ideas and practical lessons from building digital businesses.
+            Verified product updates, accounting software notes and sourced business news. We publish only after checking the information.
           </p>
         </div>
       </section>
 
       <section className="section-padding">
         <div className="container-wide">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((p) => {
-              const cat = getCategoryById(p.category);
-              return (
+          {posts.length > 0 ? (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {posts.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/blog/${p.slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+                  className="group rounded-lg border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
                 >
-                  <div
-                    className="aspect-[16/9] w-full"
-                    style={{
-                      background: cat
-                        ? `linear-gradient(135deg, ${cat.color}, ${cat.color}80)`
-                        : "linear-gradient(135deg, #1B2A4A, #2E5090)",
-                    }}
-                  >
-                    <div className="flex h-full items-center justify-center text-6xl">
-                      {cat?.icon ?? "📝"}
-                    </div>
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <Newspaper className="h-6 w-6" />
                   </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    {cat && (
-                      <div className="inline-flex w-fit items-center gap-1 rounded-full bg-muted px-2.5 py-1 text-xs font-medium">
-                        {cat.icon} {cat.name}
-                      </div>
-                    )}
-                    <h2 className="mt-3 font-heading text-xl font-bold leading-tight group-hover:text-primary">
-                      {p.title}
-                    </h2>
-                    <p className="mt-2 flex-1 text-sm text-muted-foreground">
-                      {p.excerpt}
+                  <h2 className="font-heading text-xl font-bold leading-tight group-hover:text-primary">
+                    {p.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{p.excerpt}</p>
+                  {p.date ? (
+                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                      {new Date(p.date).toLocaleDateString("en-IN", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
                     </p>
-                    <div className="mt-4 flex items-center gap-4 text-xs text-muted-foreground">
-                      {p.date && (
-                        <span className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          {new Date(p.date).toLocaleDateString("en-IN", {
-                            day: "numeric",
-                            month: "short",
-                            year: "numeric",
-                          })}
-                        </span>
-                      )}
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-3 w-3" /> {p.readTime}
-                      </span>
-                    </div>
-                  </div>
+                  ) : null}
                 </Link>
-              );
-            })}
-          </div>
-          {posts.length === 0 && (
-            <div className="py-20 text-center text-muted-foreground">
-              No posts yet. Check back soon!
+              ))}
+            </div>
+          ) : (
+            <div className="mx-auto max-w-3xl rounded-lg border bg-card p-8 text-center shadow-sm">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Newspaper className="h-7 w-7" />
+              </div>
+              <h2 className="mt-6 text-2xl font-bold">No published news yet</h2>
+              <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+                We are keeping this section reserved for real product announcements, sourced industry updates and verified accounting software guidance. No imaginary articles will be published here.
+              </p>
+              <div className="mt-7">
+                <Button asChild>
+                  <Link href="/contact">
+                    Get updates from Katixo <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           )}
         </div>

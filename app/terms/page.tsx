@@ -39,7 +39,7 @@ export default function TermsPage() {
 
         <h2 className="mt-10 font-heading text-2xl font-bold">6. Governing law</h2>
         <p className="mt-3 leading-relaxed">
-          These Terms are governed by the laws of India. Any disputes will be resolved exclusively in the courts of Bengaluru, Karnataka.
+          These Terms are governed by the laws of India. Any disputes will be resolved exclusively in the courts of Noida, Uttar Pradesh.
         </p>
 
         <h2 className="mt-10 font-heading text-2xl font-bold">7. Contact</h2>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BarChart3, CheckCircle2, FileText, PackageCheck, ReceiptText, Store } from "lucide-react";
+import { ArrowRight, BarChart3, CheckCircle2, FileText, PackageCheck, ReceiptText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { brand } from "@/lib/brand";
 
@@ -252,27 +252,6 @@ export default function AccountingPosSoftwarePage() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding">
-        <div className="container-wide grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <Store className="h-6 w-6" />
-            </div>
-            <h2 className="mt-5 text-3xl font-bold">Keywords this page targets</h2>
-            <p className="mt-4 text-muted-foreground">
-              This page is structured so Google can understand that Katixo is relevant for accounting POS, billing, GST and small business finance searches.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {keywords.map((keyword) => (
-              <span key={keyword} className="rounded-full border bg-card px-4 py-2 text-sm font-semibold text-muted-foreground">
-                {keyword}
-              </span>
-            ))}
           </div>
         </div>
       </section>
