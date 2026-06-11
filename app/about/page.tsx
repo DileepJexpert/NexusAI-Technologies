@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Linkedin, Twitter } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { team } from "@/data/team";
-import { builtWith, recognition } from "@/data/recognition";
+import { builtWith } from "@/data/recognition";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -171,21 +171,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-padding bg-muted/30">
-        <div className="container-wide">
-          <SectionHeading title="Recognized by" />
-          <div className="mt-10 grid grid-cols-2 items-center gap-6 sm:grid-cols-3 md:grid-cols-5">
-            {recognition.map((r) => (
-              <div
-                key={r.name}
-                className="flex h-16 items-center justify-center rounded-lg border bg-background text-sm font-semibold text-muted-foreground"
-              >
-                {r.name}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }

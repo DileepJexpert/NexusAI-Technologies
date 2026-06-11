@@ -63,19 +63,19 @@ const allProducts: Product[] = [
     ],
     usecases: [
       {
-        title: "Ramesh gets ₹7 lakh dairy loan",
+        title: "Discover loan and subsidy schemes",
         description:
-          "Ramesh from UP chats with KisanMitra, finds NABARD DEDS subsidy, generates DPR and gets his loan approved in 3 weeks.",
+          "Ask about dairy, crop or equipment loans and get matching government schemes such as NABARD subsidies, with the documents each one needs.",
       },
       {
-        title: "Sunita tracks best mandi price",
+        title: "Compare nearby mandi prices",
         description:
-          "Sunita compares tomato prices across 5 nearby mandis, picks the best rate and earns ₹4,000 extra that week.",
+          "Check current rates for your crop across nearby mandis before deciding where to sell.",
       },
       {
-        title: "Vinod applies to PMFME scheme",
+        title: "Prepare scheme applications",
         description:
-          "Vinod uses KisanMitra to check PMFME eligibility and complete his application for a ₹10 lakh food processing unit.",
+          "Check eligibility for schemes like PMFME and assemble the application documents step by step.",
       },
     ],
     pricing: [
@@ -127,32 +127,7 @@ const allProducts: Product[] = [
       "/images/products/kisanmitra/chat2.webp",
       "/images/products/kisanmitra/chat3.webp",
     ],
-    testimonials: [
-      {
-        name: "Ramesh Kumar",
-        location: "Sitapur, UP",
-        occupation: "Dairy Farmer",
-        quote:
-          "KisanMitra helped me get a ₹7 lakh dairy loan. I never knew about NABARD subsidies before.",
-        rating: 5,
-      },
-      {
-        name: "Sunita Devi",
-        location: "Nashik, Maharashtra",
-        occupation: "Vegetable Farmer",
-        quote:
-          "I earn ₹4,000 extra every week by picking the best mandi. This is my morning ritual now.",
-        rating: 5,
-      },
-      {
-        name: "Vinod Patil",
-        location: "Kolhapur, Maharashtra",
-        occupation: "Food Processor",
-        quote:
-          "Applied for PMFME in just 2 days. The DPR generator is a miracle.",
-        rating: 5,
-      },
-    ],
+    testimonials: [],
     faq: [
       {
         question: "Is KisanMitra really free?",
@@ -260,14 +235,14 @@ const allProducts: Product[] = [
     ],
     usecases: [
       {
-        title: "Compliance officer beats the deadline",
+        title: "Draft compliance notes quickly",
         description:
-          "A co-operative bank used NiyamMitra to draft a compliance note on new KYC guidelines in under an hour.",
+          "Turn a new KYC or AML circular into a structured internal compliance note instead of starting from a blank page.",
       },
       {
-        title: "Audit-ready in a week",
+        title: "Prepare for audits methodically",
         description:
-          "NiyamMitra helped a regional bank build evidence packs across 50 branches before a scheduled RBI audit.",
+          "Build checklists and evidence packs branch by branch ahead of scheduled inspections.",
       },
     ],
     pricing: [
@@ -306,29 +281,7 @@ const allProducts: Product[] = [
       },
     ],
     screenshots: [],
-    testimonials: [
-      {
-        name: "Priya S.",
-        location: "Mumbai",
-        occupation: "Compliance Officer",
-        quote: "We cut our circular-review time by 70%. NiyamMitra is a godsend for mid-sized banks.",
-        rating: 5,
-      },
-      {
-        name: "Anand Rao",
-        location: "Hyderabad",
-        occupation: "Bank Auditor",
-        quote: "The audit prep module saved us weeks before an RBI inspection. Every question had evidence ready.",
-        rating: 5,
-      },
-      {
-        name: "Meera Iyer",
-        location: "Chennai",
-        occupation: "Regulatory Head",
-        quote: "Our team finally sleeps on weekends. NiyamMitra tracks every circular so we don't have to.",
-        rating: 5,
-      },
-    ],
+    testimonials: [],
     faq: [
       {
         question: "Is data stored in India?",
@@ -388,29 +341,7 @@ const allProducts: Product[] = [
       },
     ],
     screenshots: [],
-    testimonials: [
-      {
-        name: "Arjun Mehta",
-        location: "Pune",
-        occupation: "Software Engineer",
-        quote: "Found a home loan 0.8% cheaper than what my current bank offered. Saved lakhs.",
-        rating: 5,
-      },
-      {
-        name: "Kavita Singh",
-        location: "Delhi NCR",
-        occupation: "HR Manager",
-        quote: "LoanSathi compared 12 banks for my car loan in 30 seconds. The document checklist was perfect.",
-        rating: 5,
-      },
-      {
-        name: "Nitin Sharma",
-        location: "Bengaluru",
-        occupation: "Small Business Owner",
-        quote: "Got a ₹25 lakh business loan approved in 10 days. Would never have managed without this tool.",
-        rating: 5,
-      },
-    ],
+    testimonials: [],
     faq: [
       {
         question: "Do you store my financial data?",
@@ -571,22 +502,7 @@ const allProducts: Product[] = [
       },
     ],
     screenshots: [],
-    testimonials: [
-      {
-        name: "Deepak Patil",
-        location: "Nashik",
-        occupation: "MSME Owner",
-        quote: "Recovered ₹3.2 lakh of delayed payments in 40 days using the MSMED Act notice feature.",
-        rating: 5,
-      },
-      {
-        name: "Farhan Sheikh",
-        location: "Ahmedabad",
-        occupation: "Textile Exporter",
-        quote: "GST tracker alone saved us a late-filing penalty. The tender finder surfaces deals we'd miss.",
-        rating: 5,
-      },
-    ],
+    testimonials: [],
     faq: [],
   },
 
@@ -614,9 +530,9 @@ const allProducts: Product[] = [
     ],
     usecases: [
       {
-        title: "500-guest wedding under budget",
+        title: "Plan a large wedding on a fixed budget",
         description:
-          "A family in Jaipur planned a 500-guest wedding ₹2 lakh under budget using EventKhata's vendor suggestions.",
+          "Set a total budget, track every vendor payment against it, and see remaining headroom for each category as you plan.",
       },
     ],
     pricing: [
@@ -642,29 +558,7 @@ const allProducts: Product[] = [
       },
     ],
     screenshots: [],
-    testimonials: [
-      {
-        name: "Rohit & Aparna",
-        location: "Jaipur",
-        occupation: "Newlyweds",
-        quote: "We planned our wedding in 3 weeks. EventKhata even found our caterer.",
-        rating: 5,
-      },
-      {
-        name: "Neha Kapoor",
-        location: "Gurgaon",
-        occupation: "Corporate Event Manager",
-        quote: "I run 15 events a month. EventKhata's budget tracker alone pays for itself every week.",
-        rating: 5,
-      },
-      {
-        name: "Vikram Reddy",
-        location: "Hyderabad",
-        occupation: "Father of the bride",
-        quote: "Guest list, vendors, schedule — everything in one chat. Zero spreadsheets.",
-        rating: 5,
-      },
-    ],
+    testimonials: [],
     faq: [
       {
         question: "Can I manage multiple events?",

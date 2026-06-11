@@ -9,9 +9,9 @@ export interface TeamMember {
 
 export const team: TeamMember[] = [
   {
-    name: "Founder Name",
-    role: "Founder & CEO",
-    bio: "Former banking professional with expertise in AI and financial technology. Building AI tools that empower every Indian.",
+    name: "Dileep Maurya",
+    role: "Founder",
+    bio: "Building Katixo — practical accounting and POS software for Indian MSME and retail businesses.",
     image: "/images/team/founder.webp",
     linkedin: "",
     twitter: "",
