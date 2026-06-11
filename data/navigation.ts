@@ -1,17 +1,39 @@
 export interface NavLink {
   label: string;
   href: string;
+  description?: string;
+}
+
+export interface ResourcesColumn {
+  heading: string;
+  links: NavLink[];
 }
 
 export const mainNav: NavLink[] = [
   { label: "Products", href: "/products" },
   { label: "Accounting POS", href: "/accounting-pos-software" },
   { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
-  { label: "API Docs", href: "/docs" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Partners", href: "/partners" },
   { label: "Contact", href: "/contact" },
+];
+
+export const resourcesMenu: ResourcesColumn[] = [
+  {
+    heading: "Learn",
+    links: [
+      { label: "Blog", href: "/blog", description: "Guides, tips & product updates" },
+      { label: "API Documentation", href: "/docs", description: "REST API reference for developers" },
+      { label: "Changelog", href: "/docs/changelog", description: "Latest API & platform changes" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { label: "About", href: "/about", description: "Our story and mission" },
+      { label: "Partners", href: "/partners", description: "Partner program & integrations" },
+      { label: "Careers", href: "/careers", description: "Join the team" },
+    ],
+  },
 ];
 
 export interface FooterColumn {

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
-import { mainNav } from "@/data/navigation";
+import { mainNav, resourcesMenu } from "@/data/navigation";
 import { categories } from "@/data/categories";
 import { getProductsByCategory, sortByStatus } from "@/data/products";
 import { StatusBadge } from "@/components/shared/StatusBadge";
@@ -16,6 +16,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -74,6 +75,17 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+          <div
+            className="relative"
+            onMouseEnter={() => setResourcesOpen(true)}
+            onMouseLeave={() => setResourcesOpen(false)}
+          >
+            <button className="flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white">
+              Resources
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            {resourcesOpen && <ResourcesDropdown onClose={() => setResourcesOpen(false)} />}
+          </div>
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
@@ -152,6 +164,27 @@ export function Navbar() {
               >
                 {link.label}
               </Link>
+            ))}
+            <div className="my-4 h-px bg-slate-200 dark:bg-white/10" />
+            {resourcesMenu.map((col) => (
+              <div key={col.heading}>
+                <div className="px-4 py-1 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  {col.heading}
+                </div>
+                {col.links.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block px-6 py-2.5 text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
+                  >
+                    <span className="font-medium">{link.label}</span>
+                    {link.description && (
+                      <span className="ml-2 text-xs text-slate-400 dark:text-slate-500">{link.description}</span>
+                    )}
+                  </Link>
+                ))}
+              </div>
             ))}
             <div className="my-4 h-px bg-slate-200 dark:bg-white/10" />
             <div className="px-4 text-xs font-semibold uppercase tracking-wider text-slate-400">
@@ -242,6 +275,43 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
           >
             View all products →
           </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ResourcesDropdown({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="absolute right-0 top-full z-50 animate-fade-in pt-2">
+      <div className="w-[420px] rounded-lg border border-slate-200 bg-white shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-[#1C1917]/95">
+        <div className="flex divide-x divide-slate-100 dark:divide-white/8">
+          {resourcesMenu.map((col) => (
+            <div key={col.heading} className="flex-1 px-4 py-4">
+              <div className="mb-3 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                {col.heading}
+              </div>
+              <div className="space-y-1">
+                {col.links.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={onClose}
+                    className="block rounded-md px-2 py-2 transition-colors hover:bg-slate-50 dark:hover:bg-white/8"
+                  >
+                    <div className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                      {link.label}
+                    </div>
+                    {link.description && (
+                      <div className="mt-0.5 text-xs text-slate-400 dark:text-slate-500">
+                        {link.description}
+                      </div>
+                    )}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
