@@ -16,30 +16,36 @@ export const docsNav: DocNavSection[] = [
       { label: "Overview", href: "/docs" },
       { label: "Authentication", href: "/docs/authentication" },
       { label: "Errors", href: "/docs/errors" },
-      { label: "Rate Limits", href: "/docs/errors#rate-limits" },
     ],
   },
   {
     title: "Core API",
     items: [
       { label: "Invoices", href: "/docs/invoices" },
+      { label: "Contacts", href: "/docs/customers" },
       { label: "Items", href: "/docs/items" },
-      { label: "Customers & Parties", href: "/docs/customers" },
-      { label: "Inventory", href: "/docs/inventory" },
+      { label: "Purchase Bills", href: "/docs/purchase-bills" },
+    ],
+  },
+  {
+    title: "Inventory",
+    items: [
+      { label: "Batches & Stock", href: "/docs/inventory" },
+      { label: "Stock Counts", href: "/docs/stock-counts" },
     ],
   },
   {
     title: "Finance",
     items: [
       { label: "GST & Tax", href: "/docs/gst" },
-      { label: "Bank Reconciliation", href: "/docs/bank-reconciliation" },
-      { label: "Ledgers & Reports", href: "/docs/ledgers" },
+      { label: "Expenses", href: "/docs/expenses" },
+      { label: "Recurring Invoices", href: "/docs/recurring-invoices" },
     ],
   },
   {
     title: "Platform",
     items: [
-      { label: "Webhooks", href: "/docs/webhooks" },
+      { label: "Workflows", href: "/docs/workflows" },
       { label: "Changelog", href: "/docs/changelog", badge: "New" },
     ],
   },
