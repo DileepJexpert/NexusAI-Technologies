@@ -8,6 +8,7 @@ export const mainNav: NavLink[] = [
   { label: "Accounting POS", href: "/accounting-pos-software" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
+  { label: "API Docs", href: "/docs" },
   { label: "Pricing", href: "/pricing" },
   { label: "Partners", href: "/partners" },
   { label: "Contact", href: "/contact" },
@@ -42,10 +43,11 @@ export const footerLinks: FooterColumn[] = [
   {
     title: "Resources",
     links: [
+      { label: "API Documentation", href: "/docs" },
       { label: "Pricing", href: "/pricing" },
+      { label: "Changelog", href: "/docs/changelog" },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Service", href: "/terms" },
-      { label: "Sitemap", href: "/sitemap.xml" },
     ],
   },
 ];

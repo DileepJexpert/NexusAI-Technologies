@@ -108,6 +108,34 @@
 .blog-content code {
   @apply rounded bg-muted px-1.5 py-0.5 text-sm;
 }
+.blog-content table {
+  @apply mt-5 w-full text-sm;
+}
+.blog-content thead tr {
+  @apply border-b border-border text-left;
+}
+.blog-content th {
+  @apply pb-2 pr-4 font-semibold;
+}
+.blog-content tbody tr {
+  @apply border-b border-border/50;
+}
+.blog-content td {
+  @apply py-2 pr-4;
+}
+
+/* Docs code blocks */
+.docs-content pre {
+  scrollbar-width: thin;
+  scrollbar-color: #475569 transparent;
+}
+.docs-content pre::-webkit-scrollbar {
+  height: 6px;
+}
+.docs-content pre::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
 
 /* ── Keyframes ──────────────────────────────────────────────── */
 @keyframes blobMorph {
