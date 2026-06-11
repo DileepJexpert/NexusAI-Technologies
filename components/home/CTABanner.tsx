@@ -37,14 +37,15 @@ export function CTABanner() {
           <div className="relative">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-300 backdrop-blur-sm">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
-              Start a conversation · explore the portfolio
+
+              Start billing with Katixo today
             </div>
 
             <h2 className="font-heading text-3xl font-bold sm:text-4xl md:text-5xl text-balance">
-              Ready to work with Katixo?
+              Ready to streamline your business?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base text-slate-300 md:text-lg text-balance">
-              Explore the product portfolio, bring us a workflow problem or start a partnership conversation.
+              GST invoicing, inventory tracking, bank reconciliation, and reports — set up in a day, not a month.
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">

@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { docsNav } from "@/data/docs-nav";
 import { brand } from "@/lib/brand";
-import type { Metadata } from "next";
+import { DocsCopyButtons } from "@/components/docs/DocsContentWrapper";
 
 function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
@@ -90,7 +90,10 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
         )}
 
         <main className="min-w-0 flex-1 py-8 lg:pl-10">
-          <div className="docs-content max-w-3xl">{children}</div>
+          <div className="docs-content max-w-3xl">
+            {children}
+            <DocsCopyButtons />
+          </div>
         </main>
       </div>
     </div>

@@ -7,5 +7,10 @@ export interface Recognition {
 export const recognition: Recognition[] = [];
 
 export const builtWith: Recognition[] = [
-  { name: "Cloudflare", logo: "/images/recognition/cloudflare.svg" },
+  { name: "Next.js", logo: "" },
+  { name: "React", logo: "" },
+  { name: "TypeScript", logo: "" },
+  { name: "Tailwind CSS", logo: "" },
+  { name: "Cloudflare", logo: "" },
+  { name: "PostgreSQL", logo: "" },
 ];

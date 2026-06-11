@@ -1,0 +1,45 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1B2A4A"/>
+      <stop offset="1" stop-color="#2E5090"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="48" y1="20" x2="170" y2="148" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF8A3D"/>
+      <stop offset="0.48" stop-color="#1FD6A5"/>
+      <stop offset="1" stop-color="#2F7DF6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g transform="translate(520, 100)">
+    <path d="M84 8C126 8 160 42 160 84C160 126 126 160 84 160C42 160 8 126 8 84C8 42 42 8 84 8Z" stroke="url(#ring)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M58 42V126M116 42L67 84L119 126" stroke="white" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M88 61H132" stroke="#FF8A3D" stroke-width="8" stroke-linecap="round"/>
+    <path d="M94 84H139" stroke="#1FD6A5" stroke-width="8" stroke-linecap="round"/>
+    <path d="M88 107H132" stroke="#2F7DF6" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="134" cy="39" r="7" fill="#FF8A3D"/>
+    <circle cx="150" cy="84" r="7" fill="#1FD6A5"/>
+    <circle cx="133" cy="130" r="7" fill="#2F7DF6"/>
+  </g>
+
+  <text x="600" y="340" text-anchor="middle" fill="white" font-family="Inter, system-ui, sans-serif" font-size="64" font-weight="800" letter-spacing="-2">Katixo</text>
+  <text x="600" y="390" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-family="Inter, system-ui, sans-serif" font-size="24" font-weight="500">Accounting &amp; POS Software for Indian Businesses</text>
+
+  <g transform="translate(340, 430)">
+    <rect x="0" y="0" width="120" height="36" rx="18" fill="rgba(255,255,255,0.12)"/>
+    <text x="60" y="23" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600">GST Billing</text>
+
+    <rect x="140" y="0" width="110" height="36" rx="18" fill="rgba(255,255,255,0.12)"/>
+    <text x="195" y="23" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600">Inventory</text>
+
+    <rect x="270" y="0" width="170" height="36" rx="18" fill="rgba(255,255,255,0.12)"/>
+    <text x="355" y="23" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600">Bank Reconciliation</text>
+
+    <rect x="460" y="0" width="100" height="36" rx="18" fill="rgba(255,255,255,0.12)"/>
+    <text x="510" y="23" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600">Reports</text>
+  </g>
+
+  <text x="600" y="570" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="500">katixo.com</text>
+</svg>

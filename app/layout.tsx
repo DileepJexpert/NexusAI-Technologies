@@ -41,13 +41,13 @@ export const metadata: Metadata = {
     siteName: brand.name,
     title: brand.metaTitle,
     description: brand.metaDescription,
-    images: ["/images/og/default.png"],
+    images: ["/images/og/default.svg"],
   },
   twitter: {
     card: "summary_large_image",
     title: brand.metaTitle,
     description: brand.metaDescription,
-    images: ["/images/og/default.png"],
+    images: ["/images/og/default.svg"],
   },
   icons: {
     icon: "/favicon.ico",

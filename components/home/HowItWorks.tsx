@@ -7,34 +7,34 @@ const steps = [
   {
     icon: Phone,
     number: "01",
-    title: "Start the conversation",
+    title: "Tell us about your business",
     description:
-      "Reach Katixo on WhatsApp to share your use case, team context or product question.",
+      "Message us on WhatsApp with what you sell, how many bills you do daily, and what software you use now.",
     color: "#2E5090",
   },
   {
     icon: MessageCircle,
     number: "02",
-    title: "Get routed clearly",
+    title: "Get a tailored setup",
     description:
-      "We quickly narrow your need to the right product, workflow or partner path.",
+      "We configure your item master, GST rates, invoice format, and opening balances so you start clean.",
     color: "#16A34A",
   },
   {
     icon: Sparkles,
     number: "03",
-    title: "Move into action",
+    title: "Start billing on day one",
     description:
-      "From there, Katixo turns the conversation into next steps, product fit and rollout momentum.",
+      "Go live with GST invoicing, inventory tracking, and bank reconciliation from your first session.",
     color: "#7C3AED",
   },
 ];
 
 const phoneChips = [
-  { icon: "🌾", label: "KisanMitra", color: "#16A34A" },
-  { icon: "💼", label: "LoanSathi", color: "#2563EB" },
-  { icon: "⚖️", label: "NiyamMitra", color: "#DC2626" },
-  { icon: "🎪", label: "EventKhata", color: "#EA580C" },
+  { icon: "🧾", label: "GST Billing", color: "#16A34A" },
+  { icon: "📦", label: "Inventory", color: "#2563EB" },
+  { icon: "🏦", label: "Bank Recon", color: "#DC2626" },
+  { icon: "📊", label: "Reports", color: "#EA580C" },
 ];
 
 export function HowItWorks() {
@@ -46,8 +46,8 @@ export function HowItWorks() {
       <div className="container-wide">
         <SectionHeading
           eyebrow="How It Works"
-          title="Three steps to the right product path"
-          subtitle="Fast entry, clear routing and practical next steps."
+          title="From conversation to live billing in one day"
+          subtitle="Tell us your business, we set it up, you start invoicing."
         />
 
         <div className="mt-16 grid items-center gap-16 lg:grid-cols-2">
@@ -142,10 +142,10 @@ export function HowItWorks() {
                 </div>
                 <div className="flex flex-1 flex-col gap-2 px-3 py-3" style={{ background: "#E5DDD5" }}>
                   {[
-                    { from: "user", text: "We need better lead handling." },
-                    { from: "bot", text: "Got it. I'll route you to the right product." },
-                    { from: "user", text: "We also want faster follow-up." },
-                    { from: "bot", text: "Perfect. I'll show the best-fit Katixo path." },
+                    { from: "user", text: "I run a kirana store in Pune. Need GST billing." },
+                    { from: "bot", text: "Got it. How many items do you stock, roughly?" },
+                    { from: "user", text: "Around 800 items. Also need inventory tracking." },
+                    { from: "bot", text: "Perfect. Let me set you up with billing + inventory." },
                   ].map((m, i) => (
                     <div
                       key={i}
