@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Linkedin, Twitter, Youtube, Github } from "lucide-react";
 import { footerLinks, socialLinks } from "@/data/navigation";
 import { NewsletterForm } from "@/components/shared/NewsletterForm";
+import { KatixoLogo } from "@/components/shared/KatixoLogo";
 import { brand } from "@/lib/brand";
 
 export function Footer() {
@@ -11,14 +11,8 @@ export function Footer() {
       <div className="container-wide py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/images/logo-white.svg"
-                alt={`${brand.name} logo`}
-                width={132}
-                height={36}
-                className="h-9 w-auto"
-              />
+            <Link href="/" className="flex items-center" aria-label={`${brand.name} home`}>
+              <KatixoLogo white className="h-10 w-auto" />
             </Link>
             <p className="mt-4 max-w-sm text-sm text-slate-400">{brand.footerSummary}</p>
             <div className="mt-6 flex items-center gap-3">

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -10,6 +9,7 @@ import { mainNav } from "@/data/navigation";
 import { categories } from "@/data/categories";
 import { getProductsByCategory, sortByStatus } from "@/data/products";
 import { StatusBadge } from "@/components/shared/StatusBadge";
+import { KatixoLogo } from "@/components/shared/KatixoLogo";
 import { brand } from "@/lib/brand";
 
 export function Navbar() {
@@ -46,16 +46,9 @@ export function Navbar() {
           : "bg-transparent"
       )}
     >
-      <div className="container-wide flex h-12 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5">
-          <Image
-            src={isDark ? "/images/logo-white.svg" : "/images/logo.svg"}
-            alt={`${brand.name} logo`}
-            width={124}
-            height={32}
-            priority
-            className="h-6 w-auto"
-          />
+      <div className="container-wide flex h-14 items-center justify-between">
+        <Link href="/" className="flex items-center" aria-label={`${brand.name} home`}>
+          <KatixoLogo className="h-9 w-auto sm:h-10" />
         </Link>
 
         <nav className="hidden items-center gap-0.5 lg:flex">
@@ -148,7 +141,7 @@ export function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="fixed inset-x-0 top-12 z-40 h-[calc(100vh-3rem)] overflow-y-auto border-t border-slate-200 bg-white dark:border-white/10 dark:bg-[#1C1917] lg:hidden">
+        <div className="fixed inset-x-0 top-14 z-40 h-[calc(100vh-3.5rem)] overflow-y-auto border-t border-slate-200 bg-white dark:border-white/10 dark:bg-[#1C1917] lg:hidden">
           <div className="container-wide flex flex-col gap-2 py-6">
             {mainNav.map((link) => (
               <Link
