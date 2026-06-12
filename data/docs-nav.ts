@@ -9,44 +9,93 @@ export interface DocNavSection {
   items: DocNavItem[];
 }
 
-export const docsNav: DocNavSection[] = [
+export interface DocNavProduct {
+  product: string;
+  icon: string;
+  badge?: string;
+  sections: DocNavSection[];
+}
+
+export const docsNav: DocNavProduct[] = [
   {
-    title: "Getting Started",
-    items: [
-      { label: "Overview", href: "/docs" },
-      { label: "Authentication", href: "/docs/authentication" },
-      { label: "Errors", href: "/docs/errors" },
+    product: "Platform",
+    icon: "🔧",
+    sections: [
+      {
+        title: "Getting Started",
+        items: [
+          { label: "Overview", href: "/docs" },
+          { label: "Authentication", href: "/docs/authentication" },
+          { label: "Errors", href: "/docs/errors" },
+          { label: "Changelog", href: "/docs/changelog", badge: "New" },
+        ],
+      },
     ],
   },
   {
-    title: "Core API",
-    items: [
-      { label: "Invoices", href: "/docs/invoices" },
-      { label: "Contacts", href: "/docs/customers" },
-      { label: "Items", href: "/docs/items" },
-      { label: "Purchase Bills", href: "/docs/purchase-bills" },
+    product: "Katasticho ERP",
+    icon: "📒",
+    sections: [
+      {
+        title: "Billing",
+        items: [
+          { label: "Invoices", href: "/docs/invoices" },
+          { label: "Purchase Bills", href: "/docs/purchase-bills" },
+          { label: "Recurring Invoices", href: "/docs/recurring-invoices" },
+          { label: "Expenses", href: "/docs/expenses" },
+        ],
+      },
+      {
+        title: "Catalogue",
+        items: [
+          { label: "Items", href: "/docs/items" },
+          { label: "Contacts", href: "/docs/customers" },
+        ],
+      },
+      {
+        title: "Inventory",
+        items: [
+          { label: "Batches & Stock", href: "/docs/inventory" },
+          { label: "Stock Counts", href: "/docs/stock-counts" },
+        ],
+      },
+      {
+        title: "Finance",
+        items: [
+          { label: "GST & Tax", href: "/docs/gst" },
+          { label: "Workflows", href: "/docs/workflows" },
+        ],
+      },
     ],
   },
   {
-    title: "Inventory",
-    items: [
-      { label: "Batches & Stock", href: "/docs/inventory" },
-      { label: "Stock Counts", href: "/docs/stock-counts" },
-    ],
-  },
-  {
-    title: "Finance",
-    items: [
-      { label: "GST & Tax", href: "/docs/gst" },
-      { label: "Expenses", href: "/docs/expenses" },
-      { label: "Recurring Invoices", href: "/docs/recurring-invoices" },
-    ],
-  },
-  {
-    title: "Platform",
-    items: [
-      { label: "Workflows", href: "/docs/workflows" },
-      { label: "Changelog", href: "/docs/changelog", badge: "New" },
+    product: "Hospital OS",
+    icon: "🏥",
+    badge: "Beta",
+    sections: [
+      {
+        title: "Clinical",
+        items: [
+          { label: "Overview", href: "/docs/hospital" },
+          { label: "Patients", href: "/docs/hospital/patients" },
+          { label: "OPD", href: "/docs/hospital/opd" },
+          { label: "IPD", href: "/docs/hospital/ipd" },
+        ],
+      },
+      {
+        title: "Diagnostics",
+        items: [
+          { label: "Laboratory", href: "/docs/hospital/laboratory" },
+          { label: "Operation Theatre", href: "/docs/hospital/ot" },
+        ],
+      },
+      {
+        title: "Operations",
+        items: [
+          { label: "Pharmacy", href: "/docs/hospital/pharmacy" },
+          { label: "Billing", href: "/docs/hospital/billing" },
+        ],
+      },
     ],
   },
 ];
