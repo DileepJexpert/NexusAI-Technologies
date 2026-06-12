@@ -23,15 +23,17 @@ export const resourcesMenu: ResourcesColumn[] = [
     links: [
       { label: "Blog", href: "/blog", description: "Guides, tips & product updates" },
       { label: "API Documentation", href: "/docs", description: "REST API reference for developers" },
-      { label: "Changelog", href: "/docs/changelog", description: "Latest API & platform changes" },
+      { label: "GST Guides", href: "/gst-guides", description: "GST compliance made simple" },
+      { label: "Help Center", href: "/help", description: "Guides, FAQs & support" },
     ],
   },
   {
     heading: "Company",
     links: [
-      { label: "About", href: "/about", description: "Our story and mission" },
-      { label: "Partners", href: "/partners", description: "Partner program & integrations" },
-      { label: "Careers", href: "/careers", description: "Join the team" },
+      { label: "Case Studies", href: "/case-studies", description: "How MSMEs use Katixo" },
+      { label: "Integrations", href: "/integrations", description: "Connect tools you already use" },
+      { label: "Compare", href: "/compare", description: "Katixo vs Tally, Zoho & more" },
+      { label: "Partners", href: "/partners", description: "Partner program & resellers" },
     ],
   },
 ];
@@ -66,10 +68,11 @@ export const footerLinks: FooterColumn[] = [
     title: "Resources",
     links: [
       { label: "API Documentation", href: "/docs" },
-      { label: "Pricing", href: "/pricing" },
-      { label: "Changelog", href: "/docs/changelog" },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
+      { label: "GST Guides", href: "/gst-guides" },
+      { label: "Help Center", href: "/help" },
+      { label: "Case Studies", href: "/case-studies" },
+      { label: "Compare", href: "/compare" },
+      { label: "Integrations", href: "/integrations" },
     ],
   },
 ];
