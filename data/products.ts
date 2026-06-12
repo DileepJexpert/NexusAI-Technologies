@@ -510,50 +510,99 @@ const allProducts: Product[] = [
   {
     id: "eventkhata",
     name: "EventKhata",
-    tagline: "AI Event Management Tool",
+    tagline: "Digital Bahi Khata for Event Planners",
     description:
-      "Guest lists, AI-suggested budgets, vendor comparisons, invitation design and post-event analytics — planning events has never been this easy.",
+      "Payment tracking, vendor management, budgets, invoices, proposals, client portals and team collaboration — a complete digital operations platform for wedding planners, event agencies and freelance coordinators in India.",
     status: "live",
     category_id: "events",
     icon: "🎪",
     color: "#EA580C",
     whatsapp_number: WHATSAPP_NUMBER,
-    whatsapp_link: WA("Hi EventKhata, I want to plan an event"),
+    whatsapp_link: WA("Hi EventKhata, I want to manage my event business"),
     youtube_video_id: "",
     features: [
-      { icon: "👥", title: "Guest List Management", description: "Invite, track RSVPs and seat everyone." },
-      { icon: "💰", title: "AI Budget Tracker", description: "Smart suggestions to cut costs without compromise." },
-      { icon: "🔍", title: "Vendor Finder", description: "Compare caterers, decorators and DJs in your city." },
-      { icon: "💌", title: "Invitation Designer", description: "Beautiful digital invites in seconds." },
-      { icon: "📅", title: "Day-of Scheduler", description: "Minute-by-minute schedule shared with your team." },
-      { icon: "📊", title: "Post-Event Analytics", description: "Know what worked and what didn't." },
+      {
+        icon: "💰",
+        title: "Payment Tracking",
+        description:
+          "Track advance, partial and final payments for every vendor and client. No more WhatsApp screenshots — everything in one ledger.",
+      },
+      {
+        icon: "🏪",
+        title: "Vendor Management",
+        description:
+          "Centralised vendor directory with contact details, past payments and comparisons. Find and manage caterers, decorators, DJs and more.",
+      },
+      {
+        icon: "📊",
+        title: "Budget & Reports",
+        description:
+          "Category-wise budget breakdowns with donut charts. Instant reports showing spend vs budget across every event.",
+      },
+      {
+        icon: "🧾",
+        title: "Invoices & Proposals",
+        description:
+          "Generate professional invoices and client proposals directly from the platform. Share via WhatsApp or email.",
+      },
+      {
+        icon: "🔗",
+        title: "Client Portal",
+        description:
+          "Give each client a unique link to view their event progress, payments made and pending items in real time.",
+      },
+      {
+        icon: "👥",
+        title: "Team & Multi-Day Events",
+        description:
+          "Collaborate with your team, manage tasks and reminders, and handle multi-day events with separate schedules per day.",
+      },
     ],
     usecases: [
       {
-        title: "Plan a large wedding on a fixed budget",
+        title: "Run a wedding planning agency",
         description:
-          "Set a total budget, track every vendor payment against it, and see remaining headroom for each category as you plan.",
+          "Create your agency, add team members, manage multiple weddings simultaneously with per-event budgets, vendor payments and client portals.",
+      },
+      {
+        title: "Track vendor payments across events",
+        description:
+          "Record advance, partial and final payments for each vendor. See outstanding balances at a glance and generate payment reports.",
+      },
+      {
+        title: "Share live progress with clients",
+        description:
+          "Send each client a unique portal link where they can see real-time budget status, vendor confirmations and payment history.",
       },
     ],
     pricing: [
       {
         name: "Free",
         price: "₹0",
-        features: ["Up to 50 guests", "Basic budget tracker", "1 event at a time"],
+        priceDetail: "Forever",
+        features: [
+          "3 active events",
+          "Payment tracking",
+          "Vendor directory",
+          "Basic budget reports",
+          "WhatsApp sharing",
+        ],
         cta: "Start Free",
       },
       {
         name: "Pro",
-        price: "₹299",
-        priceDetail: "per event",
+        price: "₹499",
+        priceDetail: "per month",
         features: [
-          "Unlimited guests",
-          "AI budget + vendor finder",
-          "Invitation designer",
-          "Day-of scheduler",
-          "Analytics",
+          "Unlimited events",
+          "Team collaboration",
+          "Client portal links",
+          "Invoice & proposal generation",
+          "Advanced reports & analytics",
+          "Lead management",
+          "Priority support",
         ],
-        cta: "Buy Pro",
+        cta: "Go Pro",
         highlighted: true,
       },
     ],
@@ -561,8 +610,29 @@ const allProducts: Product[] = [
     testimonials: [],
     faq: [
       {
-        question: "Can I manage multiple events?",
-        answer: "Yes, Pro supports unlimited events. The Free plan allows one event at a time.",
+        question: "What is EventKhata?",
+        answer:
+          "EventKhata is a digital bahi khata (ledger) for event planners. It replaces WhatsApp screenshots, paper registers and spreadsheets with a proper platform for tracking payments, vendors, budgets and clients.",
+      },
+      {
+        question: "Is there a mobile app?",
+        answer:
+          "EventKhata works in the browser on any device. An Android app is also available for planners who prefer a native experience.",
+      },
+      {
+        question: "Can my team use it together?",
+        answer:
+          "Yes. Create your agency, invite team members and assign tasks. Everyone sees the same event data in real time.",
+      },
+      {
+        question: "Can clients see their event status?",
+        answer:
+          "Yes. Each client gets a unique portal link where they can view budget progress, payments made and pending items — no login required.",
+      },
+      {
+        question: "Is my data safe?",
+        answer:
+          "EventKhata uses Supabase (built on PostgreSQL) with row-level security. Your data is encrypted and isolated per agency.",
       },
     ],
   },

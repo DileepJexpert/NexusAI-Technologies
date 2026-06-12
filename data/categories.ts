@@ -48,7 +48,7 @@ const allCategories: Category[] = [
     icon: "🎪",
     color: "#EA580C",
     description:
-      "Plan events end-to-end with AI-powered budgeting, guest management and vendor discovery.",
+      "Digital operations platform for wedding planners and event agencies — payment tracking, vendor management, budgets and client portals.",
     image: "/images/categories/events.webp",
   },
   {
