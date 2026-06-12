@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
+import { products } from "@/data/products";
+import { categories } from "@/data/categories";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://katixo.com";
 
@@ -39,6 +41,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/terms", priority: 0.3, changeFrequency: "yearly" as const },
   ];
 
+  const categoryPaths = categories.map((c) => ({
+    url: `${BASE_URL}/products/${c.id}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  const productPaths = products.map((p) => ({
+    url: `${BASE_URL}/products/${p.category_id}/${p.id}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: p.status === "live" || p.status === "beta" ? 0.8 : 0.5,
+  }));
+
   const blogPaths = getAllPosts().map((p) => ({
     url: `${BASE_URL}/blog/${p.slug}`,
     lastModified: p.date ? new Date(p.date) : now,
@@ -53,6 +69,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: s.changeFrequency,
       priority: s.priority,
     })),
+    ...categoryPaths,
+    ...productPaths,
     ...blogPaths,
   ];
 }

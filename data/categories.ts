@@ -58,7 +58,7 @@ const allCategories: Category[] = [
     icon: "🏥",
     color: "#0D9488",
     description:
-      "Rural health advisory, symptom checking and AYUSH guidance in Hindi and regional languages.",
+      "Hospital management, pharmacy ERP and rural health advisory — software for Indian healthcare from hospital chains to villages.",
     image: "/images/categories/health.webp",
   },
 ];

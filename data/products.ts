@@ -569,6 +569,121 @@ const allProducts: Product[] = [
 
   // ============ HEALTH ============
   {
+    id: "katixo-hospital-os",
+    name: "Katixo Hospital OS",
+    tagline: "Complete Hospital Management & ERP Platform",
+    description:
+      "An integrated operating system for hospitals and clinics — OPD, IPD, laboratory, operation theatre, pharmacy, inventory, GST billing and finance in one multi-branch platform built for Indian healthcare.",
+    status: "beta",
+    category_id: "health",
+    icon: "🏥",
+    color: "#0D9488",
+    whatsapp_number: WHATSAPP_NUMBER,
+    whatsapp_link: WA("Hi, I want a demo of Katixo Hospital OS for my hospital"),
+    youtube_video_id: "",
+    features: [
+      {
+        icon: "🧑‍⚕️",
+        title: "Patient Management & OPD",
+        description:
+          "Registration, appointments, queue management, consultations and prescriptions — the full outpatient journey in one flow.",
+      },
+      {
+        icon: "🛏️",
+        title: "IPD & Bed Management",
+        description:
+          "Admissions, ward and bed allocation, treatment charts, transfers and discharge summaries for inpatient care.",
+      },
+      {
+        icon: "🔬",
+        title: "Laboratory & OT",
+        description:
+          "Lab test orders, sample tracking and reports, plus operation theatre scheduling and surgical records.",
+      },
+      {
+        icon: "💊",
+        title: "Pharmacy & Inventory ERP",
+        description:
+          "Pharmacy billing with batch and expiry tracking, stock management, purchase and reorder workflows built on the Katixo ERP engine.",
+      },
+      {
+        icon: "🧾",
+        title: "GST Billing & Finance",
+        description:
+          "Patient billing, package billing, payments, GST compliance and financial ledgers — connected to accounts out of the box.",
+      },
+      {
+        icon: "🏢",
+        title: "Multi-Branch & Multi-Tenant",
+        description:
+          "Run hospital groups with multiple branches under one platform, with role-based access and branch-level reporting.",
+      },
+    ],
+    usecases: [
+      {
+        title: "Digitise a multi-speciality hospital",
+        description:
+          "Move OPD registrations, IPD admissions, lab reports and billing from paper registers into one connected system with live dashboards.",
+      },
+      {
+        title: "Run pharmacy and hospital on one stack",
+        description:
+          "In-house pharmacy uses the same inventory and GST engine as hospital billing, so stock, sales and accounts always reconcile.",
+      },
+      {
+        title: "Manage a hospital chain centrally",
+        description:
+          "Each branch operates independently while owners see consolidated patients, revenue and stock across all locations.",
+      },
+    ],
+    pricing: [
+      {
+        name: "Early Access",
+        price: "Custom",
+        priceDetail: "while in beta",
+        features: [
+          "Full platform access",
+          "OPD + IPD + Lab + OT",
+          "Pharmacy & inventory ERP",
+          "GST billing & finance",
+          "Onboarding & migration support",
+          "Priority roadmap input",
+        ],
+        cta: "Request Demo",
+        highlighted: true,
+      },
+    ],
+    screenshots: [],
+    testimonials: [],
+    faq: [
+      {
+        question: "Is Katixo Hospital OS cloud-based?",
+        answer:
+          "Yes. It is a web-first platform that runs in the browser on desktops and tablets, with Docker-based deployment for hospitals that need on-premise hosting.",
+      },
+      {
+        question: "Can it handle multiple branches?",
+        answer:
+          "Yes. The platform is multi-tenant by design — hospital groups, branches and departments are first-class concepts with role-based access for each.",
+      },
+      {
+        question: "Does it include pharmacy and inventory?",
+        answer:
+          "Yes. A full ERP service handles pharmacy billing, batch and expiry tracking, stock management, GST and ledgers — integrated with patient billing.",
+      },
+      {
+        question: "Will it support ABDM (Ayushman Bharat Digital Mission)?",
+        answer:
+          "ABDM integration is on the roadmap, along with WhatsApp notifications for appointments, reports and payment reminders.",
+      },
+      {
+        question: "How do we get started?",
+        answer:
+          "Katixo Hospital OS is in early access. Message us on WhatsApp or use the contact form to schedule a demo and discuss onboarding for your hospital.",
+      },
+    ],
+  },
+  {
     id: "graminvaidya",
     name: "GraminVaidya",
     tagline: "Rural Health Advisory AI",
