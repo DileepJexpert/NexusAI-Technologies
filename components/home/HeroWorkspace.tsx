@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -15,36 +15,36 @@ const sidebarItems = [
 ];
 
 const topMetrics = [
-  { label: "Total Revenue", value: "₹83,40,569", change: "+12.6%", positive: true },
-  { label: "Net Profit", value: "₹12,30,859", change: "+8.4%", positive: true },
-  { label: "Expenses", value: "₹23,40,689", change: "-3.7%", positive: false },
-  { label: "Outstanding", value: "₹34,50,981", change: "+5.1%", positive: true },
+  { label: "Total Revenue", value: "â‚¹83,40,569", change: "+12.6%", positive: true },
+  { label: "Net Profit", value: "â‚¹12,30,859", change: "+8.4%", positive: true },
+  { label: "Expenses", value: "â‚¹23,40,689", change: "-3.7%", positive: false },
+  { label: "Outstanding", value: "â‚¹34,50,981", change: "+5.1%", positive: true },
 ];
 
 const revenuePoints = [28, 32, 30, 38, 36, 42, 40, 52, 55, 62, 58, 68];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 const transactions = [
-  { date: "Jun 18", desc: "Payment from Globex Corp.", amount: "₹45,800", status: "Completed", color: "#16A34A" },
-  { date: "Jun 17", desc: "Office Supplies", amount: "₹1,250", status: "Approved", color: "#2563EB" },
-  { date: "Jun 16", desc: "Software Subscription", amount: "₹3,600", status: "Approved", color: "#2563EB" },
+  { date: "Jun 18", desc: "Payment from Globex Corp.", amount: "â‚¹45,800", status: "Completed", color: "#16A34A" },
+  { date: "Jun 17", desc: "Office Supplies", amount: "â‚¹1,250", status: "Approved", color: "#2563EB" },
+  { date: "Jun 16", desc: "Software Subscription", amount: "â‚¹3,600", status: "Approved", color: "#2563EB" },
 ];
 
 const bills = [
-  { vendor: "Tech Solutions Ltd.", amount: "₹6,120", due: "Jun 25" },
-  { vendor: "Marketing Agency", amount: "₹2,980", due: "Jun 28" },
-  { vendor: "Office Warehouse", amount: "₹1,230", due: "Jun 30" },
+  { vendor: "Tech Solutions Ltd.", amount: "â‚¹6,120", due: "Jun 25" },
+  { vendor: "Marketing Agency", amount: "â‚¹2,980", due: "Jun 28" },
+  { vendor: "Office Warehouse", amount: "â‚¹1,230", due: "Jun 30" },
 ];
 
 const cashFlowData = [
-  { label: "Operating", value: "₹2.45M", color: "#0D9488" },
-  { label: "Investing", value: "₹1.15M", color: "#10B981" },
-  { label: "Financing", value: "₹650K", color: "#6366F1" },
+  { label: "Operating", value: "â‚¹2.45M", color: "#0D9488" },
+  { label: "Investing", value: "â‚¹1.15M", color: "#10B981" },
+  { label: "Financing", value: "â‚¹650K", color: "#6366F1" },
 ];
 
 const phoneMetrics = [
-  { label: "Revenue", value: "₹83.4L", change: "+12.6%" },
-  { label: "Profit", value: "₹12.3L", change: "+8.4%" },
+  { label: "Revenue", value: "â‚¹83.4L", change: "+12.6%" },
+  { label: "Profit", value: "â‚¹12.3L", change: "+8.4%" },
 ];
 
 const phoneSparkline = [28, 35, 30, 42, 38, 52, 48, 58, 55, 65, 60, 68];
@@ -62,16 +62,29 @@ function KatixoLoadingLogo() {
     <div className="relative flex min-h-screen w-screen items-center justify-center overflow-hidden px-5">
       <div
         aria-hidden
-        className="absolute inset-0 scale-105 bg-cover bg-center"
+        className="absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(90deg, rgba(6,16,29,0.72), rgba(6,16,29,0.34) 48%, rgba(6,16,29,0.74)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=85')",
+            "radial-gradient(circle at 22% 22%, rgba(31,214,165,0.22), transparent 30%), radial-gradient(circle at 78% 34%, rgba(47,125,246,0.18), transparent 30%), linear-gradient(135deg, #06101d 0%, #0b1828 46%, #06261f 100%)",
         }}
       />
       <div
         aria-hidden
         className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(255,255,255,0.18),transparent_34%)]"
       />
+            <div aria-hidden className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)", backgroundSize: "44px 44px" }} />
+      <div aria-hidden className="absolute left-[8%] top-[18%] hidden rounded-2xl border border-white/10 bg-white/[0.06] p-4 text-white shadow-2xl backdrop-blur md:block">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-300">Receivables</div>
+        <div className="mt-2 text-2xl font-bold">Rs 5.8L</div>
+      </div>
+      <div aria-hidden className="absolute right-[8%] top-[24%] hidden rounded-2xl border border-white/10 bg-white/[0.06] p-4 text-white shadow-2xl backdrop-blur md:block">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-blue-300">Inventory</div>
+        <div className="mt-2 text-2xl font-bold">14 alerts</div>
+      </div>
+      <div aria-hidden className="absolute bottom-[18%] left-[12%] hidden rounded-2xl border border-white/10 bg-white/[0.06] p-4 text-white shadow-2xl backdrop-blur md:block">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-orange-300">GST review</div>
+        <div className="mt-2 text-2xl font-bold">Ready</div>
+      </div>
       <div className="relative w-full max-w-[760px] p-2 sm:p-4">
         <div
           aria-hidden
@@ -355,7 +368,7 @@ export function HeroWorkspace() {
               className="flex items-end justify-center gap-2"
               style={{ transformStyle: "preserve-3d" }}
             >
-              {/* ─── LAPTOP ─── */}
+              {/* â”€â”€â”€ LAPTOP â”€â”€â”€ */}
               <motion.div
                 animate={{
                   rotateY: isOpen ? -14 : -8,
@@ -371,7 +384,7 @@ export function HeroWorkspace() {
                   className="pointer-events-none absolute -bottom-12 left-[6%] right-[6%] h-24 rounded-[50%] bg-black/35 blur-3xl"
                 />
 
-                {/* SCREEN (lid) — pivots on bottom edge */}
+                {/* SCREEN (lid) â€” pivots on bottom edge */}
                 <motion.div
                   animate={{ rotateX: isOpen ? -2 : -92 }}
                   transition={{
@@ -562,7 +575,7 @@ export function HeroWorkspace() {
                                   />
                                 </svg>
                                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                  <div className="text-[7px] font-bold text-slate-800 sm:text-[9px]">₹4.25M</div>
+                                  <div className="text-[7px] font-bold text-slate-800 sm:text-[9px]">â‚¹4.25M</div>
                                   <div className="text-[4px] text-slate-400 sm:text-[5px]">Total</div>
                                 </div>
                               </div>
@@ -630,7 +643,7 @@ export function HeroWorkspace() {
                   </div>
                 </motion.div>
 
-                {/* HINGE — dark strip between lid and base */}
+                {/* HINGE â€” dark strip between lid and base */}
                 <div
                   aria-hidden
                   className="relative z-10 h-[6px] w-full bg-gradient-to-b from-[#3a4a60] via-[#2c3a4d] to-[#1e2a3d] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_1px_0_rgba(0,0,0,0.4)]"
@@ -639,7 +652,7 @@ export function HeroWorkspace() {
                   <div className="absolute inset-y-[1px] left-[8%] right-[8%] rounded-[2px] bg-gradient-to-b from-[#1f2a3d] to-[#0f172a]" />
                 </div>
 
-                {/* BASE — rotateX(78deg) lays it flat for horizontal keyboard */}
+                {/* BASE â€” rotateX(78deg) lays it flat for horizontal keyboard */}
                 <div
                   className="relative z-0 w-full"
                   style={{
@@ -667,7 +680,7 @@ export function HeroWorkspace() {
                 </div>
               </motion.div>
 
-              {/* ─── PHONE — vertical, beside laptop ─── */}
+              {/* â”€â”€â”€ PHONE â€” vertical, beside laptop â”€â”€â”€ */}
               <motion.div
                 initial={false}
                 animate={{
@@ -753,11 +766,11 @@ export function HeroWorkspace() {
                         <div className="mt-1 space-y-0.5">
                           <div className="flex justify-between text-[7px] text-slate-600 sm:text-[8px]">
                             <span>Globex Corp.</span>
-                            <span className="font-semibold text-slate-800">₹45.8K</span>
+                            <span className="font-semibold text-slate-800">â‚¹45.8K</span>
                           </div>
                           <div className="flex justify-between text-[7px] text-slate-600 sm:text-[8px]">
                             <span>Office Supplies</span>
-                            <span className="font-semibold text-slate-800">₹1.2K</span>
+                            <span className="font-semibold text-slate-800">â‚¹1.2K</span>
                           </div>
                         </div>
                       </div>
@@ -790,3 +803,4 @@ export function HeroWorkspace() {
     </>
   );
 }
+
