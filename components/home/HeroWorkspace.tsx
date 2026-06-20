@@ -248,7 +248,7 @@ function Keyboard() {
 
   return (
     <div
-      className="rounded-md bg-gradient-to-b from-[#1f2937] to-[#0f172a] p-[6px] shadow-[inset_0_2px_6px_rgba(0,0,0,0.55),inset_0_-1px_0_rgba(255,255,255,0.04)] sm:p-[8px]"
+      className="rounded-lg border border-[#111827] bg-gradient-to-b from-[#111827] via-[#0b1220] to-[#020617] p-[7px] shadow-[inset_0_2px_7px_rgba(0,0,0,0.75),0_8px_18px_rgba(2,6,23,0.35)] sm:p-[9px]"
       style={{ display: "flex", flexDirection: "column", gap: "3px" }}
     >
       {rows.map((row, ri) => (
@@ -257,7 +257,7 @@ function Keyboard() {
             <div
               key={ki}
               style={{ flex }}
-              className={`relative rounded-[3px] border border-[#0a1322] bg-gradient-to-b from-[#4b5870] to-[#2f3a4d] shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-1px_0_rgba(0,0,0,0.35),0_1px_2px_rgba(0,0,0,0.4)] ${
+              className={`relative rounded-[3px] border border-[#020617] bg-gradient-to-b from-[#2d3748] via-[#172033] to-[#0b1020] shadow-[inset_0_1px_0_rgba(255,255,255,0.18),inset_0_-1px_0_rgba(0,0,0,0.55),0_1px_3px_rgba(0,0,0,0.65)] ${
                 ri === 0 ? "h-[10px] sm:h-[12px]" : "h-[16px] sm:h-[18px]"
               }`}
             >
@@ -266,7 +266,7 @@ function Keyboard() {
                 className="absolute inset-[1px] rounded-[2px]"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 45%, rgba(0,0,0,0.18) 100%)",
+                    "linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 40%, rgba(0,0,0,0.3) 100%)",
                 }}
               />
             </div>
@@ -646,10 +646,10 @@ export function HeroWorkspace() {
                 {/* HINGE â€” dark strip between lid and base */}
                 <div
                   aria-hidden
-                  className="relative z-10 h-[6px] w-full bg-gradient-to-b from-[#3a4a60] via-[#2c3a4d] to-[#1e2a3d] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_1px_0_rgba(0,0,0,0.4)]"
+                  className="relative z-20 h-[9px] w-full bg-gradient-to-b from-[#64748b] via-[#263244] to-[#0f172a] shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_3px_8px_rgba(2,6,23,0.55)]"
                   style={{ transformStyle: "preserve-3d" }}
                 >
-                  <div className="absolute inset-y-[1px] left-[8%] right-[8%] rounded-[2px] bg-gradient-to-b from-[#1f2a3d] to-[#0f172a]" />
+                  <div className="absolute inset-y-[2px] left-[7%] right-[7%] rounded-[3px] bg-gradient-to-b from-[#0f172a] via-[#020617] to-[#111827]" />
                 </div>
 
                 {/* BASE â€” rotateX(78deg) lays it flat for horizontal keyboard */}
@@ -658,24 +658,24 @@ export function HeroWorkspace() {
                   style={{
                     transformStyle: "preserve-3d",
                     transformOrigin: "50% 0% 0",
-                    transform: "rotateX(78deg)",
+                    transform: "rotateX(68deg)",
                   }}
                 >
                   <div
-                    className="relative rounded-b-[18px] bg-gradient-to-b from-[#c4cdd9] via-[#aeb8c6] to-[#95a1b1] shadow-[inset_0_1px_0_rgba(255,255,255,0.4),inset_0_-1px_0_rgba(0,0,0,0.1),0_30px_60px_rgba(0,0,0,0.35)]"
-                    style={{ padding: "16px 22px 22px" }}
+                    className="relative rounded-b-[20px] border-x border-b border-[#334155] bg-gradient-to-b from-[#7b8797] via-[#5f6b7d] to-[#3f4b5d] shadow-[inset_0_2px_0_rgba(255,255,255,0.18),inset_0_-3px_8px_rgba(2,6,23,0.35),0_34px_70px_rgba(2,6,23,0.5)]"
+                    style={{ padding: "20px 24px 26px" }}
                   >
                     {/* Base side thickness */}
                     <div
                       aria-hidden
-                      className="absolute inset-x-0 -bottom-[10px] h-[10px] rounded-b-[18px] bg-gradient-to-b from-[#95a1b1] to-[#5e6d80]"
+                      className="absolute inset-x-0 -bottom-[14px] h-[14px] rounded-b-[20px] bg-gradient-to-b from-[#334155] via-[#263244] to-[#111827] shadow-[0_10px_22px_rgba(2,6,23,0.45)]"
                       style={{ transform: "translateZ(-5px)" }}
                     />
 
                     <Keyboard />
 
                     {/* Trackpad */}
-                    <div className="mx-auto mt-[12px] h-[36px] w-[40%] rounded-md border border-[#7a8a9e]/40 bg-gradient-to-b from-[#d4dde7] via-[#c0cad7] to-[#a7b3c1] shadow-[inset_0_1px_0_rgba(255,255,255,0.6),inset_0_-1px_2px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.15)] sm:mt-[14px] sm:h-[42px]" />
+                    <div className="mx-auto mt-[14px] h-[38px] w-[42%] rounded-lg border border-[#1f2937]/70 bg-gradient-to-b from-[#8b98aa] via-[#6f7d91] to-[#4b596d] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-2px_4px_rgba(2,6,23,0.28),0_2px_4px_rgba(2,6,23,0.2)] sm:mt-[16px] sm:h-[44px]" />
                   </div>
                 </div>
               </motion.div>
@@ -803,4 +803,5 @@ export function HeroWorkspace() {
     </>
   );
 }
+
 

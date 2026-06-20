@@ -47,7 +47,7 @@ export function Hero() {
             <h1 className="font-heading text-3xl font-bold leading-[1.02] text-balance text-slate-900 dark:text-white sm:text-4xl md:text-5xl lg:text-[3.1rem]">
               Superpower your
               <br />
-              <span className="grad-text-animated">finance team.</span>
+              <span className="text-emerald-700 dark:text-emerald-300">finance team.</span>
             </h1>
 
             <p className="mt-5 max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400 sm:text-base sm:leading-7">
@@ -60,7 +60,7 @@ export function Hero() {
                   Book a demo <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button variant="whiteOutline" size="lg" asChild>
+              <Button variant="outline" size="lg" asChild>
                 <Link href="/docs">Take a product tour</Link>
               </Button>
             </div>
@@ -93,4 +93,5 @@ export function Hero() {
     </section>
   );
 }
+
 
