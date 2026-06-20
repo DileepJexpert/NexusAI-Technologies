@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -41,17 +41,17 @@ export function Hero() {
           >
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-500 backdrop-blur-sm dark:border-white/15 dark:bg-white/[0.06] dark:text-slate-300 sm:text-xs">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
-              Accounting POS for Indian businesses
+              AI-native ERP for Indian businesses
             </div>
 
             <h1 className="font-heading text-3xl font-bold leading-[1.02] text-balance text-slate-900 dark:text-white sm:text-4xl md:text-5xl lg:text-[3.1rem]">
-              Accounting POS software
+              Superpower your
               <br />
-              <span className="grad-text-animated">for MSME and retail.</span>
+              <span className="grad-text-animated">finance team.</span>
             </h1>
 
             <p className="mt-5 max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400 sm:text-base sm:leading-7">
-              Katixo helps MSME, kirana stores, medical shops, retailers and distributors manage GST billing, inventory, accounting and finance control.
+              Katixo brings GST billing, POS, inventory, reconciliation and business reporting into one clean workspace for MSME, retail, distribution and healthcare teams.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -61,7 +61,7 @@ export function Hero() {
                 </Link>
               </Button>
               <Button variant="whiteOutline" size="lg" asChild>
-                <Link href="/accounting-pos-software">Learn more</Link>
+                <Link href="/docs">Take a product tour</Link>
               </Button>
             </div>
           </motion.div>
@@ -93,3 +93,4 @@ export function Hero() {
     </section>
   );
 }
+
