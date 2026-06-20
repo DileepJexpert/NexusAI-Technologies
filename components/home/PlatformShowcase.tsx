@@ -1,20 +1,25 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import {
   ArrowRight,
   BarChart3,
   Bot,
+  Building2,
   CheckCircle2,
+  ClipboardCheck,
   FileText,
+  Hospital,
   Landmark,
   PackageCheck,
   ReceiptText,
   ShieldCheck,
+  ShoppingBasket,
   Sparkles,
   Store,
+  Truck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const trustSegments = [
+const operatorTypes = [
   "Kirana stores",
   "Medical shops",
   "Distributors",
@@ -23,13 +28,13 @@ const trustSegments = [
   "Hospital billing desks",
 ];
 
-const automationItems = [
+const handledWork = [
   "GST invoices",
+  "POS billing",
   "Inventory sync",
-  "Bank matching",
   "Purchase bills",
+  "Bank matching",
   "Payment follow-up",
-  "Expense capture",
   "Stock alerts",
   "Cash reports",
   "Receivables aging",
@@ -38,63 +43,101 @@ const automationItems = [
   "TDS reminders",
 ];
 
+const workflowCards = [
+  {
+    icon: ShoppingBasket,
+    title: "Kirana and retail",
+    text: "Fast counter billing, customer balances, day-end sales and stock movement without spreadsheet follow-up.",
+    checks: ["GST billing", "Item master", "Daily cash view"],
+    href: "/accounting-pos-software",
+  },
+  {
+    icon: PackageCheck,
+    title: "Medical shops",
+    text: "Batch-aware inventory, purchase bills, expiry attention and GST-ready invoices for pharmacy workflows.",
+    checks: ["Batch stock", "Expiry alerts", "Purchase bills"],
+    href: "/products/health/katixo-hospital-os",
+  },
+  {
+    icon: Truck,
+    title: "Distributors",
+    text: "Track purchase orders, bills, collections and receivables across customers and product lines.",
+    checks: ["Receivables", "Stock movement", "Payment follow-up"],
+    href: "/case-studies",
+  },
+  {
+    icon: Hospital,
+    title: "Hospital operations",
+    text: "OPD, IPD, pharmacy, lab and billing APIs for teams that need structured healthcare workflows.",
+    checks: ["OPD/IPD", "Lab billing", "Pharmacy"],
+    href: "/docs/hospital",
+  },
+];
+
 const productCards = [
   {
     icon: ReceiptText,
     title: "Accounting POS",
     text: "Fast GST billing, item masters, customer balances and day-end reports for busy counters.",
     href: "/accounting-pos-software",
-  },
-  {
-    icon: PackageCheck,
-    title: "Inventory Control",
-    text: "Track stock, batches, purchase bills and mismatch checks before they become accounting errors.",
-    href: "/integrations",
-  },
-  {
-    icon: Landmark,
-    title: "Finance Operations",
-    text: "Receivables, payables, bank reconciliation and owner dashboards in one clean workspace.",
-    href: "/docs",
+    cta: "See POS workflow",
   },
   {
     icon: ShieldCheck,
     title: "GST Readiness",
     text: "Practical workflows for GST invoices, tax review, returns preparation and audit-friendly records.",
     href: "/gst-guides",
+    cta: "Read GST guides",
+  },
+  {
+    icon: Landmark,
+    title: "Finance Operations",
+    text: "Receivables, payables, bank reconciliation and owner dashboards in one clean workspace.",
+    href: "/docs",
+    cta: "View APIs",
+  },
+  {
+    icon: Building2,
+    title: "Hospital OS",
+    text: "API documentation for patients, OPD, IPD, lab, OT, pharmacy and healthcare billing workflows.",
+    href: "/docs/hospital",
+    cta: "Open hospital docs",
   },
 ];
 
 const aiFeatures = [
   {
-    title: "Let Katixo watch the routine work.",
-    text: "Surface unpaid invoices, mismatched payments, low-stock items and GST exceptions without waiting for month-end.",
+    title: "Review exceptions, not every entry.",
+    text: "Bring unpaid invoices, mismatched payments, low-stock items and GST checks into focused queues.",
   },
   {
-    title: "Review what needs attention.",
-    text: "Owners and accountants get focused queues instead of searching through every bill, ledger and spreadsheet.",
+    title: "Keep records ready for the accountant.",
+    text: "Invoices, purchases, payments and stock movements stay structured enough for review and export.",
   },
   {
-    title: "Keep the team lean as volume grows.",
-    text: "The same workflow can support more billing counters, more products and more branches without chaos.",
+    title: "Start with one workflow and expand.",
+    text: "Use Katixo for billing first, then add inventory, reconciliation, APIs or hospital operations as needed.",
   },
 ];
 
-const complexityBlocks = [
-  {
-    icon: Store,
-    title: "Built for daily counters",
-    text: "Designed around quick billing, practical shortcuts and clear records for small business operators.",
-  },
+const proofCards = [
   {
     icon: FileText,
-    title: "Audit-friendly records",
-    text: "Keep invoices, purchases, payments and GST details structured enough for accountant review.",
+    title: "Real documentation",
+    text: "Public API docs describe the actual Katixo ERP and Hospital OS endpoints your team can evaluate.",
+    href: "/docs",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Implementation path",
+    text: "Start with business type, item master, GST setup, opening balances and the first billing workflow.",
+    href: "/help",
   },
   {
     icon: BarChart3,
-    title: "Owner dashboards",
-    text: "Understand sales, stock, collections and cash position without waiting for manual reports.",
+    title: "Owner visibility",
+    text: "Dashboards focus on sales, cash, receivables, inventory, GST checks and business exceptions.",
+    href: "/case-studies",
   },
 ];
 
@@ -107,7 +150,7 @@ export function PlatformShowcase() {
             Built for Indian business operators
           </p>
           <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
-            {trustSegments.map((segment) => (
+            {operatorTypes.map((segment) => (
               <div
                 key={segment}
                 className="rounded-lg border bg-slate-50 px-4 py-3 text-center text-sm font-semibold text-slate-700"
@@ -122,12 +165,15 @@ export function PlatformShowcase() {
       <section className="overflow-hidden bg-[#07111f] py-14 text-white">
         <div className="container-wide">
           <h2 className="text-center text-3xl font-bold md:text-4xl">
-            The top finance teams use Katixo for
+            What Katixo handles from day one
           </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-sm leading-6 text-slate-400">
+            Practical finance and operations workflows that small business teams check every day.
+          </p>
         </div>
         <div className="marquee-track mt-10">
           <div className="marquee-inner gap-3 pr-3">
-            {[...automationItems, ...automationItems, ...automationItems].map((item, index) => (
+            {[...handledWork, ...handledWork, ...handledWork].map((item, index) => (
               <span
                 key={`${item}-${index}`}
                 className="rounded-full border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-slate-200"
@@ -141,82 +187,131 @@ export function PlatformShowcase() {
 
       <section className="section-padding bg-white">
         <div className="container-wide">
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
-                Explore Katixo
-              </p>
-              <h2 className="mt-3 text-3xl font-bold leading-tight text-slate-950 md:text-5xl">
-                One workspace for billing, books, stock and control.
-              </h2>
-              <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
-                Katixo brings the daily operating layer of a business into the same place: POS billing, GST records, inventory movement, payment tracking and finance review.
-              </p>
-              <div className="mt-8">
-                <Button variant="accent" size="lg" asChild>
-                  <Link href="/contact">
-                    Book a demo <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {productCards.map((card) => {
-                const Icon = card.icon;
-                return (
-                  <Link
-                    key={card.title}
-                    href={card.href}
-                    className="group rounded-lg border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
-                  >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="mt-5 text-xl font-bold text-slate-950 group-hover:text-emerald-700">
-                      {card.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-600">{card.text}</p>
-                  </Link>
-                );
-              })}
-            </div>
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
+              Choose your workflow
+            </p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight text-slate-950 md:text-5xl">
+              Built around how Indian businesses actually operate.
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-slate-600">
+              The fastest way to understand Katixo is by the business workflow it supports: counter billing, pharmacy stock, distributor receivables or hospital operations.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {workflowCards.map((card) => {
+              const Icon = card.icon;
+              return (
+                <Link
+                  key={card.title}
+                  href={card.href}
+                  className="group flex h-full flex-col rounded-lg border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-5 text-xl font-bold text-slate-950 group-hover:text-emerald-700">
+                    {card.title}
+                  </h3>
+                  <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">{card.text}</p>
+                  <div className="mt-5 space-y-2">
+                    {card.checks.map((check) => (
+                      <div key={check} className="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                        {check}
+                      </div>
+                    ))}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
 
       <section className="bg-slate-50 py-16 md:py-24">
-        <div className="container-wide grid gap-10 lg:grid-cols-[1fr_0.9fr]">
-          <div className="rounded-lg border bg-white p-5 shadow-xl">
-            <div className="rounded-md bg-[#07111f] p-5 text-white">
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                <div>
-                  <p className="text-sm text-slate-400">AI review queue</p>
-                  <h3 className="text-2xl font-bold">Exceptions to review</h3>
-                </div>
-                <Bot className="h-7 w-7 text-emerald-400" />
-              </div>
-              <div className="mt-5 space-y-3">
-                {[
-                  ["Payment matched", "Invoice KX-1042", "Rs 18,450"],
-                  ["Low stock alert", "Paracetamol 500mg", "18 units"],
-                  ["GST rate check", "Service invoice", "Needs review"],
-                  ["Duplicate expense", "Courier charge", "Possible duplicate"],
-                ].map(([label, detail, value]) => (
-                  <div key={label} className="rounded-lg border border-white/10 bg-white/[0.06] p-4">
-                    <div className="flex items-center justify-between gap-4">
-                      <div>
-                        <p className="text-sm font-semibold">{label}</p>
-                        <p className="mt-1 text-xs text-slate-400">{detail}</p>
-                      </div>
-                      <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-bold text-emerald-300">
-                        {value}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        <div className="container-wide grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
+              Product surface
+            </p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight text-slate-950 md:text-5xl">
+              One workspace for billing, books, stock and control.
+            </h2>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
+              Katixo brings the daily operating layer of a business into the same place: POS billing, GST records, inventory movement, payment tracking and finance review.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button variant="accent" size="lg" asChild>
+                <Link href="/contact">
+                  Book a GST billing demo <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/docs">View product docs</Link>
+              </Button>
             </div>
           </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {productCards.map((card) => {
+              const Icon = card.icon;
+              return (
+                <Link
+                  key={card.title}
+                  href={card.href}
+                  className="group rounded-lg border bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-5 text-xl font-bold text-slate-950 group-hover:text-emerald-700">
+                    {card.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{card.text}</p>
+                  <div className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-emerald-700">
+                    {card.cta} <ArrowRight className="h-4 w-4" />
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-white">
+        <div className="container-wide grid gap-10 lg:grid-cols-[1fr_0.9fr]">
+          <div className="rounded-lg border bg-[#07111f] p-5 text-white shadow-xl">
+            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <div>
+                <p className="text-sm text-slate-400">AI review queue</p>
+                <h3 className="text-2xl font-bold">Exceptions to review</h3>
+              </div>
+              <Bot className="h-7 w-7 text-emerald-400" />
+            </div>
+            <div className="mt-5 space-y-3">
+              {[
+                ["Payment matched", "Invoice KX-1042", "Rs 18,450"],
+                ["Low stock alert", "Paracetamol 500mg", "18 units"],
+                ["GST rate check", "Service invoice", "Needs review"],
+                ["Duplicate expense", "Courier charge", "Possible duplicate"],
+              ].map(([label, detail, value]) => (
+                <div key={label} className="rounded-lg border border-white/10 bg-white/[0.06] p-4">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-sm font-semibold">{label}</p>
+                      <p className="mt-1 text-xs text-slate-400">{detail}</p>
+                    </div>
+                    <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-bold text-emerald-300">
+                      {value}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="flex flex-col justify-center">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
               AI-native finance control
@@ -239,26 +334,29 @@ export function PlatformShowcase() {
         </div>
       </section>
 
-      <section className="section-padding bg-white">
+      <section className="bg-slate-50 py-16 md:py-24">
         <div className="container-wide">
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
-                Ready for operational complexity
+                Proof before promise
               </p>
               <h2 className="mt-3 text-3xl font-bold text-slate-950 md:text-5xl">
-                Simple at the counter. Structured for the accountant.
+                Evaluate the system before you commit.
               </h2>
+              <p className="mt-5 text-slate-600">
+                Clear workflow pages, public docs and implementation notes help buyers evaluate Katixo with confidence before rollout.
+              </p>
             </div>
             <div className="grid gap-4 md:grid-cols-3">
-              {complexityBlocks.map((block) => {
-                const Icon = block.icon;
+              {proofCards.map((card) => {
+                const Icon = card.icon;
                 return (
-                  <article key={block.title} className="rounded-lg border bg-slate-50 p-6">
+                  <Link key={card.title} href={card.href} className="rounded-lg border bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
                     <Icon className="h-6 w-6 text-emerald-700" />
-                    <h3 className="mt-4 font-bold text-slate-950">{block.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{block.text}</p>
-                  </article>
+                    <h3 className="mt-4 font-bold text-slate-950">{card.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{card.text}</p>
+                  </Link>
                 );
               })}
             </div>
@@ -280,7 +378,7 @@ export function PlatformShowcase() {
           <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
             <Button variant="accent" size="lg" asChild>
               <Link href="/contact">
-                Get a demo <ArrowRight className="h-4 w-4" />
+                Book a demo <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button variant="whiteOutline" size="lg" asChild>

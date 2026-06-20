@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -38,20 +38,20 @@ export function CTABanner() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-300 backdrop-blur-sm">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
 
-              Start your finance workspace
+              Ready to see your workflow in Katixo?
             </div>
 
             <h2 className="font-heading text-3xl font-bold sm:text-4xl md:text-5xl text-balance">
-              See what your team could do with Katixo.
+              Book a focused demo for your business type.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base text-slate-300 md:text-lg text-balance">
-              GST invoicing, inventory tracking, bank reconciliation, and reports in one practical workspace.
+              Tell us whether you run retail, distribution, pharmacy, hospital or MSME finance. We will map the right billing, inventory, GST and reporting flow.
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button size="lg" className="bg-white font-semibold text-[#0B1628] shadow-lg hover:bg-white/90" asChild>
                 <Link href="/contact">
-                  Book a demo <ArrowRight className="h-5 w-5" />
+                  Book a GST billing demo <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
               <a
@@ -77,4 +77,3 @@ export function CTABanner() {
     </section>
   );
 }
-
