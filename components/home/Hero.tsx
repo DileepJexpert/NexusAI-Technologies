@@ -477,34 +477,76 @@ export function Hero() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Floating Card 3: Bottom-Left (Automated Spend & Metric) */}
+            {/* Floating Card 3: Bottom-Left (On Hospital OS: Floating 3D Frosted-Glass Clinic Lounge Card) */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={`bot-${slide.id}`}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 8 }}
-                transition={{ duration: 0.25 }}
-                className="absolute bottom-3 -left-1 sm:left-1 z-30 scale-90 sm:scale-95 origin-left"
+                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                transition={{ duration: 0.28 }}
+                className="absolute bottom-2 -left-2 sm:-left-6 z-35 scale-90 sm:scale-95 origin-bottom-left"
               >
-                <div className="rounded-lg border border-[#b3ed97]/35 bg-[#142d25]/95 p-2 text-white shadow-lg backdrop-blur-md max-w-[145px]">
-                  <div className="text-[8px] font-medium text-emerald-200/80">
-                    {slide.monitor.floatingBottom.title}
-                  </div>
-                  <div className="mt-0.2 text-[10px] font-bold text-white">
-                    {slide.monitor.floatingBottom.sub}
-                  </div>
-                  {/* Mini Bar Chart */}
-                  <div className="mt-1 flex items-end gap-1 h-5 w-full pt-0.5">
-                    {slide.monitor.floatingBottom.bars.map((bar, i) => (
-                      <div
-                        key={i}
-                        className="flex-1 rounded-t bg-[#b3ed97]"
-                        style={{ height: `${bar}%`, opacity: 0.4 + i * 0.15 }}
+                {slide.id === "hospital-os" ? (
+                  <div
+                    className="relative overflow-hidden rounded-xl border border-[#b3ed97]/40 bg-[#0c2018]/95 p-1.5 shadow-[0_16px_35px_rgba(0,0,0,0.65)] backdrop-blur-md w-44 sm:w-48 group transition-transform hover:scale-105"
+                    style={{
+                      boxShadow: "0 14px 30px -4px rgba(0,0,0,0.7), 0 0 20px rgba(179,237,151,0.2)",
+                    }}
+                  >
+                    {/* Real Hospital Waiting Lounge Photo */}
+                    <div className="relative h-20 sm:h-22 w-full overflow-hidden rounded-lg bg-slate-900">
+                      <img
+                        src="/images/hospital-queue.jpg"
+                        alt="Live Hospital OPD Queue Lounge"
+                        className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                       />
-                    ))}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
+
+                      {/* Top Live Tag */}
+                      <div className="absolute top-1 left-1.5 flex items-center gap-1 rounded bg-black/70 px-1.5 py-0.5 text-[7px] font-bold text-white backdrop-blur-md border border-white/20">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        <span className="text-emerald-300">LIVE CLINIC LOUNGE</span>
+                      </div>
+
+                      {/* Bottom Caption Pill */}
+                      <div className="absolute bottom-1 inset-x-1.5 flex items-center justify-between text-[7px] text-white">
+                        <span className="font-semibold truncate">NABH Smart Triage</span>
+                        <span className="rounded bg-[#ff862f] px-1 py-0.2 text-[6.5px] font-extrabold text-white">
+                          TOKEN A-042
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Subtitle Under Image */}
+                    <div className="mt-1 flex items-center justify-between px-1 text-[8px] text-[#c2d9cc]">
+                      <span className="flex items-center gap-1 font-medium">
+                        <Activity className="h-2.5 w-2.5 text-[#b3ed97]" />
+                        <span>160 Beds &bull; 88.7%</span>
+                      </span>
+                      <span className="text-[#b3ed97] font-bold">Avg Wait 8m</span>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="rounded-lg border border-[#b3ed97]/35 bg-[#142d25]/95 p-2 text-white shadow-lg backdrop-blur-md max-w-[145px]">
+                    <div className="text-[8px] font-medium text-emerald-200/80">
+                      {slide.monitor.floatingBottom.title}
+                    </div>
+                    <div className="mt-0.2 text-[10px] font-bold text-white">
+                      {slide.monitor.floatingBottom.sub}
+                    </div>
+                    {/* Mini Bar Chart */}
+                    <div className="mt-1 flex items-end gap-1 h-5 w-full pt-0.5">
+                      {slide.monitor.floatingBottom.bars.map((bar, i) => (
+                        <div
+                          key={i}
+                          className="flex-1 rounded-t bg-[#b3ed97]"
+                          style={{ height: `${bar}%`, opacity: 0.4 + i * 0.15 }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
               </motion.div>
             </AnimatePresence>
 
@@ -580,73 +622,82 @@ export function Hero() {
                         ))}
                       </div>
 
-                      {/* Main Hospital Panel with Realistic OPD Queue Image & Live HUD */}
-                      <div className="p-1.5 sm:p-2 space-y-1.5 flex flex-col justify-between">
-                        {/* 1. Hospital OPD Queue Lounge Image with Live Token Calling Banner */}
-                        <div className="relative h-24 sm:h-26 w-full overflow-hidden rounded-md border border-slate-200/80 shadow-2xs group bg-slate-100">
-                          {/* Real Hospital OPD Queue Image */}
-                          <img
-                            src="/images/hospital-queue.jpg"
-                            alt="Hospital OPD Queue and Triage Lounge"
-                            className="h-full w-full object-cover object-center"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/35 pointer-events-none" />
-
-                          {/* Top Status Tag */}
-                          <div className="absolute top-1 left-1.5 flex items-center gap-1 rounded bg-black/65 px-1.5 py-0.5 text-[7.5px] font-semibold text-white backdrop-blur-md border border-white/20">
-                            <span className="h-1 w-1 rounded-full bg-emerald-400 animate-ping" />
-                            <span className="text-emerald-300 font-bold">LIVE OPD QUEUE</span>
-                            <span className="text-white/40">•</span>
-                            <span>Triage Lounge</span>
+                      {/* Main Hospital OS Software Panel: OPD Queue Management, Token Calling & Live Vitals */}
+                      <div className="p-1.5 sm:p-2 space-y-1.5">
+                        {/* 1. Metric Cards Row */}
+                        <div className="grid grid-cols-3 gap-1">
+                          <div className="rounded border border-slate-200/80 bg-white p-1 shadow-2xs">
+                            <div className="text-[8px] text-slate-500 font-medium truncate">IPD Bed Occupancy</div>
+                            <div className="text-xs font-bold text-slate-900 leading-tight">142 / 160</div>
+                            <div className="text-[7px] font-semibold text-teal-600 truncate">88.7% Active</div>
                           </div>
-
-                          {/* Digital Token Calling Banner */}
-                          <div className="absolute bottom-1 inset-x-1.5 flex items-center justify-between rounded bg-[#0d221c]/95 px-2 py-0.5 text-white backdrop-blur-md border border-emerald-500/40 shadow-xs">
-                            <div className="flex items-center gap-1.5">
-                              <span className="rounded bg-[#ff862f] px-1 py-0.2 text-[7px] font-extrabold text-white tracking-wider">
-                                CALLING
-                              </span>
-                              <span className="font-heading text-[10px] font-extrabold text-[#b3ed97]">
-                                TOKEN A-042
-                              </span>
-                              <span className="text-white/40 text-[8px]">→</span>
-                              <span className="text-[8px] font-medium text-white truncate max-w-[90px] sm:max-w-[125px]">
-                                Dr. Priya Sharma (Chamber 4)
-                              </span>
-                            </div>
-                            <span className="rounded bg-emerald-500/25 px-1 py-0.2 text-[7px] font-bold text-emerald-300 border border-emerald-400/30">
-                              In Room
-                            </span>
+                          <div className="rounded border border-slate-200/80 bg-white p-1 shadow-2xs">
+                            <div className="text-[8px] text-slate-500 font-medium truncate">OPD Triage Today</div>
+                            <div className="text-xs font-bold text-slate-900 leading-tight">384 Pts</div>
+                            <div className="text-[7px] font-semibold text-teal-600 truncate">Avg 8 min wait</div>
+                          </div>
+                          <div className="rounded border border-slate-200/80 bg-white p-1 shadow-2xs">
+                            <div className="text-[8px] text-slate-500 font-medium truncate">Pharmacy & Lab</div>
+                            <div className="text-xs font-bold text-slate-900 leading-tight">₹8.42L</div>
+                            <div className="text-[7px] font-semibold text-[#142d25] truncate">Auto-Billed</div>
                           </div>
                         </div>
 
-                        {/* 2. Upcoming Tokens Queue & Live Vitals / Bed Census */}
+                        {/* 2. Prominent Electronic OPD Token Calling Board */}
+                        <div className="rounded border border-emerald-600/30 bg-[#0d221b] p-1.5 text-white shadow-2xs">
+                          <div className="flex items-center justify-between mb-0.5">
+                            <div className="flex items-center gap-1.5">
+                              <span className="rounded bg-[#ff862f] px-1 py-0.2 text-[6.5px] font-extrabold uppercase tracking-wider text-white">
+                                CALLING NOW
+                              </span>
+                              <span className="text-[8px] font-bold text-[#b3ed97]">
+                                CHAMBER 04 &bull; CARDIOLOGY
+                              </span>
+                            </div>
+                            <span className="rounded-full bg-emerald-500/20 px-1 py-0.2 text-[6.5px] font-bold text-emerald-300 border border-emerald-400/30">
+                              In Consultation
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between pt-0.5">
+                            <div className="flex items-center gap-2">
+                              <span className="font-heading text-sm font-extrabold text-[#b3ed97] tracking-tight">
+                                TOKEN A-042
+                              </span>
+                              <span className="text-[8.5px] text-white/90 font-medium truncate">
+                                Dr. Priya Sharma &bull; Room 104
+                              </span>
+                            </div>
+                            <span className="text-[7px] text-[#c2d9cc]">UHID: 4892-PT</span>
+                          </div>
+                        </div>
+
+                        {/* 3. Upcoming Queue Tokens & Live Vitals */}
                         <div className="grid grid-cols-2 gap-1.5">
                           {/* Next in Queue Tokens */}
-                          <div className="rounded border border-slate-200/80 bg-white p-1 sm:p-1.5 shadow-2xs">
+                          <div className="rounded border border-slate-200/80 bg-white p-1 shadow-2xs">
                             <div className="flex items-center justify-between mb-0.5">
                               <div className="flex items-center gap-1 text-[8px] font-bold text-slate-800">
                                 <Clock className="h-2 w-2 text-emerald-600" />
                                 <span>Next in Queue</span>
                               </div>
                               <span className="text-[7px] font-bold text-emerald-700 bg-emerald-50 px-1 py-0.2 rounded-full">
-                                Avg 8m wait
+                                4 Waiting
                               </span>
                             </div>
                             <div className="space-y-0.5">
                               <div className="flex items-center justify-between text-[7px] rounded bg-slate-50 px-1 py-0.5 border border-slate-100">
-                                <span className="font-bold text-slate-800">A-043 • Sunita D.</span>
-                                <span className="text-emerald-700 font-semibold">Ready</span>
+                                <span className="font-bold text-slate-800">A-043 &bull; Sunita D.</span>
+                                <span className="text-emerald-700 font-semibold">Wait 3m</span>
                               </div>
                               <div className="flex items-center justify-between text-[7px] rounded bg-slate-50 px-1 py-0.5 border border-slate-100">
-                                <span className="font-bold text-slate-800">A-044 • Rajesh M.</span>
-                                <span className="text-slate-500 font-medium">Triage</span>
+                                <span className="font-bold text-slate-800">A-044 &bull; Rajesh M.</span>
+                                <span className="text-slate-500 font-medium">Triage Done</span>
                               </div>
                             </div>
                           </div>
 
                           {/* Live Vitals & Bed Census */}
-                          <div className="rounded border border-slate-200/80 bg-white p-1 sm:p-1.5 shadow-2xs">
+                          <div className="rounded border border-slate-200/80 bg-white p-1 shadow-2xs">
                             <div className="flex items-center justify-between mb-0.5">
                               <div className="flex items-center gap-1 text-[8px] font-bold text-slate-800">
                                 <HeartPulse className="h-2 w-2 text-rose-500 animate-pulse" />
@@ -656,8 +707,6 @@ export function Hero() {
                                 76 BPM
                               </span>
                             </div>
-
-                            {/* Mini ECG Heartbeat Pulse Line */}
                             <div className="h-2.5 w-full my-0.5">
                               <svg viewBox="0 0 140 14" className="h-full w-full overflow-visible" fill="none">
                                 <path
@@ -669,13 +718,43 @@ export function Hero() {
                                 />
                               </svg>
                             </div>
-
                             <div className="flex items-center justify-between text-[7px] text-slate-600 font-medium pt-0.5 border-t border-slate-100">
                               <span className="flex items-center gap-0.5">
                                 <Bed className="h-2 w-2 text-slate-500" />
                                 <span>142/160 Beds</span>
                               </span>
                               <span className="font-bold text-emerald-700">88.7%</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* 4. NABH Clinical Operations Checklist */}
+                        <div className="rounded border border-slate-200/80 bg-white p-1 shadow-2xs">
+                          <div className="flex items-center justify-between mb-0.5">
+                            <div className="text-[8px] font-bold text-slate-900 flex items-center gap-1">
+                              <ShieldCheck className="h-2 w-2 text-emerald-600" />
+                              <span>Clinical Operations & Triage</span>
+                            </div>
+                            <span className="text-[7px] text-slate-500 font-medium">NABH Compliant</span>
+                          </div>
+                          <div className="space-y-0.5 text-[7.5px]">
+                            <div className="flex items-center justify-between rounded bg-slate-50 px-1 py-0.5">
+                              <span className="flex items-center gap-1 text-slate-700 font-medium truncate max-w-[170px]">
+                                <CheckCircle2 className="h-2 w-2 text-emerald-600 shrink-0" />
+                                <span className="truncate">OPD Queue Registration & Smart Triage</span>
+                              </span>
+                              <span className="text-[7px] font-semibold text-teal-700 shrink-0">
+                                384 Cleared
+                              </span>
+                            </div>
+                            <div className="flex items-center justify-between rounded bg-slate-50 px-1 py-0.5">
+                              <span className="flex items-center gap-1 text-slate-700 font-medium truncate max-w-[170px]">
+                                <CheckCircle2 className="h-2 w-2 text-emerald-600 shrink-0" />
+                                <span className="truncate">IPD Ward Consultant Rounds Recorded</span>
+                              </span>
+                              <span className="text-[7px] font-semibold text-teal-700 shrink-0">
+                                92% Done
+                              </span>
                             </div>
                           </div>
                         </div>
