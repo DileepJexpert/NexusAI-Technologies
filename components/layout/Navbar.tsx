@@ -104,10 +104,10 @@ export function Navbar() {
           scrolled && "shadow-xs"
         )}
       >
-        <div className="container-wide flex h-11 sm:h-12 items-center justify-between">
+        <div className="container-wide flex h-13 sm:h-14 items-center justify-between">
           {/* Left Brand: Katixo Logo with Spark Icon */}
           <Link href="/" className="flex items-center gap-2" aria-label={`${brand.name} home`}>
-            <KatixoLogo className="h-6.5 sm:h-7 w-auto" white={false} />
+            <KatixoLogo className="h-8 sm:h-8.5 w-auto" white={false} />
           </Link>
 
           {/* Center Navigation Triggers: Products ∨, Solutions ∨, Partners ∨, Customers, Resources ∨ */}
