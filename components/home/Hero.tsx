@@ -25,17 +25,17 @@ export function Hero() {
 
       <div className="container-wide relative z-10">
         <div className="grid w-full items-center gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-8 xl:gap-14">
-          {/* Left Column: Campfire Typography & CTA */}
+          {/* Left Column: Campfire + DualEntry Value Proposition */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="flex max-w-xl flex-col items-start text-left"
           >
-            {/* Enterprise Tag */}
+            {/* Enterprise Tag (DualEntry inspiration) */}
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b3ed97]/30 bg-[#10241e]/90 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#b3ed97] backdrop-blur-md">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#b3ed97]" />
-              AI Native ERP Built for Modern Finance
+              The AI ERP That Runs While You Lead
             </div>
 
             {/* Campfire Headline */}
@@ -47,9 +47,9 @@ export function Hero() {
               <span className="text-[#b3ed97]">all month</span>
             </h1>
 
-            {/* Campfire Subheading */}
+            {/* DualEntry Combined Power Subheading */}
             <p className="mt-6 max-w-lg text-base sm:text-lg text-[#c2d9cc] leading-relaxed">
-              Close 3 to 10 days faster with the AI Native ERP built for modern finance and operational teams.
+              Close in 24 hours. Cut out 90% of manual tasks and handle 10x more transaction volume with the same headcount &mdash; powered by autonomous bank matching, multi-entity GL, and GST 2.0 intelligence.
             </p>
 
             {/* Signature Pill Button with Coral-Orange Arrow Circle */}
@@ -73,19 +73,23 @@ export function Hero() {
               </Link>
             </div>
 
-            {/* Trust and Feature Indicator Badges */}
-            <div className="mt-10 flex flex-wrap items-center gap-y-2 gap-x-5 text-xs font-semibold text-[#b8d1c5]">
+            {/* DualEntry + Campfire Trust and Performance Metrics */}
+            <div className="mt-10 flex flex-wrap items-center gap-y-2.5 gap-x-5 text-xs font-semibold text-[#b8d1c5]">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-[#b3ed97] shrink-0" />
-                <span>Autonomous bank matching</span>
+                <span>Close in 24 Hours</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-[#b3ed97] shrink-0" />
-                <span>GST 2.0 automatic rates</span>
+                <span>10x Transaction Volume</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-[#b3ed97] shrink-0" />
-                <span>Review exceptions, not rows</span>
+                <span>₹0 Implementation Fees</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="h-4 w-4 text-[#b3ed97] shrink-0" />
+                <span>GST 2.0 Automatic Rates</span>
               </div>
             </div>
           </motion.div>
@@ -111,7 +115,7 @@ export function Hero() {
           style={{ display: "block", height: 52, width: "100%" }}
         >
           <path
-            className="fill-slate-900 dark:fill-[#090705]"
+            className="fill-[#0c1f17]"
             d="M0,28 C360,52 1080,0 1440,28 L1440,52 L0,52 Z"
           />
         </svg>
