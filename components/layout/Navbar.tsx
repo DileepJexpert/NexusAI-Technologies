@@ -10,7 +10,6 @@ import {
   Sparkles,
   BookOpen,
   TrendingUp,
-  Flame,
   LineChart,
   Blocks,
   Cpu,
@@ -22,6 +21,13 @@ import {
   FileText,
   Users,
   ShieldCheck,
+  HeartPulse,
+  Receipt,
+  HelpCircle,
+  Building2,
+  Workflow,
+  Clock,
+  Layers,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
@@ -46,7 +52,11 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => {
       document.body.style.overflow = "";
     };
@@ -69,7 +79,7 @@ export function Navbar() {
 
   return (
     <div className="sticky top-0 z-[100] w-full bg-white">
-      {/* Top Campfire Announcement Banner (Sleek Compact Height) */}
+      {/* Top Announcement Banner (Campfire Style Compact Bar) */}
       <div className="relative z-[102] border-b border-emerald-950/10 bg-[#0d221b] text-white py-0.5 px-3 text-center text-[10px] sm:text-[11px] font-medium tracking-wide">
         <div className="container-wide flex items-center justify-center gap-2">
           <span className="inline-flex items-center gap-1 rounded-full bg-[#b3ed97]/20 px-1.5 py-0 text-[8.5px] font-bold text-[#b3ed97]">
@@ -87,7 +97,7 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Main Campfire Navbar (Compact h-11 / sm:h-12 Bar to Save Space) */}
+      {/* Main Campfire Navbar Header (Compact h-11 / sm:h-12 Bar) */}
       <header
         className={cn(
           "relative z-[101] w-full transition-all duration-200 border-b border-slate-200/90 bg-white",
@@ -100,628 +110,104 @@ export function Navbar() {
             <KatixoLogo className="h-6.5 sm:h-7 w-auto" white={false} />
           </Link>
 
-          {/* Center Navigation Links: Products ∨, Solutions ∨, Partners ∨, Customers, Resources ∨ */}
-          <nav className="hidden items-center gap-0.5 lg:flex">
-            {/* 1. Products Dropdown Trigger */}
-            <div
-              className="relative"
+          {/* Center Navigation Triggers: Products ∨, Solutions ∨, Partners ∨, Customers, Resources ∨ */}
+          <nav className="hidden items-center gap-1 lg:flex">
+            {/* 1. Products Trigger */}
+            <button
+              suppressHydrationWarning
               onMouseEnter={() => handleMouseEnter("products")}
               onMouseLeave={handleMouseLeave}
-            >
-              <button
-                suppressHydrationWarning
-                onClick={() => setActiveDropdown(activeDropdown === "products" ? null : "products")}
-                className={cn(
-                  "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                  activeDropdown === "products"
-                    ? "text-black"
-                    : "text-[#142d25] hover:text-black"
-                )}
-              >
-                Products
-                <ChevronDown
-                  className={cn(
-                    "h-3.5 w-3.5 text-slate-500 transition-transform duration-200",
-                    activeDropdown === "products" && "rotate-180"
-                  )}
-                />
-              </button>
-
-              {/* COMPACT FLOATING PRODUCTS CARD (Does NOT layover full screen!) */}
-              {activeDropdown === "products" && (
-                <div
-                  onMouseEnter={() => handleMouseEnter("products")}
-                  onMouseLeave={handleMouseLeave}
-                  className="absolute left-1/2 top-full -translate-x-1/2 z-[120] pt-2 animate-fade-in"
-                >
-                  <div className="w-[780px] rounded-2xl border border-slate-200/90 bg-white p-5 text-slate-800 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.22)]">
-                    <div className="grid grid-cols-[1.1fr_1.1fr_0.95fr] gap-5 divide-x divide-slate-100">
-                      {/* Column 1: Products */}
-                      <div className="pr-4 space-y-2">
-                        <div className="text-[11px] font-semibold text-slate-400 tracking-wider">
-                          Products
-                        </div>
-                        <div className="space-y-0.5">
-                          <Link
-                            href="/products/finance/general-ledger"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <BookOpen className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Core Accounting
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                Modern general ledger that scales
-                              </div>
-                            </div>
-                          </Link>
-
-                          <Link
-                            href="/products/sales/sales-orders"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <TrendingUp className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Revenue Automation
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                End-to-end billing & collection
-                              </div>
-                            </div>
-                          </Link>
-
-                          <Link
-                            href="/docs/ai"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <Flame className="h-3.5 w-3.5 text-[#ff862f]" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Ember AI
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                Autonomous accounting teammate
-                              </div>
-                            </div>
-                          </Link>
-
-                          <Link
-                            href="/docs/custom-reports"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <LineChart className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Forecast & Cash Flow
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                Real-time month-end runway
-                              </div>
-                            </div>
-                          </Link>
-                        </div>
-                      </div>
-
-                      {/* Column 2: Platform */}
-                      <div className="px-4 space-y-2">
-                        <div className="text-[11px] font-semibold text-slate-400 tracking-wider">
-                          Platform
-                        </div>
-                        <div className="space-y-0.5">
-                          <Link
-                            href="/integrations"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <Blocks className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Integrations
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                Bank feeds & financial connectors
-                              </div>
-                            </div>
-                          </Link>
-
-                          <Link
-                            href="/gst-guides"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <Cpu className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Accounting Intelligence
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                GST 2.0 Notification 9/2025-CT
-                              </div>
-                            </div>
-                          </Link>
-
-                          <Link
-                            href="/compare"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <ArrowLeftRight className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Migration & Rescue
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                Move from NetSuite, SAP or Tally
-                              </div>
-                            </div>
-                          </Link>
-                        </div>
-                      </div>
-
-                      {/* Column 3: Featured (Compact Card) */}
-                      <div className="pl-4 space-y-2">
-                        <div className="text-[11px] font-semibold text-slate-400 tracking-wider">
-                          Featured
-                        </div>
-                        <Link
-                          href="/contact"
-                          onClick={() => setActiveDropdown(null)}
-                          className="block group"
-                        >
-                          <div
-                            className="relative h-24 rounded-xl p-3 flex items-center justify-center overflow-hidden text-center shadow-xs transition-transform group-hover:scale-[1.01]"
-                            style={{
-                              background: "linear-gradient(135deg, #5b6e56 0%, #4a5c46 100%)",
-                            }}
-                          >
-                            <div className="relative z-10 inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-[11px] font-bold text-slate-900 shadow-md">
-                              <Sparkles className="h-3 w-3 text-[#0a4733]" />
-                              <span>Meet us at Basecamp</span>
-                            </div>
-                          </div>
-                          <div className="mt-2 text-xs font-bold text-slate-900 group-hover:text-[#0a4733]">
-                            Join us at Basecamp 2026
-                          </div>
-                          <div className="text-[11px] text-slate-500 mt-0.5">
-                            AI conference for corporate finance.
-                          </div>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              onClick={() => setActiveDropdown(activeDropdown === "products" ? null : "products")}
+              className={cn(
+                "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                activeDropdown === "products"
+                  ? "text-black font-semibold"
+                  : "text-[#142d25] hover:text-black"
               )}
-            </div>
+            >
+              Products
+              <ChevronDown
+                className={cn(
+                  "h-3.5 w-3.5 text-slate-500 transition-transform duration-200",
+                  activeDropdown === "products" && "rotate-180"
+                )}
+              />
+            </button>
 
-            {/* 2. Solutions Dropdown Trigger */}
-            <div
-              className="relative"
+            {/* 2. Solutions Trigger */}
+            <button
+              suppressHydrationWarning
               onMouseEnter={() => handleMouseEnter("solutions")}
               onMouseLeave={handleMouseLeave}
-            >
-              <button
-                suppressHydrationWarning
-                onClick={() => setActiveDropdown(activeDropdown === "solutions" ? null : "solutions")}
-                className={cn(
-                  "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                  activeDropdown === "solutions"
-                    ? "text-black"
-                    : "text-[#142d25] hover:text-black"
-                )}
-              >
-                Solutions
-                <ChevronDown
-                  className={cn(
-                    "h-3.5 w-3.5 text-slate-500 transition-transform duration-200",
-                    activeDropdown === "solutions" && "rotate-180"
-                  )}
-                />
-              </button>
-
-              {/* COMPACT FLOATING SOLUTIONS CARD (Does NOT layover full screen!) */}
-              {activeDropdown === "solutions" && (
-                <div
-                  onMouseEnter={() => handleMouseEnter("solutions")}
-                  onMouseLeave={handleMouseLeave}
-                  className="absolute left-1/2 top-full -translate-x-1/2 z-[120] pt-2 animate-fade-in"
-                >
-                  <div className="w-[580px] rounded-2xl border border-slate-200/90 bg-white p-5 text-slate-800 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.22)]">
-                    <div className="grid grid-cols-2 gap-5 divide-x divide-slate-100">
-                      {/* Column 1: By Industry */}
-                      <div className="pr-4 space-y-2">
-                        <div className="text-[11px] font-semibold text-slate-400 tracking-wider">
-                          By Industry
-                        </div>
-                        <div className="space-y-0.5">
-                          <Link
-                            href="/docs/hospital"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <Activity className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Healthcare & Hospitals
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                NABH IPD, OPD queue triage & pharmacy
-                              </div>
-                            </div>
-                          </Link>
-
-                          <Link
-                            href="/docs/pharma"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <Pill className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Pharma Chemists & Chains
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                100K+ CDSCO salts & FEFO returns
-                              </div>
-                            </div>
-                          </Link>
-
-                          <Link
-                            href="/docs/field-sales"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <Truck className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                FMCG & Route Distribution
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                Van stock balancing & GPS beats
-                              </div>
-                            </div>
-                          </Link>
-
-                          <Link
-                            href="/accounting-pos-software"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <ShoppingBag className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Supermarkets & Retail
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                Barcode checkout & POS receipts
-                              </div>
-                            </div>
-                          </Link>
-                        </div>
-                      </div>
-
-                      {/* Column 2: By Persona */}
-                      <div className="pl-4 space-y-2">
-                        <div className="text-[11px] font-semibold text-slate-400 tracking-wider">
-                          By Persona
-                        </div>
-                        <div className="space-y-0.5">
-                          <Link
-                            href="/docs"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <ShieldCheck className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                CFOs & Controllers
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                Close in 24 hours without spreadsheets
-                              </div>
-                            </div>
-                          </Link>
-
-                          <Link
-                            href="/docs/hospital"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <Activity className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Hospital Medical Supts
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                Real-time census & insurance TPA
-                              </div>
-                            </div>
-                          </Link>
-
-                          <Link
-                            href="/partners"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <Users className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Chartered Accountants
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                Multi-tenant client books & GSTR
-                              </div>
-                            </div>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              onClick={() => setActiveDropdown(activeDropdown === "solutions" ? null : "solutions")}
+              className={cn(
+                "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                activeDropdown === "solutions"
+                  ? "text-black font-semibold"
+                  : "text-[#142d25] hover:text-black"
               )}
-            </div>
+            >
+              Solutions
+              <ChevronDown
+                className={cn(
+                  "h-3.5 w-3.5 text-slate-500 transition-transform duration-200",
+                  activeDropdown === "solutions" && "rotate-180"
+                )}
+              />
+            </button>
 
-            {/* 3. Partners Dropdown Trigger */}
-            <div
-              className="relative"
+            {/* 3. Partners Trigger */}
+            <button
+              suppressHydrationWarning
               onMouseEnter={() => handleMouseEnter("partners")}
               onMouseLeave={handleMouseLeave}
-            >
-              <button
-                suppressHydrationWarning
-                onClick={() => setActiveDropdown(activeDropdown === "partners" ? null : "partners")}
-                className={cn(
-                  "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                  activeDropdown === "partners"
-                    ? "text-black"
-                    : "text-[#142d25] hover:text-black"
-                )}
-              >
-                Partners
-                <ChevronDown
-                  className={cn(
-                    "h-3.5 w-3.5 text-slate-500 transition-transform duration-200",
-                    activeDropdown === "partners" && "rotate-180"
-                  )}
-                />
-              </button>
-
-              {/* COMPACT FLOATING PARTNERS CARD */}
-              {activeDropdown === "partners" && (
-                <div
-                  onMouseEnter={() => handleMouseEnter("partners")}
-                  onMouseLeave={handleMouseLeave}
-                  className="absolute left-1/2 top-full -translate-x-1/2 z-[120] pt-2 animate-fade-in"
-                >
-                  <div className="w-[380px] rounded-2xl border border-slate-200/90 bg-white p-4 text-slate-800 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.22)]">
-                    <div className="text-[11px] font-semibold text-slate-400 tracking-wider mb-2">
-                      Partner Programs
-                    </div>
-                    <div className="space-y-1">
-                      <Link
-                        href="/partners"
-                        onClick={() => setActiveDropdown(null)}
-                        className="flex items-start gap-2.5 p-2 rounded-lg hover:bg-slate-50 transition-colors group"
-                      >
-                        <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0">
-                          <Users className="h-3.5 w-3.5" />
-                        </div>
-                        <div>
-                          <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                            Advisory & CA Partnerships
-                          </div>
-                          <div className="text-[11px] text-slate-500 leading-tight">
-                            For Chartered Accountants & CFO Advisory
-                          </div>
-                        </div>
-                      </Link>
-
-                      <Link
-                        href="/integrations"
-                        onClick={() => setActiveDropdown(null)}
-                        className="flex items-start gap-2.5 p-2 rounded-lg hover:bg-slate-50 transition-colors group"
-                      >
-                        <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0">
-                          <Blocks className="h-3.5 w-3.5" />
-                        </div>
-                        <div>
-                          <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                            Technology Integrators
-                          </div>
-                          <div className="text-[11px] text-slate-500 leading-tight">
-                            Build connectors & apps with REST APIs
-                          </div>
-                        </div>
-                      </Link>
-
-                      <Link
-                        href="/compare"
-                        onClick={() => setActiveDropdown(null)}
-                        className="flex items-start gap-2.5 p-2 rounded-lg hover:bg-slate-50 transition-colors group"
-                      >
-                        <div className="h-7 w-7 rounded-md bg-[#ff862f]/10 text-[#ff862f] flex items-center justify-center shrink-0">
-                          <ArrowLeftRight className="h-3.5 w-3.5" />
-                        </div>
-                        <div>
-                          <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                            Legacy ERP Rescue Fund
-                          </div>
-                          <div className="text-[11px] text-slate-500 leading-tight">
-                            Zero migration fees from NetSuite/SAP/Tally
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+              onClick={() => setActiveDropdown(activeDropdown === "partners" ? null : "partners")}
+              className={cn(
+                "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                activeDropdown === "partners"
+                  ? "text-black font-semibold"
+                  : "text-[#142d25] hover:text-black"
               )}
-            </div>
+            >
+              Partners
+              <ChevronDown
+                className={cn(
+                  "h-3.5 w-3.5 text-slate-500 transition-transform duration-200",
+                  activeDropdown === "partners" && "rotate-180"
+                )}
+              />
+            </button>
 
             {/* 4. Customers Direct Link */}
             <Link
               href="/case-studies"
+              onMouseEnter={() => setActiveDropdown(null)}
               className="rounded-md px-3 py-1.5 text-sm font-medium text-[#142d25] transition-colors hover:text-black"
             >
               Customers
             </Link>
 
-            {/* 5. Resources Dropdown Trigger */}
-            <div
-              className="relative"
+            {/* 5. Resources Trigger */}
+            <button
+              suppressHydrationWarning
               onMouseEnter={() => handleMouseEnter("resources")}
               onMouseLeave={handleMouseLeave}
-            >
-              <button
-                suppressHydrationWarning
-                onClick={() => setActiveDropdown(activeDropdown === "resources" ? null : "resources")}
-                className={cn(
-                  "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-                  activeDropdown === "resources"
-                    ? "text-black"
-                    : "text-[#142d25] hover:text-black"
-                )}
-              >
-                Resources
-                <ChevronDown
-                  className={cn(
-                    "h-3.5 w-3.5 text-slate-500 transition-transform duration-200",
-                    activeDropdown === "resources" && "rotate-180"
-                  )}
-                />
-              </button>
-
-              {/* COMPACT FLOATING RESOURCES CARD */}
-              {activeDropdown === "resources" && (
-                <div
-                  onMouseEnter={() => handleMouseEnter("resources")}
-                  onMouseLeave={handleMouseLeave}
-                  className="absolute right-0 top-full z-[120] pt-2 animate-fade-in"
-                >
-                  <div className="w-[520px] rounded-2xl border border-slate-200/90 bg-white p-5 text-slate-800 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.22)]">
-                    <div className="grid grid-cols-2 gap-5 divide-x divide-slate-100">
-                      <div className="pr-4 space-y-2">
-                        <div className="text-[11px] font-semibold text-slate-400 tracking-wider">
-                          Documentation & APIs
-                        </div>
-                        <div className="space-y-0.5">
-                          <Link
-                            href="/docs"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <FileText className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Developer Documentation
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                Complete REST APIs & guides
-                              </div>
-                            </div>
-                          </Link>
-
-                          <Link
-                            href="/docs/delivery-challans"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <Truck className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Delivery Challans API
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                FEFO dispatch & stock deductions
-                              </div>
-                            </div>
-                          </Link>
-                        </div>
-                      </div>
-
-                      <div className="pl-4 space-y-2">
-                        <div className="text-[11px] font-semibold text-slate-400 tracking-wider">
-                          Compliance & Stories
-                        </div>
-                        <div className="space-y-0.5">
-                          <Link
-                            href="/gst-guides"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <ShieldCheck className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                GST 2.0 Reform Guide
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                Notification 9/2025-CT rules
-                              </div>
-                            </div>
-                          </Link>
-
-                          <Link
-                            href="/case-studies"
-                            onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
-                          >
-                            <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
-                              <Users className="h-3.5 w-3.5" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
-                                Customer Case Studies
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight">
-                                Real Indian enterprise stories
-                              </div>
-                            </div>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              onClick={() => setActiveDropdown(activeDropdown === "resources" ? null : "resources")}
+              className={cn(
+                "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                activeDropdown === "resources"
+                  ? "text-black font-semibold"
+                  : "text-[#142d25] hover:text-black"
               )}
-            </div>
+            >
+              Resources
+              <ChevronDown
+                className={cn(
+                  "h-3.5 w-3.5 text-slate-500 transition-transform duration-200",
+                  activeDropdown === "resources" && "rotate-180"
+                )}
+              />
+            </button>
           </nav>
 
           {/* Right Nav Actions (Campfire style: Sign In text + dark green Get Started pill button) */}
@@ -785,6 +271,933 @@ export function Navbar() {
           </button>
         </div>
 
+        {/* FULL-WIDTH HORIZONTAL MEGA-MENU BAR (Spans full viewport width, container-wide content, compact height) */}
+        {activeDropdown && (
+          <div
+            onMouseEnter={() => {
+              if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+            }}
+            onMouseLeave={handleMouseLeave}
+            className="absolute top-full inset-x-0 w-full border-b border-slate-200/90 bg-white text-slate-800 shadow-[0_20px_45px_-10px_rgba(0,0,0,0.18)] z-[120] animate-fade-in"
+          >
+            <div className="container-wide py-3.5 sm:py-4">
+              {/* 1. Products Mega Menu */}
+              {activeDropdown === "products" && (
+                <div className="grid grid-cols-4 gap-6 divide-x divide-slate-100">
+                  {/* Col 1: Financial Core */}
+                  <div className="pr-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Enterprise ERP Core
+                    </div>
+                    <Link
+                      href="/products/finance/khatabook-ai"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <BookOpen className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Core Finance & GL
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Multi-entity GL, journals & 24h close
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/invoices"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Receipt className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Invoicing & Receivables
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Delivery challans, e-invoicing & AR ledger
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/purchase-bills"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <TrendingUp className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Procurement & Bills
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          PO to GRN 3-way match & vendor statements
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/banking"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <LineChart className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Banking & Reconciliation
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Autonomous statement & ledger matching
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 2: Industry OS */}
+                  <div className="px-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Industry OS
+                    </div>
+                    <Link
+                      href="/products/health/katixo-hospital-os"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-teal-50 flex items-center justify-center text-teal-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Activity className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Hospital OS
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          NABH IPD, OPD queue triage & clinical pharmacy
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/field-sales"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Truck className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          FMCG Route Vans
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Van stock balancing, GPS beats & day-close
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/pharma"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Pill className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Pharma Chemists & Chains
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          100K+ CDSCO salts & FEFO returns
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/accounting-pos-software"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <ShoppingBag className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Supermarkets & Retail POS
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Barcode checkout & instant billing
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 3: AI & Compliance Engine */}
+                  <div className="px-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      AI & Compliance Engine
+                    </div>
+                    <Link
+                      href="/docs/ai"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          AI Decision Engine
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Cross-cutting anomaly & compliance detection
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/gst-guides"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Cpu className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          GST 2.0 Engine
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Notification 9/2025-CT auto-split rates
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/inventory-costing"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Layers className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          FIFO Inventory Costing
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Lot consumption & warehouse balance
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/custom-reports"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <FileText className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Custom Report Builder
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Multi-entity scheduled report engine
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 4: Featured Platform Hub */}
+                  <div className="pl-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Featured Suite
+                    </div>
+                    <Link
+                      href="/products"
+                      onClick={() => setActiveDropdown(null)}
+                      className="block group"
+                    >
+                      <div
+                        className="relative h-20 rounded-xl p-3 flex items-center justify-center overflow-hidden text-center shadow-xs transition-transform group-hover:scale-[1.01]"
+                        style={{
+                          background: "linear-gradient(135deg, #142d25 0%, #0d221b 100%)",
+                        }}
+                      >
+                        <div className="relative z-10 inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-[11px] font-bold text-[#142d25] shadow-md">
+                          <Sparkles className="h-3 w-3 text-emerald-600" />
+                          <span>Katixo Product Suite</span>
+                        </div>
+                      </div>
+                      <div className="mt-2 text-xs font-bold text-slate-900 group-hover:text-[#0a4733]">
+                        Explore All Products &rarr;
+                      </div>
+                      <div className="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                        From Indian Enterprise ERP to Healthcare OS and Agricultural tools.
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              {/* 2. Solutions Mega Menu */}
+              {activeDropdown === "solutions" && (
+                <div className="grid grid-cols-4 gap-6 divide-x divide-slate-100">
+                  {/* Col 1: Healthcare & Clinical */}
+                  <div className="pr-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Healthcare & Clinical
+                    </div>
+                    <Link
+                      href="/docs/hospital"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <HeartPulse className="h-3.5 w-3.5 text-rose-500" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Hospitals & Clinics
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Multi-specialty hospital management
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/hospital/opd"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Clock className="h-3.5 w-3.5 text-emerald-600" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          OPD Queue Triage
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Zero-wait patient token routing
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/hospital/ipd"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Activity className="h-3.5 w-3.5 text-teal-600" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          IPD & Bed Census
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Real-time 160+ bed occupancy tracking
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/hospital/billing"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Receipt className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Insurance TPA Desk
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Cashless & corporate claim clearance
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 2: Distribution & Retail */}
+                  <div className="px-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Distribution & Retail
+                    </div>
+                    <Link
+                      href="/docs/field-sales"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Truck className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          FMCG & Route Sales
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Spot billing, van cash & day-close
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/pharma"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Pill className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Pharma Distribution
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Batch expiry & generic substitutions
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/accounting-pos-software"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <ShoppingBag className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Supermarket & POS
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          High-speed counter billing & barcode
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/delivery-challans"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Blocks className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Warehouse & Dispatch
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Challan dispatch & batch stock deduction
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 3: Roles & Operations */}
+                  <div className="px-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Roles & Scale
+                    </div>
+                    <Link
+                      href="/docs"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <ShieldCheck className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          CFOs & Controllers
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Close in 24 hours without spreadsheets
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/partners"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Users className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Chartered Accountants
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Multi-tenant client books & GSTR filing
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/payroll"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Building2 className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Payroll & HR Teams
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          PF 12%, ESI, PT & statutory slips
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/compare"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <ArrowLeftRight className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Legacy ERP Migration
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Zero fees from NetSuite, SAP, Tally
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 4: Featured Tour */}
+                  <div className="pl-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Product Tour
+                    </div>
+                    <Link
+                      href="/contact"
+                      onClick={() => setActiveDropdown(null)}
+                      className="block group"
+                    >
+                      <div
+                        className="relative h-20 rounded-xl p-3 flex items-center justify-center overflow-hidden text-center shadow-xs transition-transform group-hover:scale-[1.01]"
+                        style={{
+                          background: "linear-gradient(135deg, #142d25 0%, #0d221b 100%)",
+                        }}
+                      >
+                        <div className="relative z-10 inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-[11px] font-bold text-[#142d25] shadow-md">
+                          <Activity className="h-3 w-3 text-emerald-600" />
+                          <span>Interactive Demo</span>
+                        </div>
+                      </div>
+                      <div className="mt-2 text-xs font-bold text-slate-900 group-hover:text-[#0a4733]">
+                        Schedule a Live Tour &rarr;
+                      </div>
+                      <div className="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                        Experience live OPD queues, batch inventory & automated month-end close.
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              {/* 3. Partners Mega Menu */}
+              {activeDropdown === "partners" && (
+                <div className="grid grid-cols-4 gap-6 divide-x divide-slate-100">
+                  {/* Col 1: Advisory & CAs */}
+                  <div className="pr-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Advisory & CAs
+                    </div>
+                    <Link
+                      href="/partners"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Users className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Advisory & CA Partnerships
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          For Chartered Accountants & CFO Advisory
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 2: Technology & APIs */}
+                  <div className="px-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Technology & APIs
+                    </div>
+                    <Link
+                      href="/integrations"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Blocks className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Technology Integrators
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Connectors, payment gateways & banks
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 3: Enterprise Migration */}
+                  <div className="px-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      ERP Switch Program
+                    </div>
+                    <Link
+                      href="/compare"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <ArrowLeftRight className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Legacy ERP Rescue Fund
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Zero migration fees from NetSuite/SAP/Tally
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 4: Partner Portal */}
+                  <div className="pl-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Join Ecosystem
+                    </div>
+                    <Link
+                      href="/partners"
+                      onClick={() => setActiveDropdown(null)}
+                      className="block group"
+                    >
+                      <div
+                        className="relative h-20 rounded-xl p-3 flex items-center justify-center overflow-hidden text-center shadow-xs transition-transform group-hover:scale-[1.01]"
+                        style={{
+                          background: "linear-gradient(135deg, #142d25 0%, #0d221b 100%)",
+                        }}
+                      >
+                        <div className="relative z-10 inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-[11px] font-bold text-[#142d25] shadow-md">
+                          <Users className="h-3 w-3 text-emerald-600" />
+                          <span>Partner Registration</span>
+                        </div>
+                      </div>
+                      <div className="mt-2 text-xs font-bold text-slate-900 group-hover:text-[#0a4733]">
+                        Become a Partner &rarr;
+                      </div>
+                      <div className="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                        Earn recurring revenue with Katixo implementations.
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              {/* 4. Resources Mega Menu */}
+              {activeDropdown === "resources" && (
+                <div className="grid grid-cols-4 gap-6 divide-x divide-slate-100">
+                  {/* Col 1: Documentation & APIs */}
+                  <div className="pr-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Documentation & APIs
+                    </div>
+                    <Link
+                      href="/docs"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <FileText className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Developer Documentation
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Complete REST APIs & guides
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/delivery-challans"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Truck className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Delivery Challans API
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          FEFO dispatch & stock deductions
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/procurement"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <TrendingUp className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Procurement & 3-Way Match
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          PO to GRN to purchase bills
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/workflows"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Workflow className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Approval Workflows
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Multi-level approval chains
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 2: Tax & Compliance */}
+                  <div className="px-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Tax & Compliance
+                    </div>
+                    <Link
+                      href="/gst-guides"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <ShieldCheck className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          GST 2.0 Reform Guide
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Notification 9/2025-CT rate rules
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/payroll"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Building2 className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Indian Payroll Guide
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          PF 12%, ESI, PT slabs & TDS
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/banking"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <LineChart className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Bank Reconciliation
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Auto-matching rules & statements
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/changelog"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Sparkles className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Product Changelog
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Latest ERP releases & updates
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 3: Stories & Comparison */}
+                  <div className="px-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Stories & Insights
+                    </div>
+                    <Link
+                      href="/case-studies"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Users className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Customer Case Studies
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          How Indian enterprises scale on Katixo
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/compare"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <ArrowLeftRight className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Compare Alternatives
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Katixo vs NetSuite, SAP, Tally, Zoho
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/about"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Building2 className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          About Katixo
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Our mission, leadership & story
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/help"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <HelpCircle className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Help Center & FAQs
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Setup guides & quick troubleshooting
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 4: Support Card */}
+                  <div className="pl-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Support
+                    </div>
+                    <Link
+                      href="/contact"
+                      onClick={() => setActiveDropdown(null)}
+                      className="block group"
+                    >
+                      <div
+                        className="relative h-20 rounded-xl p-3 flex items-center justify-center overflow-hidden text-center shadow-xs transition-transform group-hover:scale-[1.01]"
+                        style={{
+                          background: "linear-gradient(135deg, #142d25 0%, #0d221b 100%)",
+                        }}
+                      >
+                        <div className="relative z-10 inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-[11px] font-bold text-[#142d25] shadow-md">
+                          <HelpCircle className="h-3 w-3 text-emerald-600" />
+                          <span>Enterprise Support</span>
+                        </div>
+                      </div>
+                      <div className="mt-2 text-xs font-bold text-slate-900 group-hover:text-[#0a4733]">
+                        Contact Support &rarr;
+                      </div>
+                      <div className="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                        Direct Slack & WhatsApp engineering hotline for enterprise clients.
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Mobile Navigation Drawer */}
         {mobileOpen && (
           <div className="fixed inset-x-0 top-20 z-40 h-[calc(100vh-5rem)] overflow-y-auto border-t border-slate-200 bg-white text-slate-800 lg:hidden">
@@ -793,18 +1206,28 @@ export function Navbar() {
                 Products
               </div>
               <Link
-                href="/products/finance/general-ledger"
+                href="/products/finance/khatabook-ai"
                 onClick={() => setMobileOpen(false)}
                 className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100 flex items-center justify-between"
               >
-                <span>Core Accounting</span>
+                <span>Core Finance & GL</span>
               </Link>
               <Link
-                href="/docs/hospital"
+                href="/products/health/katixo-hospital-os"
                 onClick={() => setMobileOpen(false)}
                 className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100 flex items-center justify-between"
               >
                 <span>Hospital OS</span>
+                <span className="rounded bg-teal-50 px-1.5 py-0.5 text-[10px] font-semibold text-teal-800">
+                  NABH
+                </span>
+              </Link>
+              <Link
+                href="/docs/pharma"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100 flex items-center justify-between"
+              >
+                <span>Pharma Clinical ERP</span>
               </Link>
               <Link
                 href="/docs/field-sales"
@@ -813,25 +1236,25 @@ export function Navbar() {
               >
                 <span>FMCG Route Vans</span>
               </Link>
+              <Link
+                href="/accounting-pos-software"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100 flex items-center justify-between"
+              >
+                <span>Retail POS Software</span>
+              </Link>
 
               <div className="my-2 h-px bg-slate-100" />
 
               <div className="text-xs font-bold uppercase tracking-wider text-[#0a4733] px-4">
-                Solutions & Partners
+                Company & Resources
               </div>
               <Link
-                href="/docs/hospital"
+                href="/pricing"
                 onClick={() => setMobileOpen(false)}
                 className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100"
               >
-                Healthcare & Hospitals
-              </Link>
-              <Link
-                href="/partners"
-                onClick={() => setMobileOpen(false)}
-                className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100"
-              >
-                Advisory & CA Partnerships
+                Pricing
               </Link>
               <Link
                 href="/case-studies"
@@ -839,6 +1262,20 @@ export function Navbar() {
                 className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100"
               >
                 Customers & Case Studies
+              </Link>
+              <Link
+                href="/docs"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100"
+              >
+                Developer Docs & APIs
+              </Link>
+              <Link
+                href="/partners"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100"
+              >
+                Partner Programs
               </Link>
 
               <div className="my-3 h-px bg-slate-100" />
@@ -850,7 +1287,6 @@ export function Navbar() {
               >
                 Sign In
               </Link>
-
               <Link
                 href="/contact"
                 onClick={() => setMobileOpen(false)}

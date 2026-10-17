@@ -15,9 +15,9 @@ export const productsMenu: NavSection[] = [
   {
     heading: "Core Finance & GL",
     links: [
-      { label: "General Ledger", href: "/products/finance/general-ledger", description: "Multi-entity consolidation & 24h close" },
-      { label: "Accounts Payable", href: "/products/procurement/purchase-orders", description: "3-way invoice match & vendor statements" },
-      { label: "Accounts Receivable", href: "/products/sales/sales-orders", description: "Delivery challans & real-time e-invoicing" },
+      { label: "Core Finance & GL", href: "/products/finance/khatabook-ai", description: "Multi-entity consolidation & 24h close" },
+      { label: "Procurement & 3-Way Match", href: "/docs/purchase-bills", description: "PO to GRN match & vendor statements" },
+      { label: "Invoicing & Receivables", href: "/docs/invoices", description: "Delivery challans & real-time e-invoicing" },
       { label: "GST 2.0 Engine", href: "/gst-guides", description: "Notification 9/2025-CT auto-split rates", badge: "2.0 Ready" },
       { label: "Autonomous Bank Match", href: "/docs/banking", description: "AI feed parsing & zero-variance reconciliation" },
     ],
@@ -112,7 +112,7 @@ export const footerLinks: FooterColumn[] = [
   {
     title: "Products & Packs",
     links: [
-      { label: "Finance ERP & GL", href: "/products/finance/general-ledger" },
+      { label: "Finance ERP & GL", href: "/products/finance/khatabook-ai" },
       { label: "Hospital OS (NABH)", href: "/docs/hospital" },
       { label: "FMCG Field Sales & Vans", href: "/docs/field-sales" },
       { label: "Pharma Clinical Masters", href: "/docs/pharma" },
