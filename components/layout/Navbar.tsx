@@ -28,6 +28,8 @@ import {
   Workflow,
   Clock,
   Layers,
+  MessageSquare,
+  Database,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
@@ -156,7 +158,29 @@ export function Navbar() {
               />
             </button>
 
-            {/* 3. Partners Trigger */}
+            {/* 3. Tools Trigger */}
+            <button
+              suppressHydrationWarning
+              onMouseEnter={() => handleMouseEnter("tools")}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => setActiveDropdown(activeDropdown === "tools" ? null : "tools")}
+              className={cn(
+                "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                activeDropdown === "tools"
+                  ? "text-black font-semibold"
+                  : "text-[#142d25] hover:text-black"
+              )}
+            >
+              Tools
+              <ChevronDown
+                className={cn(
+                  "h-3.5 w-3.5 text-slate-500 transition-transform duration-200",
+                  activeDropdown === "tools" && "rotate-180"
+                )}
+              />
+            </button>
+
+            {/* 4. Partners Trigger */}
             <button
               suppressHydrationWarning
               onMouseEnter={() => handleMouseEnter("partners")}
@@ -819,7 +843,191 @@ export function Navbar() {
                 </div>
               )}
 
-              {/* 3. Partners Mega Menu */}
+              {/* 3. Tools Mega Menu */}
+              {activeDropdown === "tools" && (
+                <div className="grid grid-cols-4 gap-6 divide-x divide-slate-100">
+                  {/* Col 1: Tax & Compliance */}
+                  <div className="pr-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Tax & Compliance
+                    </div>
+                    <Link
+                      href="/tools/gst-reconciliation"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <ShieldCheck className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                            GST 2.0 & 2B Reconciler
+                          </span>
+                          <span className="rounded-full bg-emerald-100 px-1.5 py-0.2 text-[9px] font-bold text-emerald-800">
+                            Free
+                          </span>
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Auto-match 2B with books & protect 100% ITC
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/gst-guides"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Receipt className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          HSN & GST 2.0 Directory
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Notified 5% vs 18% rates & exempt search
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 2: Business & Billing AI */}
+                  <div className="px-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Business & Billing AI
+                    </div>
+                    <Link
+                      href="/tools/whatsapp-ai"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <MessageSquare className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                            WhatsApp AI Business Agent
+                          </span>
+                          <span className="rounded-full bg-blue-100 px-1.5 py-0.2 text-[9px] font-bold text-blue-800">
+                            AI
+                          </span>
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Voice receipts & PDF ledgers on WhatsApp
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/docs/invoices"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <FileText className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          E-Invoicing & E-Way Bills
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          NIC portal real-time IRN generation
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 3: B2B Commerce & Portals */}
+                  <div className="px-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      B2B Commerce & Portals
+                    </div>
+                    <Link
+                      href="/tools/b2b-portal"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Building2 className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          B2B Wholesale Retailer Portal
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Self-service re-ordering, credit limits & bills
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/tools/vendor-portal"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Truck className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                          Vendor & Supplier Hub
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          PO confirmation & advance delivery challans
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Col 4: Migration & Hub */}
+                  <div className="pl-4 space-y-1.5">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                      Migration & Hub
+                    </div>
+                    <Link
+                      href="/tools/data-migrator"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="h-7 w-7 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-[#ecf6ef] group-hover:text-[#0a4733] shrink-0 mt-0.5">
+                        <Database className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-xs font-semibold text-slate-900 group-hover:text-[#0a4733]">
+                            1-Click Tally & Busy Migrator
+                          </span>
+                          <span className="rounded-full bg-amber-100 px-1.5 py-0.2 text-[9px] font-bold text-amber-800">
+                            1-Click
+                          </span>
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Import 5 years of ledgers & batch inventory
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/tools"
+                      onClick={() => setActiveDropdown(null)}
+                      className="block p-2 rounded-lg bg-emerald-50/70 border border-emerald-100 hover:bg-emerald-100/70 transition-colors group mt-1"
+                    >
+                      <div className="flex items-center justify-between text-xs font-bold text-emerald-900">
+                        <span>View All Tools</span>
+                        <ArrowRight className="h-3 w-3 text-emerald-700 group-hover:translate-x-0.5 transition-transform" />
+                      </div>
+                      <div className="text-[10px] text-emerald-700 leading-tight mt-0.5">
+                        Explore all free standalone utilities for Indian MSMEs
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              {/* 4. Partners Mega Menu */}
               {activeDropdown === "partners" && (
                 <div className="grid grid-cols-4 gap-6 divide-x divide-slate-100">
                   {/* Col 1: Advisory & CAs */}
@@ -1242,6 +1450,53 @@ export function Navbar() {
                 className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100 flex items-center justify-between"
               >
                 <span>Retail POS Software</span>
+              </Link>
+
+              <div className="my-2 h-px bg-slate-100" />
+
+              <div className="text-xs font-bold uppercase tracking-wider text-[#0a4733] px-4">
+                Tools & Utilities
+              </div>
+              <Link
+                href="/tools/gst-reconciliation"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100 flex items-center justify-between"
+              >
+                <span>GST 2.0 & 2B Reconciler</span>
+                <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-[10px] font-bold text-emerald-800">
+                  Free
+                </span>
+              </Link>
+              <Link
+                href="/tools/whatsapp-ai"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100 flex items-center justify-between"
+              >
+                <span>WhatsApp AI Business Agent</span>
+                <span className="rounded bg-blue-100 px-1.5 py-0.5 text-[10px] font-bold text-blue-800">
+                  AI
+                </span>
+              </Link>
+              <Link
+                href="/tools/b2b-portal"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100 flex items-center justify-between"
+              >
+                <span>B2B Wholesale Portal</span>
+              </Link>
+              <Link
+                href="/tools/data-migrator"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-md px-6 py-2 text-sm font-medium hover:bg-slate-100 flex items-center justify-between"
+              >
+                <span>1-Click Tally & Busy Migrator</span>
+              </Link>
+              <Link
+                href="/tools"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-md px-6 py-2 text-sm font-bold text-emerald-800 hover:bg-slate-100 flex items-center justify-between"
+              >
+                <span>All Standalone Tools &rarr;</span>
               </Link>
 
               <div className="my-2 h-px bg-slate-100" />

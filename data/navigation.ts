@@ -63,6 +63,37 @@ export const solutionsMenu: NavSection[] = [
   },
 ];
 
+export const toolsMenu: NavSection[] = [
+  {
+    heading: "Tax & Compliance",
+    links: [
+      { label: "GST 2.0 & 2B Reconciler", href: "/tools/gst-reconciliation", description: "Auto-match GSTR-2B with purchase register & protect ITC", badge: "Free Tool" },
+      { label: "HSN & GST 2.0 Rate Finder", href: "/gst-guides", description: "Search post-GST-2.0 rates, exempt lists & HSN codes" },
+    ],
+  },
+  {
+    heading: "Business & Billing AI",
+    links: [
+      { label: "WhatsApp AI Business Agent", href: "/tools/whatsapp-ai", description: "Khatabook on WhatsApp, voice receipts & instant PDF ledgers", badge: "AI" },
+      { label: "E-Invoicing & E-Way Bill Hub", href: "/docs/invoices", description: "Instant IRN generation & QR code validation" },
+    ],
+  },
+  {
+    heading: "B2B Commerce & Portals",
+    links: [
+      { label: "B2B Wholesale Customer Portal", href: "/tools/b2b-portal", description: "Self-service retailer order booking, credit limits & receipts" },
+      { label: "Vendor & Supplier Hub", href: "/tools/vendor-portal", description: "PO acknowledgement & delivery challan uploads" },
+    ],
+  },
+  {
+    heading: "Migration & Utilities",
+    links: [
+      { label: "Tally & Busy Data Migrator", href: "/tools/data-migrator", description: "1-click historical ledger, item & balance import wizard", badge: "1-Click" },
+      { label: "Compare ERP Alternatives", href: "/compare", description: "Feature-by-feature matrix vs Tally, Zoho, Busy & Vyapar" },
+    ],
+  },
+];
+
 export const partnersMenu: NavSection[] = [
   {
     heading: "Partner Programs",
@@ -136,12 +167,12 @@ export const footerLinks: FooterColumn[] = [
   {
     title: "Resources & APIs",
     links: [
-      { label: "Developer Docs", href: "/docs" },
+      { label: "GSTR-2B Auto-Reconciler", href: "/tools/gst-reconciliation" },
+      { label: "WhatsApp AI Billing", href: "/tools/whatsapp-ai" },
       { label: "GST 2.0 Reform Guide", href: "/gst-guides" },
+      { label: "Developer Docs", href: "/docs" },
       { label: "Delivery Challans API", href: "/docs/delivery-challans" },
-      { label: "Procurement & GRN API", href: "/docs/procurement" },
-      { label: "Product Changelog", href: "/docs/changelog" },
-      { label: "Compare NetSuite / Tally", href: "/compare" },
+      { label: "Compare Alternatives", href: "/compare" },
       { label: "Case Studies", href: "/case-studies" },
     ],
   },
