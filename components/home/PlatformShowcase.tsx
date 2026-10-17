@@ -41,6 +41,12 @@ const handledWork = [
   "Duplicate checks",
   "Approval flows",
   "TDS reminders",
+  "Custom reports",
+  "PF & ESI payroll",
+  "FEFO dispatch",
+  "Drug interactions",
+  "Route van sales",
+  "GST 2.0 rates",
 ];
 
 const workflowCards = [
@@ -55,15 +61,15 @@ const workflowCards = [
     icon: PackageCheck,
     title: "Medical shops",
     text: "Batch-aware inventory, purchase bills, expiry attention and GST-ready invoices for pharmacy workflows.",
-    checks: ["Batch stock", "Expiry alerts", "Purchase bills"],
-    href: "/products/health/katixo-hospital-os",
+    checks: ["FEFO Batches", "Drug Interaction Checks", "CDSCO Masters"],
+    href: "/docs/pharma",
   },
   {
     icon: Truck,
-    title: "Distributors",
-    text: "Track purchase orders, bills, collections and receivables across customers and product lines.",
-    checks: ["Receivables", "Stock movement", "Payment follow-up"],
-    href: "/case-studies",
+    title: "Distributors & FMCG",
+    text: "Delivery challans with FEFO stock allocation, route van sales, customer beats, and cash reconciliation.",
+    checks: ["SO to Delivery Challan", "Beats & Van Stock", "Day-Close Reconciled"],
+    href: "/docs/field-sales",
   },
   {
     icon: Hospital,

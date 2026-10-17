@@ -19,21 +19,30 @@ export const mainNav: NavLink[] = [
 
 export const resourcesMenu: ResourcesColumn[] = [
   {
-    heading: "Learn",
+    heading: "ERP Solutions",
     links: [
-      { label: "Blog", href: "/blog", description: "Guides, tips & product updates" },
-      { label: "API Documentation", href: "/docs", description: "REST API reference for developers" },
-      { label: "GST Guides", href: "/gst-guides", description: "GST compliance made simple" },
-      { label: "Help Center", href: "/help", description: "Guides, FAQs & support" },
+      { label: "Pharma & Clinical", href: "/docs/pharma", description: "CDSCO masters & interaction checks" },
+      { label: "FMCG Field Sales", href: "/docs/field-sales", description: "Beats, routes & van stock reconciliation" },
+      { label: "Indian Payroll", href: "/docs/payroll", description: "PF 12%, ESI, PT slabs & journal post" },
+      { label: "Custom Report Builder", href: "/docs/custom-reports", description: "Ad-hoc query builder with cron delivery" },
     ],
   },
   {
-    heading: "Company",
+    heading: "API Reference",
     links: [
-      { label: "Case Studies", href: "/case-studies", description: "How MSMEs use Katixo" },
-      { label: "Integrations", href: "/integrations", description: "Connect tools you already use" },
-      { label: "Compare", href: "/compare", description: "Katixo vs Tally, Zoho & more" },
-      { label: "Partners", href: "/partners", description: "Partner program & resellers" },
+      { label: "Delivery Challans", href: "/docs/delivery-challans", description: "Dispatch & FEFO stock allocation" },
+      { label: "Procurement & GRN", href: "/docs/procurement", description: "Purchase orders & 3-way match" },
+      { label: "FIFO Inventory", href: "/docs/inventory-costing", description: "Lot consumption & warehouse transfers" },
+      { label: "Full API Docs", href: "/docs", description: "Complete REST API reference" },
+    ],
+  },
+  {
+    heading: "Company & Guides",
+    links: [
+      { label: "Compare Alternatives", href: "/compare", description: "Katixo vs Tally, Zoho, Busy & Vyapar" },
+      { label: "GST Guides", href: "/gst-guides", description: "GST 2.0 compliance made simple" },
+      { label: "Case Studies", href: "/case-studies", description: "How Indian businesses run on Katixo" },
+      { label: "Help Center", href: "/help", description: "FAQs, workflows & operator support" },
     ],
   },
 ];
@@ -45,12 +54,13 @@ export interface FooterColumn {
 
 export const footerLinks: FooterColumn[] = [
   {
-    title: "Products",
+    title: "Products & Packs",
     links: [
       { label: "Accounting POS Software", href: "/accounting-pos-software" },
-      { label: "GST Billing Software", href: "/accounting-pos-software#gst-ready-billing" },
-      { label: "MSME Accounting", href: "/accounting-pos-software" },
-      { label: "Inventory and Billing", href: "/accounting-pos-software" },
+      { label: "Pharma Clinical Masters", href: "/docs/pharma" },
+      { label: "FMCG Field Sales & Vans", href: "/docs/field-sales" },
+      { label: "Custom Report Builder", href: "/docs/custom-reports" },
+      { label: "Indian SMB Payroll", href: "/docs/payroll" },
       { label: "Book a Demo", href: "/contact" },
     ],
   },
@@ -65,13 +75,13 @@ export const footerLinks: FooterColumn[] = [
     ],
   },
   {
-    title: "Resources",
+    title: "Resources & APIs",
     links: [
       { label: "API Documentation", href: "/docs" },
+      { label: "Delivery Challans API", href: "/docs/delivery-challans" },
+      { label: "Procurement & GRN API", href: "/docs/procurement" },
       { label: "GST Guides", href: "/gst-guides" },
-      { label: "Help Center", href: "/help" },
-      { label: "Case Studies", href: "/case-studies" },
-      { label: "Compare", href: "/compare" },
+      { label: "Compare Alternatives", href: "/compare" },
       { label: "Integrations", href: "/integrations" },
     ],
   },

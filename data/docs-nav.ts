@@ -37,33 +37,47 @@ export const docsNav: DocNavProduct[] = [
     icon: "📒",
     sections: [
       {
-        title: "Billing",
+        title: "Billing & Sales",
         items: [
           { label: "Invoices", href: "/docs/invoices" },
+          { label: "Delivery Challans", href: "/docs/delivery-challans", badge: "New" },
           { label: "Purchase Bills", href: "/docs/purchase-bills" },
           { label: "Recurring Invoices", href: "/docs/recurring-invoices" },
           { label: "Expenses", href: "/docs/expenses" },
         ],
       },
       {
-        title: "Catalogue",
+        title: "Procurement & Stock",
         items: [
-          { label: "Items", href: "/docs/items" },
-          { label: "Contacts", href: "/docs/customers" },
-        ],
-      },
-      {
-        title: "Inventory",
-        items: [
-          { label: "Batches & Stock", href: "/docs/inventory" },
+          { label: "Purchase Orders & GRN", href: "/docs/procurement", badge: "New" },
+          { label: "Items & Catalogue", href: "/docs/items" },
+          { label: "Contacts & Ledgers", href: "/docs/customers" },
+          { label: "Batches & Expiry", href: "/docs/inventory" },
+          { label: "FIFO Lots & Transfers", href: "/docs/inventory-costing", badge: "New" },
           { label: "Stock Counts", href: "/docs/stock-counts" },
         ],
       },
       {
-        title: "Finance",
+        title: "Vertical Packs",
         items: [
-          { label: "GST & Tax", href: "/docs/gst" },
-          { label: "Workflows", href: "/docs/workflows" },
+          { label: "Pharma Clinical Masters", href: "/docs/pharma", badge: "New" },
+          { label: "FMCG Field Sales & Vans", href: "/docs/field-sales", badge: "New" },
+        ],
+      },
+      {
+        title: "Reporting & Analytics",
+        items: [
+          { label: "Custom Report Builder", href: "/docs/custom-reports", badge: "New" },
+          { label: "GST & Statutory Tax", href: "/docs/gst" },
+          { label: "Approval Workflows", href: "/docs/workflows" },
+        ],
+      },
+      {
+        title: "Payroll & Operations",
+        items: [
+          { label: "Indian Payroll & Slabs", href: "/docs/payroll", badge: "New" },
+          { label: "AI Review & Suggestions", href: "/docs/ai", badge: "New" },
+          { label: "Banking & Auto-Match", href: "/docs/banking", badge: "New" },
         ],
       },
     ],

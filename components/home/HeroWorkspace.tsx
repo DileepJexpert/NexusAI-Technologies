@@ -248,17 +248,17 @@ function Keyboard() {
 
   return (
     <div
-      className="rounded-lg border border-[#111827] bg-gradient-to-b from-[#111827] via-[#0b1220] to-[#020617] p-[7px] shadow-[inset_0_2px_7px_rgba(0,0,0,0.75),0_8px_18px_rgba(2,6,23,0.35)] sm:p-[9px]"
-      style={{ display: "flex", flexDirection: "column", gap: "3px" }}
+      className="rounded-lg border border-[#0f172a] bg-gradient-to-b from-[#263447] via-[#111827] to-[#050914] p-[6px] shadow-[inset_0_2px_7px_rgba(255,255,255,0.08),inset_0_-5px_12px_rgba(2,6,23,0.75),0_8px_16px_rgba(2,6,23,0.45)] sm:p-[8px]"
+      style={{ display: "flex", flexDirection: "column", gap: "2px" }}
     >
       {rows.map((row, ri) => (
-        <div key={ri} className="flex" style={{ gap: "3px" }}>
+        <div key={ri} className="flex" style={{ gap: "2px" }}>
           {row.keys.map((flex, ki) => (
             <div
               key={ki}
               style={{ flex }}
-              className={`relative rounded-[3px] border border-[#020617] bg-gradient-to-b from-[#2d3748] via-[#172033] to-[#0b1020] shadow-[inset_0_1px_0_rgba(255,255,255,0.18),inset_0_-1px_0_rgba(0,0,0,0.55),0_1px_3px_rgba(0,0,0,0.65)] ${
-                ri === 0 ? "h-[10px] sm:h-[12px]" : "h-[16px] sm:h-[18px]"
+              className={`relative rounded-[3px] border border-[#020617] bg-gradient-to-b from-[#536174] via-[#283447] to-[#101827] shadow-[inset_0_1px_0_rgba(255,255,255,0.26),inset_0_-2px_0_rgba(0,0,0,0.56),0_2px_3px_rgba(0,0,0,0.68)] ${
+                ri === 0 ? "h-[8px] sm:h-[10px]" : "h-[12px] sm:h-[14px]"
               }`}
             >
               <div
@@ -266,7 +266,7 @@ function Keyboard() {
                 className="absolute inset-[1px] rounded-[2px]"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 40%, rgba(0,0,0,0.3) 100%)",
+                    "linear-gradient(180deg, rgba(255,255,255,0.18) 0%, transparent 42%, rgba(0,0,0,0.34) 100%)",
                 }}
               />
             </div>
@@ -283,8 +283,8 @@ export function HeroWorkspace() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const loaderMs = reduceMotion ? 180 : 4200;
-    const openMs = reduceMotion ? 220 : 5000;
+    const loaderMs = reduceMotion ? 120 : 700;
+    const openMs = reduceMotion ? 180 : 900;
     const t1 = setTimeout(() => setShowLoader(false), loaderMs);
     const t2 = setTimeout(() => setIsOpen(true), openMs);
     return () => {
@@ -646,36 +646,57 @@ export function HeroWorkspace() {
                 {/* HINGE - dark strip between lid and base */}
                 <div
                   aria-hidden
-                  className="relative z-20 h-[9px] w-full bg-gradient-to-b from-[#64748b] via-[#263244] to-[#0f172a] shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_3px_8px_rgba(2,6,23,0.55)]"
+                  className="relative z-20 h-[13px] w-full bg-gradient-to-b from-[#8b98aa] via-[#334155] to-[#0f172a] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-2px_4px_rgba(2,6,23,0.65),0_4px_10px_rgba(2,6,23,0.55)]"
                   style={{ transformStyle: "preserve-3d" }}
                 >
-                  <div className="absolute inset-y-[2px] left-[7%] right-[7%] rounded-[3px] bg-gradient-to-b from-[#0f172a] via-[#020617] to-[#111827]" />
+                  <div className="absolute inset-y-[3px] left-[6%] right-[6%] rounded-[4px] bg-gradient-to-b from-[#111827] via-[#020617] to-[#172033]" />
+                  <div className="absolute bottom-[2px] left-[13%] h-[3px] w-[18%] rounded-full bg-black/45" />
+                  <div className="absolute bottom-[2px] right-[13%] h-[3px] w-[18%] rounded-full bg-black/45" />
                 </div>
 
-                {/* BASE - rotateX(78deg) lays it flat for horizontal keyboard */}
+                {/* BASE - solid horizontal keyboard deck */}
                 <div
-                  className="relative z-0 w-full"
+                  className="relative z-10 -mx-[2%] w-[104%]"
                   style={{
                     transformStyle: "preserve-3d",
                     transformOrigin: "50% 0% 0",
-                    transform: "rotateX(68deg)",
+                    transform: "rotateX(72deg) translateY(-2px) translateZ(-2px)",
                   }}
                 >
                   <div
-                    className="relative rounded-b-[20px] border-x border-b border-[#334155] bg-gradient-to-b from-[#7b8797] via-[#5f6b7d] to-[#3f4b5d] shadow-[inset_0_2px_0_rgba(255,255,255,0.18),inset_0_-3px_8px_rgba(2,6,23,0.35),0_34px_70px_rgba(2,6,23,0.5)]"
-                    style={{ padding: "20px 24px 26px" }}
+                    className="relative rounded-b-[24px] border-x border-b border-[#263244] bg-gradient-to-b from-[#a8b3c2] via-[#748295] to-[#415066] shadow-[inset_0_3px_0_rgba(255,255,255,0.34),inset_0_-6px_12px_rgba(2,6,23,0.46),0_24px_46px_rgba(2,6,23,0.56)]"
+                    style={{ padding: "16px 28px 22px" }}
                   >
+                    {/* Top metal lip */}
+                    <div
+                      aria-hidden
+                      className="absolute left-[3%] right-[3%] top-0 h-[3px] rounded-full bg-gradient-to-r from-transparent via-white/55 to-transparent"
+                    />
+
+                    {/* Side bevels */}
+                    <div
+                      aria-hidden
+                      className="absolute bottom-[8px] left-[2%] top-[12px] w-[7px] rounded-l-[18px] bg-gradient-to-r from-black/30 to-transparent"
+                    />
+                    <div
+                      aria-hidden
+                      className="absolute bottom-[8px] right-[2%] top-[12px] w-[7px] rounded-r-[18px] bg-gradient-to-l from-black/35 to-transparent"
+                    />
+
                     {/* Base side thickness */}
                     <div
                       aria-hidden
-                      className="absolute inset-x-0 -bottom-[14px] h-[14px] rounded-b-[20px] bg-gradient-to-b from-[#334155] via-[#263244] to-[#111827] shadow-[0_10px_22px_rgba(2,6,23,0.45)]"
-                      style={{ transform: "translateZ(-5px)" }}
-                    />
+                      className="absolute inset-x-0 -bottom-[18px] h-[19px] rounded-b-[26px] border-x border-b border-[#172033] bg-gradient-to-b from-[#5d6b7e] via-[#2f3b4f] to-[#111827] shadow-[0_16px_26px_rgba(2,6,23,0.58)]"
+                      style={{ transform: "translateZ(-7px)" }}
+                    >
+                      <div className="absolute left-[5%] right-[5%] top-[2px] h-[3px] rounded-full bg-white/20" />
+                      <div className="absolute left-[38%] right-[38%] bottom-[4px] h-[4px] rounded-full bg-black/45" />
+                    </div>
 
                     <Keyboard />
 
                     {/* Trackpad */}
-                    <div className="mx-auto mt-[14px] h-[38px] w-[42%] rounded-lg border border-[#1f2937]/70 bg-gradient-to-b from-[#8b98aa] via-[#6f7d91] to-[#4b596d] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-2px_4px_rgba(2,6,23,0.28),0_2px_4px_rgba(2,6,23,0.2)] sm:mt-[16px] sm:h-[44px]" />
+                    <div className="mx-auto mt-[12px] h-[32px] w-[42%] rounded-lg border border-[#172033]/80 bg-gradient-to-b from-[#9daabd] via-[#758498] to-[#506073] shadow-[inset_0_2px_0_rgba(255,255,255,0.32),inset_0_-3px_6px_rgba(2,6,23,0.34),0_3px_7px_rgba(2,6,23,0.28)] sm:mt-[14px] sm:h-[38px]" />
                   </div>
                 </div>
               </motion.div>

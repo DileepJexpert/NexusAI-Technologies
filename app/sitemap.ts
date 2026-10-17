@@ -2,8 +2,9 @@ import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { products } from "@/data/products";
 import { categories } from "@/data/categories";
+import { brand } from "@/lib/brand";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://katixo.com";
+const BASE_URL = brand.siteUrl;
 
 export const dynamic = "force-static";
 
@@ -37,6 +38,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/docs/workflows", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/docs/errors", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/docs/changelog", priority: 0.6, changeFrequency: "weekly" as const },
+    { path: "/docs/custom-reports", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/docs/delivery-challans", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/docs/procurement", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/docs/payroll", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/docs/pharma", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/docs/field-sales", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/docs/inventory-costing", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/docs/ai", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/docs/banking", priority: 0.8, changeFrequency: "weekly" as const },
     { path: "/docs/hospital", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/docs/hospital/patients", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/docs/hospital/opd", priority: 0.7, changeFrequency: "monthly" as const },

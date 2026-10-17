@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -36,7 +36,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 1.65 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
             className="order-1 flex max-w-md flex-col items-start text-left"
           >
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-500 backdrop-blur-sm dark:border-white/15 dark:bg-white/[0.06] dark:text-slate-300 sm:text-xs">

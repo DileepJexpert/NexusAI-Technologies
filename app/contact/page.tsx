@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, MessageCircle, Linkedin, Twitter } from "lucide-react";
+import { ArrowRight, Clock3, Mail, MapPin, MessageCircle } from "lucide-react";
 import { ContactForm } from "@/components/shared/ContactForm";
-import { socialLinks } from "@/data/navigation";
 
 export const metadata: Metadata = {
   title: "Book a Demo",
   description:
-    "Book a Katixo demo or register interest in an AI-native accounting and finance ERP workspace for Indian businesses.",
+    "Book a Katixo demo for accounting, GST billing, POS, inventory, pharmacy, distribution, MSME finance or hospital workflows.",
   alternates: {
     canonical: "/contact",
   },
@@ -14,80 +13,80 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210";
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi Katixo")}`;
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    "Hi Katixo, I want to book a demo."
+  )}`;
 
   return (
     <>
-      <section className="gradient-primary py-20 text-white">
-        <div className="container-wide text-center">
-          <h1 className="font-heading text-4xl font-extrabold sm:text-5xl md:text-6xl text-balance">
-            Let&apos;s talk
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-200 text-balance">
-            Reach out for product conversations, partnerships or parent-brand opportunities.
-          </p>
-        </div>
-      </section>
+      <section className="relative overflow-hidden bg-[#f8fafc] py-20">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-blue-50 via-emerald-50/70 to-transparent"
+        />
+        <div className="container-wide relative grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-blue-700">
+              Contact
+            </p>
+            <h1 className="mt-5 font-heading text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-950 sm:text-5xl">
+              Book a demo for your business type.
+            </h1>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
+              Retail counter, pharmacy, distribution, MSME finance or a hospital:
+              tell us what you run and we will map the right billing, inventory,
+              GST and reporting workflow.
+            </p>
 
-      <section className="section-padding">
-        <div className="container-wide">
-          <div className="grid gap-12 lg:grid-cols-2">
-            <div>
-              <h2 className="font-heading text-2xl font-bold">Send us a message</h2>
-              <p className="mt-2 text-muted-foreground">
-                Tell us what you&apos;re building, fixing or exploring. We&apos;ll respond within 24 hours.
-              </p>
-              <div className="mt-6">
-                <ContactForm />
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              <InfoCard
-                icon={<MessageCircle className="h-5 w-5 text-accent" />}
+            <div className="mt-8 grid gap-4 sm:max-w-lg">
+              <ContactLink
+                icon={<MessageCircle className="h-5 w-5" />}
                 title="Chat on WhatsApp"
-                description="The fastest way to reach the Katixo team."
-                cta="Start chat →"
+                description="Fastest way to reach the Katixo team."
                 href={whatsappLink}
+                accent="bg-emerald-600 text-white"
               />
-              <InfoCard
-                icon={<Mail className="h-5 w-5 text-primary" />}
-                title="Email"
-                description="hello@katixo.com"
-                cta="Send email →"
+              <ContactLink
+                icon={<Mail className="h-5 w-5" />}
+                title="hello@katixo.com"
+                description="For partnerships, product questions and everything else."
                 href="mailto:hello@katixo.com"
+                accent="bg-blue-50 text-blue-700"
               />
-              <InfoCard
-                icon={<MapPin className="h-5 w-5 text-secondary" />}
-                title="Office"
-                description="Sector 143, Noida, Uttar Pradesh, India"
-              />
-              <div className="rounded-2xl border bg-card p-6 shadow-sm">
-                <div className="mb-3 font-heading text-base font-bold">Follow us</div>
-                <div className="flex items-center gap-3">
-                  {socialLinks.linkedin ? (
-                    <a
-                      href={socialLinks.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-10 w-10 items-center justify-center rounded-full border text-muted-foreground hover:border-primary hover:text-primary"
-                    >
-                      <Linkedin className="h-4 w-4" />
-                    </a>
-                  ) : null}
-                  {socialLinks.twitter ? (
-                    <a
-                      href={socialLinks.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-10 w-10 items-center justify-center rounded-full border text-muted-foreground hover:border-primary hover:text-primary"
-                    >
-                      <Twitter className="h-4 w-4" />
-                    </a>
-                  ) : null}
+              <div className="rounded-2xl border bg-white p-5 shadow-sm">
+                <div className="flex gap-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-700">
+                    <MapPin className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h2 className="font-heading text-base font-bold text-slate-950">
+                      Sector 143, Noida
+                    </h2>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">
+                      Katixo operates from Noida, Uttar Pradesh, India.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="rounded-3xl border bg-white p-6 shadow-xl shadow-slate-200/70 sm:p-8">
+            <div className="mb-6 flex items-start justify-between gap-4">
+              <div>
+                <h2 className="font-heading text-2xl font-extrabold text-slate-950">
+                  Tell us about your business
+                </h2>
+                <p className="mt-2 text-sm text-slate-500">
+                  We will reply with a demo slot within one working day.
+                </p>
+              </div>
+              <div className="hidden items-center gap-2 rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-700 sm:flex">
+                <Clock3 className="h-3.5 w-3.5" />
+                1 day reply
+              </div>
+            </div>
+            <ContactForm />
           </div>
         </div>
       </section>
@@ -95,38 +94,36 @@ export default function ContactPage() {
   );
 }
 
-function InfoCard({
+function ContactLink({
   icon,
   title,
   description,
-  cta,
   href,
+  accent,
 }: {
   icon: React.ReactNode;
   title: string;
   description: string;
-  cta?: string;
-  href?: string;
+  href: string;
+  accent: string;
 }) {
   return (
-    <div className="rounded-2xl border bg-card p-6 shadow-sm">
-      <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
+    <a
+      href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+      className="group rounded-2xl border bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+    >
+      <div className="flex items-center gap-4">
+        <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${accent}`}>
           {icon}
         </div>
-        <div className="font-heading text-base font-bold">{title}</div>
+        <div className="min-w-0 flex-1">
+          <h2 className="font-heading text-base font-bold text-slate-950">{title}</h2>
+          <p className="mt-1 text-sm text-slate-600">{description}</p>
+        </div>
+        <ArrowRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-0.5" />
       </div>
-      <p className="mt-3 text-sm text-muted-foreground">{description}</p>
-      {cta && href && (
-        <a
-          href={href}
-          target={href.startsWith("http") ? "_blank" : undefined}
-          rel="noopener noreferrer"
-          className="mt-3 inline-block text-sm font-semibold text-primary hover:underline"
-        >
-          {cta}
-        </a>
-      )}
-    </div>
+    </a>
   );
 }
