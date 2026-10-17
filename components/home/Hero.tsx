@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroWorkspace } from "./HeroWorkspace";
 
@@ -41,17 +41,17 @@ export function Hero() {
           >
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-500 backdrop-blur-sm dark:border-white/15 dark:bg-white/[0.06] dark:text-slate-300 sm:text-xs">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
-              AI-native ERP for Indian businesses
+              AI-Native Finance ERP for India
             </div>
 
             <h1 className="font-heading text-3xl font-bold leading-[1.02] text-balance text-slate-900 dark:text-white sm:text-4xl md:text-5xl lg:text-[3.1rem]">
-              Superpower your
+              Month end shouldn&apos;t
               <br />
-              <span className="text-emerald-700 dark:text-emerald-300">finance team.</span>
+              <span className="text-emerald-700 dark:text-emerald-300">take all month.</span>
             </h1>
 
-            <p className="mt-5 max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400 sm:text-base sm:leading-7">
-              Katixo brings GST billing, POS, inventory, reconciliation and business reporting into one clean workspace for MSME, retail, distribution and healthcare teams.
+            <p className="mt-5 max-w-md text-sm leading-6 text-slate-600 dark:text-slate-300 sm:text-base sm:leading-7">
+              Close books 5x faster. Katixo is the AI-native ERP built for Indian businesses &mdash; automating GST review, bank reconciliation, inventory lots, and financial reporting in one unified workspace.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -63,6 +63,22 @@ export function Hero() {
               <Button variant="outline" size="lg" asChild>
                 <Link href="/docs">Take a product tour</Link>
               </Button>
+            </div>
+
+            {/* Campfire-inspired Trust & Benefits Row */}
+            <div className="mt-8 flex flex-wrap items-center gap-y-2 gap-x-4 text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                <span>Autonomous bank matching</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                <span>GST 2.0 automatic rates</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                <span>Review exceptions, not rows</span>
+              </div>
             </div>
           </motion.div>
 
@@ -93,5 +109,3 @@ export function Hero() {
     </section>
   );
 }
-
-
