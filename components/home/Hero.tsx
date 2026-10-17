@@ -15,6 +15,10 @@ import {
   ShieldCheck,
   Building2,
   Activity,
+  HeartPulse,
+  Clock,
+  Bed,
+  Stethoscope,
 } from "lucide-react";
 
 interface HeroSlide {
@@ -135,7 +139,7 @@ const heroSlides: HeroSlide[] = [
   {
     id: "hospital-os",
     tabLabel: "Hospital OS",
-    tabIcon: <Activity className="h-3.5 w-3.5" />,
+    tabIcon: <HeartPulse className="h-3.5 w-3.5" />,
     tagline: "NABH Clinical Operating System",
     headlineMain: "Patient care\nshouldn't wait in",
     headlineMint: "endless queues",
@@ -179,9 +183,9 @@ const heroSlides: HeroSlide[] = [
         avatar: "PS",
         role: "Medical Supt",
         name: "Dr. Priya S.",
-        metricLabel: "Bed Occupancy",
-        metricValue: "88.7%",
-        metricTrend: "+6%",
+        metricLabel: "OPD Wait Time",
+        metricValue: "8 mins",
+        metricTrend: "384 Seen",
         chartPath: "M0 14 Q 20 12, 35 8 T 65 6 T 90 2",
       },
       floatingMid: {
@@ -189,8 +193,8 @@ const heroSlides: HeroSlide[] = [
         sub: "Auto-routing 384 Pts",
       },
       floatingBottom: {
-        title: "Active Inpatients & ICU",
-        sub: "Beds: 142 Active",
+        title: "Hospital Bed Census",
+        sub: "142 of 160 Beds Active",
         bars: [55, 70, 65, 88, 92],
       },
     },
@@ -557,97 +561,219 @@ export function Hero() {
                     </div>
                   </div>
 
-                  {/* App Body (Sleek Compact Height: min-h-[195px] instead of 280px) */}
-                  <div className="grid grid-cols-[65px_1fr] sm:grid-cols-[90px_1fr] bg-[#f8faf8] min-h-[195px] sm:min-h-[215px]">
-                    {/* Mini Left Sidebar */}
-                    <div className="border-r border-slate-200/70 bg-white p-1 text-[9px] space-y-0.5">
-                      <div className="rounded bg-emerald-50 px-1.5 py-0.5 font-semibold text-emerald-800 flex items-center justify-between text-[9px]">
-                        <span>{slide.monitor.sidebarActive}</span>
-                        <span className="h-1 w-1 rounded-full bg-emerald-500" />
-                      </div>
-                      {slide.monitor.sidebarItems.map((item) => (
-                        <div
-                          key={item}
-                          className="px-1.5 py-0.5 text-slate-600 hover:text-slate-900 font-medium"
-                        >
-                          {item}
+                  {/* App Body: Distinct Experience for Finance ERP vs Hospital OS */}
+                  {slide.id === "hospital-os" ? (
+                    <div className="grid grid-cols-[68px_1fr] sm:grid-cols-[90px_1fr] bg-[#f8faf8] min-h-[195px] sm:min-h-[215px]">
+                      {/* Mini Left Sidebar */}
+                      <div className="border-r border-slate-200/70 bg-white p-1 text-[9px] space-y-0.5">
+                        <div className="rounded bg-teal-50 px-1.5 py-0.5 font-bold text-teal-900 flex items-center justify-between text-[8.5px]">
+                          <span>OPD Queue</span>
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                         </div>
-                      ))}
-                    </div>
-
-                    {/* Main Panel Content */}
-                    <div className="p-2 space-y-1.5">
-                      {/* Metric Cards Row */}
-                      <div className="grid grid-cols-3 gap-1">
-                        {slide.monitor.metrics.map((m) => (
+                        {["Bed Census", "Doctors", "Pharmacy Rx", "OT & ICU"].map((item) => (
                           <div
-                            key={m.label}
-                            className="rounded border border-slate-200/80 bg-white p-1 shadow-2xs"
+                            key={item}
+                            className="px-1.5 py-0.5 text-slate-600 hover:text-slate-900 font-medium text-[8.5px]"
                           >
-                            <div className="text-[8px] text-slate-500 font-medium truncate">{m.label}</div>
-                            <div className="text-xs font-bold text-slate-900 leading-tight">{m.value}</div>
-                            <div className={`text-[7px] font-semibold ${m.subColor} truncate`}>
-                              {m.sub}
-                            </div>
+                            {item}
                           </div>
                         ))}
                       </div>
 
-                      {/* Graph Panel */}
-                      <div className="rounded border border-slate-200/80 bg-white p-1.5 shadow-2xs">
-                        <div className="flex items-center justify-between mb-0.5">
-                          <div className="text-[9px] font-bold text-slate-900">{slide.monitor.chartTitle}</div>
-                          <span className="text-[7px] font-semibold text-emerald-700 bg-emerald-50 px-1 py-0.2 rounded-full border border-emerald-200">
-                            {slide.monitor.chartTag}
-                          </span>
-                        </div>
-                        <div className="h-8 w-full">
-                          <svg viewBox="0 0 360 40" className="h-full w-full overflow-visible" fill="none">
-                            <path
-                              d="M0 32 Q 55 26, 100 20 T 190 14 T 270 8 T 360 2 L 360 40 L 0 40 Z"
-                              fill={slide.monitor.chartFill}
-                            />
-                            <path
-                              d={slide.monitor.chartPath}
-                              stroke="#059669"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                            />
-                            <circle cx="360" cy="2" r="2" fill="#059669" />
-                          </svg>
-                        </div>
-                      </div>
+                      {/* Main Hospital Panel with Realistic OPD Queue Image & Live HUD */}
+                      <div className="p-1.5 sm:p-2 space-y-1.5 flex flex-col justify-between">
+                        {/* 1. Hospital OPD Queue Lounge Image with Live Token Calling Banner */}
+                        <div className="relative h-24 sm:h-26 w-full overflow-hidden rounded-md border border-slate-200/80 shadow-2xs group bg-slate-100">
+                          {/* Real Hospital OPD Queue Image */}
+                          <img
+                            src="/images/hospital-queue.jpg"
+                            alt="Hospital OPD Queue and Triage Lounge"
+                            className="h-full w-full object-cover object-center"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/35 pointer-events-none" />
 
-                      {/* Checklist Panel (2 High-Impact Items) */}
-                      <div className="rounded border border-slate-200/80 bg-white p-1.5 shadow-2xs">
-                        <div className="flex items-center justify-between mb-0.5">
-                          <div className="text-[9px] font-bold text-slate-900 flex items-center gap-1">
-                            <ShieldCheck className="h-2.5 w-2.5 text-emerald-600" />
-                            {slide.monitor.checklistTitle}
+                          {/* Top Status Tag */}
+                          <div className="absolute top-1 left-1.5 flex items-center gap-1 rounded bg-black/65 px-1.5 py-0.5 text-[7.5px] font-semibold text-white backdrop-blur-md border border-white/20">
+                            <span className="h-1 w-1 rounded-full bg-emerald-400 animate-ping" />
+                            <span className="text-emerald-300 font-bold">LIVE OPD QUEUE</span>
+                            <span className="text-white/40">•</span>
+                            <span>Triage Lounge</span>
                           </div>
-                          <span className="text-[7px] text-slate-500 font-medium">
-                            {slide.monitor.checklistSubtitle}
-                          </span>
-                        </div>
-                        <div className="space-y-0.5 text-[8px]">
-                          {slide.monitor.checklists.map((c, i) => (
-                            <div
-                              key={i}
-                              className="flex items-center justify-between rounded bg-slate-50 px-1 py-0.5"
-                            >
-                              <span className="flex items-center gap-1 text-slate-700 font-medium truncate max-w-[170px]">
-                                <CheckCircle2 className="h-2 w-2 text-emerald-600 shrink-0" />
-                                <span className="truncate">{c.text}</span>
+
+                          {/* Digital Token Calling Banner */}
+                          <div className="absolute bottom-1 inset-x-1.5 flex items-center justify-between rounded bg-[#0d221c]/95 px-2 py-0.5 text-white backdrop-blur-md border border-emerald-500/40 shadow-xs">
+                            <div className="flex items-center gap-1.5">
+                              <span className="rounded bg-[#ff862f] px-1 py-0.2 text-[7px] font-extrabold text-white tracking-wider">
+                                CALLING
                               </span>
-                              <span className={`text-[7px] font-semibold ${c.statusColor} shrink-0`}>
-                                {c.status}
+                              <span className="font-heading text-[10px] font-extrabold text-[#b3ed97]">
+                                TOKEN A-042
+                              </span>
+                              <span className="text-white/40 text-[8px]">→</span>
+                              <span className="text-[8px] font-medium text-white truncate max-w-[90px] sm:max-w-[125px]">
+                                Dr. Priya Sharma (Chamber 4)
                               </span>
                             </div>
-                          ))}
+                            <span className="rounded bg-emerald-500/25 px-1 py-0.2 text-[7px] font-bold text-emerald-300 border border-emerald-400/30">
+                              In Room
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* 2. Upcoming Tokens Queue & Live Vitals / Bed Census */}
+                        <div className="grid grid-cols-2 gap-1.5">
+                          {/* Next in Queue Tokens */}
+                          <div className="rounded border border-slate-200/80 bg-white p-1 sm:p-1.5 shadow-2xs">
+                            <div className="flex items-center justify-between mb-0.5">
+                              <div className="flex items-center gap-1 text-[8px] font-bold text-slate-800">
+                                <Clock className="h-2 w-2 text-emerald-600" />
+                                <span>Next in Queue</span>
+                              </div>
+                              <span className="text-[7px] font-bold text-emerald-700 bg-emerald-50 px-1 py-0.2 rounded-full">
+                                Avg 8m wait
+                              </span>
+                            </div>
+                            <div className="space-y-0.5">
+                              <div className="flex items-center justify-between text-[7px] rounded bg-slate-50 px-1 py-0.5 border border-slate-100">
+                                <span className="font-bold text-slate-800">A-043 • Sunita D.</span>
+                                <span className="text-emerald-700 font-semibold">Ready</span>
+                              </div>
+                              <div className="flex items-center justify-between text-[7px] rounded bg-slate-50 px-1 py-0.5 border border-slate-100">
+                                <span className="font-bold text-slate-800">A-044 • Rajesh M.</span>
+                                <span className="text-slate-500 font-medium">Triage</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Live Vitals & Bed Census */}
+                          <div className="rounded border border-slate-200/80 bg-white p-1 sm:p-1.5 shadow-2xs">
+                            <div className="flex items-center justify-between mb-0.5">
+                              <div className="flex items-center gap-1 text-[8px] font-bold text-slate-800">
+                                <HeartPulse className="h-2 w-2 text-rose-500 animate-pulse" />
+                                <span>Census & Vitals</span>
+                              </div>
+                              <span className="text-[7px] font-bold text-rose-600 bg-rose-50 px-1 py-0.2 rounded-full border border-rose-200">
+                                76 BPM
+                              </span>
+                            </div>
+
+                            {/* Mini ECG Heartbeat Pulse Line */}
+                            <div className="h-2.5 w-full my-0.5">
+                              <svg viewBox="0 0 140 14" className="h-full w-full overflow-visible" fill="none">
+                                <path
+                                  d="M0 7 L28 7 L32 7 L36 1 L41 13 L45 3 L49 10 L54 7 L78 7 L82 1 L87 13 L91 3 L95 10 L100 7 L140 7"
+                                  stroke="#059669"
+                                  strokeWidth="1.5"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </div>
+
+                            <div className="flex items-center justify-between text-[7px] text-slate-600 font-medium pt-0.5 border-t border-slate-100">
+                              <span className="flex items-center gap-0.5">
+                                <Bed className="h-2 w-2 text-slate-500" />
+                                <span>142/160 Beds</span>
+                              </span>
+                              <span className="font-bold text-emerald-700">88.7%</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    /* Finance ERP App Body */
+                    <div className="grid grid-cols-[65px_1fr] sm:grid-cols-[90px_1fr] bg-[#f8faf8] min-h-[195px] sm:min-h-[215px]">
+                      {/* Mini Left Sidebar */}
+                      <div className="border-r border-slate-200/70 bg-white p-1 text-[9px] space-y-0.5">
+                        <div className="rounded bg-emerald-50 px-1.5 py-0.5 font-semibold text-emerald-800 flex items-center justify-between text-[9px]">
+                          <span>{slide.monitor.sidebarActive}</span>
+                          <span className="h-1 w-1 rounded-full bg-emerald-500" />
+                        </div>
+                        {slide.monitor.sidebarItems.map((item) => (
+                          <div
+                            key={item}
+                            className="px-1.5 py-0.5 text-slate-600 hover:text-slate-900 font-medium"
+                          >
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Main Panel Content */}
+                      <div className="p-2 space-y-1.5">
+                        {/* Metric Cards Row */}
+                        <div className="grid grid-cols-3 gap-1">
+                          {slide.monitor.metrics.map((m) => (
+                            <div
+                              key={m.label}
+                              className="rounded border border-slate-200/80 bg-white p-1 shadow-2xs"
+                            >
+                              <div className="text-[8px] text-slate-500 font-medium truncate">{m.label}</div>
+                              <div className="text-xs font-bold text-slate-900 leading-tight">{m.value}</div>
+                              <div className={`text-[7px] font-semibold ${m.subColor} truncate`}>
+                                {m.sub}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Graph Panel */}
+                        <div className="rounded border border-slate-200/80 bg-white p-1.5 shadow-2xs">
+                          <div className="flex items-center justify-between mb-0.5">
+                            <div className="text-[9px] font-bold text-slate-900">{slide.monitor.chartTitle}</div>
+                            <span className="text-[7px] font-semibold text-emerald-700 bg-emerald-50 px-1 py-0.2 rounded-full border border-emerald-200">
+                              {slide.monitor.chartTag}
+                            </span>
+                          </div>
+                          <div className="h-8 w-full">
+                            <svg viewBox="0 0 360 40" className="h-full w-full overflow-visible" fill="none">
+                              <path
+                                d="M0 32 Q 55 26, 100 20 T 190 14 T 270 8 T 360 2 L 360 40 L 0 40 Z"
+                                fill={slide.monitor.chartFill}
+                              />
+                              <path
+                                d={slide.monitor.chartPath}
+                                stroke="#059669"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                              <circle cx="360" cy="2" r="2" fill="#059669" />
+                            </svg>
+                          </div>
+                        </div>
+
+                        {/* Checklist Panel (2 High-Impact Items) */}
+                        <div className="rounded border border-slate-200/80 bg-white p-1.5 shadow-2xs">
+                          <div className="flex items-center justify-between mb-0.5">
+                            <div className="text-[9px] font-bold text-slate-900 flex items-center gap-1">
+                              <ShieldCheck className="h-2.5 w-2.5 text-emerald-600" />
+                              {slide.monitor.checklistTitle}
+                            </div>
+                            <span className="text-[7px] text-slate-500 font-medium">
+                              {slide.monitor.checklistSubtitle}
+                            </span>
+                          </div>
+                          <div className="space-y-0.5 text-[8px]">
+                            {slide.monitor.checklists.map((c, i) => (
+                              <div
+                                key={i}
+                                className="flex items-center justify-between rounded bg-slate-50 px-1 py-0.5"
+                              >
+                                <span className="flex items-center gap-1 text-slate-700 font-medium truncate max-w-[170px]">
+                                  <CheckCircle2 className="h-2 w-2 text-emerald-600 shrink-0" />
+                                  <span className="truncate">{c.text}</span>
+                                </span>
+                                <span className={`text-[7px] font-semibold ${c.statusColor} shrink-0`}>
+                                  {c.status}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
