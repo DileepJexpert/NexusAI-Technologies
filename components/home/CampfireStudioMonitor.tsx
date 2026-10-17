@@ -1,358 +1,609 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { CheckCircle2, TrendingUp, Sparkles, Bell, Search, ShieldCheck } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  CheckCircle2,
+  TrendingUp,
+  Sparkles,
+  Bell,
+  Search,
+  ShieldCheck,
+  ChevronLeft,
+  ChevronRight,
+  Activity,
+  Bed,
+  Stethoscope,
+  Truck,
+  Building2,
+} from "lucide-react";
+
+interface ProductSlide {
+  id: string;
+  name: string;
+  categoryBadge: string;
+  badgeIcon: React.ReactNode;
+  headerApp: string;
+  headerBadge: string;
+  searchPlaceholder: string;
+  userGreeting: string;
+  userInitial: string;
+  sidebarActive: string;
+  sidebarItems: string[];
+  metrics: { label: string; value: string; sub: string; subColor: string }[];
+  chartTitle: string;
+  chartTag: string;
+  chartColor: string;
+  chartFill: string;
+  checklistTitle: string;
+  checklistSubtitle: string;
+  checklists: { text: string; status: string; statusColor: string; ready: boolean }[];
+  floatingCardTop: {
+    avatar: string;
+    role: string;
+    name: string;
+    metricLabel: string;
+    metricValue: string;
+    metricTrend: string;
+    chartPath: string;
+  };
+  floatingCardMid: {
+    title: string;
+    sub: string;
+  };
+  floatingCardBottom: {
+    title: string;
+    sub: string;
+    bars: number[];
+  };
+}
+
+const productSlides: ProductSlide[] = [
+  {
+    id: "finance-erp",
+    name: "Finance ERP",
+    categoryBadge: "Katasticho ERP",
+    badgeIcon: <Building2 className="h-3.5 w-3.5 text-[#b3ed97]" />,
+    headerApp: "Katixo",
+    headerBadge: "Live ERP",
+    searchPlaceholder: "Search entries, GST, bank...",
+    userGreeting: "Andrew K.",
+    userInitial: "A",
+    sidebarActive: "Dashboard",
+    sidebarItems: ["Reconcile", "GST 2.0", "Journals", "Reports"],
+    metrics: [
+      { label: "ARR / Revenue", value: "$2.1M", sub: "+14.2% YoY", subColor: "text-emerald-600" },
+      { label: "Bank Match Rate", value: "99.4%", sub: "Autonomous", subColor: "text-emerald-600" },
+      { label: "GST Compliance", value: "100%", sub: "Notification 9/2025", subColor: "text-[#142d25]" },
+    ],
+    chartTitle: "Cash Flow & Working Capital",
+    chartTag: "Auto-Forecast",
+    chartColor: "#059669",
+    chartFill: "rgba(16, 185, 129, 0.25)",
+    checklistTitle: "Month-End Close Automation",
+    checklistSubtitle: "3 of 4 Ready",
+    checklists: [
+      { text: "Bank Feeds Autonomous Reconciliation", status: "Matched 99.4%", statusColor: "text-emerald-700", ready: true },
+      { text: "GST 2.0 Inward vs GSTR-2B ITC Check", status: "Reconciled", statusColor: "text-emerald-700", ready: true },
+      { text: "FIFO Cost Lot & Stock Movement Allocation", status: "Reviewing 2 Lots", statusColor: "text-amber-700", ready: false },
+    ],
+    floatingCardTop: {
+      avatar: "AK",
+      role: "Controller",
+      name: "Andrew K.",
+      metricLabel: "ARR / Revenue",
+      metricValue: "$2.1M",
+      metricTrend: "+14%",
+      chartPath: "M0 16 Q 18 14, 30 10 T 60 7 T 90 2",
+    },
+    floatingCardMid: {
+      title: "AI Close Agent",
+      sub: "Auto-reconciling 99.4%",
+    },
+    floatingCardBottom: {
+      title: "Close faster by spend",
+      sub: "Cash runway: 18 mo",
+      bars: [40, 65, 50, 80, 100],
+    },
+  },
+  {
+    id: "hospital-os",
+    name: "Hospital OS",
+    categoryBadge: "Healthcare & IPD",
+    badgeIcon: <Activity className="h-3.5 w-3.5 text-[#b3ed97]" />,
+    headerApp: "Hospital OS",
+    headerBadge: "NABH Clinical",
+    searchPlaceholder: "Search UHID, OPD, Bed, Doctor...",
+    userGreeting: "Dr. Priya S.",
+    userInitial: "P",
+    sidebarActive: "Clinical Hub",
+    sidebarItems: ["OPD Queue", "IPD Wards", "Pharmacy", "Laboratory"],
+    metrics: [
+      { label: "IPD Bed Occupancy", value: "142 / 160", sub: "88.7% Occupied", subColor: "text-teal-600" },
+      { label: "OPD Triage Today", value: "384 Pts", sub: "Avg wait: 8 mins", subColor: "text-teal-600" },
+      { label: "Pharmacy & Lab", value: "₹8.42L", sub: "Auto-Billed", subColor: "text-[#142d25]" },
+    ],
+    chartTitle: "Daily Patient Admissions & IPD Triage",
+    chartTag: "Live Census",
+    chartColor: "#0d9488",
+    chartFill: "rgba(13, 148, 136, 0.25)",
+    checklistTitle: "Clinical Operations & Triage Status",
+    checklistSubtitle: "NABH Compliant",
+    checklists: [
+      { text: "OPD Queue Registration & Smart Triage", status: "384 Cleared", statusColor: "text-teal-700", ready: true },
+      { text: "IPD Ward Consultant Rounds Recorded", status: "92% Completed", statusColor: "text-teal-700", ready: true },
+      { text: "Emergency OT 3 Sterilization & Prep", status: "Ready for Surgery", statusColor: "text-emerald-700", ready: true },
+    ],
+    floatingCardTop: {
+      avatar: "PS",
+      role: "Medical Supt",
+      name: "Dr. Priya S.",
+      metricLabel: "Bed Occupancy",
+      metricValue: "88.7%",
+      metricTrend: "+6% Census",
+      chartPath: "M0 14 Q 20 12, 35 8 T 65 6 T 90 2",
+    },
+    floatingCardMid: {
+      title: "AI Triage Agent",
+      sub: "Auto-routing 384 Pts",
+    },
+    floatingCardBottom: {
+      title: "Active Inpatients & ICU",
+      sub: "Beds: 142 Active",
+      bars: [55, 70, 65, 88, 92],
+    },
+  },
+  {
+    id: "fmcg-sales",
+    name: "FMCG Route Vans",
+    categoryBadge: "Distribution Pack",
+    badgeIcon: <Truck className="h-3.5 w-3.5 text-[#b3ed97]" />,
+    headerApp: "Field Sales",
+    headerBadge: "Van Routing",
+    searchPlaceholder: "Search Route, Van, Retailer...",
+    userGreeting: "Vikram R.",
+    userInitial: "V",
+    sidebarActive: "Beat Routes",
+    sidebarItems: ["Van Stock", "Retailers", "Collections", "Day Close"],
+    metrics: [
+      { label: "Active Route Vans", value: "18 Vans", sub: "100% On Beat", subColor: "text-emerald-600" },
+      { label: "Van Sales Today", value: "₹14.28L", sub: "Target: 112%", subColor: "text-emerald-600" },
+      { label: "Cash Reconciled", value: "₹12.65L", sub: "Zero Cash Discrepancy", subColor: "text-[#142d25]" },
+    ],
+    chartTitle: "Route Beat Completion & Van Stock Velocity",
+    chartTag: "Live GPS",
+    chartColor: "#059669",
+    chartFill: "rgba(5, 150, 105, 0.25)",
+    checklistTitle: "Daily Field Sales & Day-Close Wizard",
+    checklistSubtitle: "18 Beats Running",
+    checklists: [
+      { text: "Morning Van Stock Loading & Transfer Confirm", status: "18/18 Loaded", statusColor: "text-emerald-700", ready: true },
+      { text: "Retailer GPS Visits & Cash Collection", status: "84 Visits Done", statusColor: "text-emerald-700", ready: true },
+      { text: "Evening Van Return & Day-Close Cash Count", status: "Balanced", statusColor: "text-emerald-700", ready: true },
+    ],
+    floatingCardTop: {
+      avatar: "VR",
+      role: "Route Head",
+      name: "Vikram R.",
+      metricLabel: "Beat Volume",
+      metricValue: "₹14.2L",
+      metricTrend: "+18%",
+      chartPath: "M0 17 Q 20 15, 40 10 T 70 5 T 90 2",
+    },
+    floatingCardMid: {
+      title: "Van Stock Agent",
+      sub: "Auto-balancing 18 vans",
+    },
+    floatingCardBottom: {
+      title: "Daily collections rate",
+      sub: "Cash drawer: ₹12.6L",
+      bars: [45, 60, 75, 85, 98],
+    },
+  },
+];
 
 export function CampfireStudioMonitor() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-rotation every 6 seconds unless paused on hover
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % productSlides.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  const slide = productSlides[activeIndex];
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + productSlides.length) % productSlides.length);
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % productSlides.length);
+  };
+
   return (
-    <div className="relative mx-auto w-full max-w-[680px] lg:max-w-[760px] xl:max-w-[820px] select-none py-6 lg:py-4">
+    <div
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      className="relative mx-auto w-full max-w-[480px] sm:max-w-[510px] lg:max-w-[530px] xl:max-w-[550px] select-none py-2"
+    >
+      {/* Product Carousel Switcher Tabs (Above Monitor) */}
+      <div className="mb-3 flex items-center justify-between px-2">
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-[#b3ed97]/30 bg-[#10241e]/90 p-1 backdrop-blur-md">
+          {productSlides.map((item, idx) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveIndex(idx)}
+              className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all ${
+                activeIndex === idx
+                  ? "bg-[#b3ed97] text-[#142d25] shadow-sm"
+                  : "text-[#c2d9cc] hover:text-white hover:bg-white/10"
+              }`}
+            >
+              {item.badgeIcon}
+              <span>{item.name}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Prev / Next Slide Arrows */}
+        <div className="flex items-center gap-1">
+          <button
+            onClick={handlePrev}
+            aria-label="Previous slide"
+            className="flex h-7 w-7 items-center justify-center rounded-full border border-white/15 bg-[#142d25] text-white hover:bg-[#1f4236] transition-colors"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            onClick={handleNext}
+            aria-label="Next slide"
+            className="flex h-7 w-7 items-center justify-center rounded-full border border-white/15 bg-[#142d25] text-white hover:bg-[#1f4236] transition-colors"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
       {/* Ambient background glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -inset-10 opacity-60 blur-3xl"
+        className="pointer-events-none absolute -inset-6 opacity-50 blur-3xl"
         style={{
           background:
-            "radial-gradient(circle at 60% 45%, rgba(179, 237, 151, 0.18), rgba(20, 45, 37, 0.4) 40%, transparent 70%)",
+            "radial-gradient(circle at 60% 45%, rgba(179, 237, 151, 0.16), rgba(20, 45, 37, 0.4) 40%, transparent 70%)",
         }}
       />
 
-      {/* Orbital Dotted Rings & Star Nodes */}
+      {/* Orbital Dotted Rings & Star Nodes (Campfire signature, scaled down) */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-visible"
       >
         <svg
-          viewBox="0 0 900 600"
-          className="h-[125%] w-[125%] -translate-y-4 opacity-75"
+          viewBox="0 0 700 480"
+          className="h-[120%] w-[120%] -translate-y-2 opacity-70"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           {/* Outer Orbit */}
           <ellipse
-            cx="480"
-            cy="290"
-            rx="410"
-            ry="230"
-            transform="rotate(-14 480 290)"
+            cx="370"
+            cy="240"
+            rx="330"
+            ry="190"
+            transform="rotate(-13 370 240)"
             stroke="#b3ed97"
             strokeWidth="1.2"
             strokeDasharray="4 6"
-            strokeOpacity="0.28"
+            strokeOpacity="0.25"
           />
           {/* Middle Orbit */}
           <ellipse
-            cx="480"
-            cy="290"
-            rx="330"
-            ry="180"
-            transform="rotate(-12 480 290)"
+            cx="370"
+            cy="240"
+            rx="270"
+            ry="150"
+            transform="rotate(-11 370 240)"
             stroke="#b3ed97"
-            strokeWidth="1.2"
+            strokeWidth="1.1"
             strokeDasharray="3 5"
-            strokeOpacity="0.35"
+            strokeOpacity="0.3"
           />
           {/* Inner Orbit */}
           <ellipse
-            cx="480"
-            cy="290"
-            rx="250"
-            ry="135"
-            transform="rotate(-10 480 290)"
+            cx="370"
+            cy="240"
+            rx="210"
+            ry="115"
+            transform="rotate(-9 370 240)"
             stroke="#b3ed97"
             strokeWidth="1"
             strokeDasharray="3 4"
-            strokeOpacity="0.22"
+            strokeOpacity="0.2"
           />
 
-          {/* Glowing orbital star/spark nodes */}
-          {/* Top-center spark node */}
-          <g transform="translate(480, 75)">
-            <circle cx="0" cy="0" r="11" fill="#142d25" stroke="#b3ed97" strokeWidth="1" strokeOpacity="0.6" />
-            <circle cx="0" cy="0" r="3" fill="#b3ed97" />
-            <path d="M-6 0H6 M0 -6V6" stroke="#b3ed97" strokeWidth="1" strokeLinecap="round" opacity="0.8" />
-          </g>
-          {/* Far-left spark node */}
-          <g transform="translate(130, 360)">
-            <circle cx="0" cy="0" r="10" fill="#142d25" stroke="#b3ed97" strokeWidth="1" strokeOpacity="0.5" />
+          {/* Star nodes */}
+          <g transform="translate(370, 55)">
+            <circle cx="0" cy="0" r="9" fill="#142d25" stroke="#b3ed97" strokeWidth="1" strokeOpacity="0.6" />
             <circle cx="0" cy="0" r="2.5" fill="#b3ed97" />
           </g>
-          {/* Far-right bottom spark node */}
-          <g transform="translate(800, 420)">
-            <circle cx="0" cy="0" r="10" fill="#142d25" stroke="#b3ed97" strokeWidth="1" strokeOpacity="0.5" />
-            <circle cx="0" cy="0" r="2.5" fill="#b3ed97" />
+          <g transform="translate(90, 310)">
+            <circle cx="0" cy="0" r="8" fill="#142d25" stroke="#b3ed97" strokeWidth="1" strokeOpacity="0.5" />
+            <circle cx="0" cy="0" r="2" fill="#b3ed97" />
+          </g>
+          <g transform="translate(630, 350)">
+            <circle cx="0" cy="0" r="8" fill="#142d25" stroke="#b3ed97" strokeWidth="1" strokeOpacity="0.5" />
+            <circle cx="0" cy="0" r="2" fill="#b3ed97" />
           </g>
         </svg>
       </div>
 
-      {/* Floating Card 1: Top-Right (Controller Profile + Revenue Sparkline) */}
-      <motion.div
-        initial={{ opacity: 0, y: -15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="absolute -top-3 right-0 sm:right-6 md:right-10 z-30 flex items-center gap-2"
-      >
-        {/* Avatar chip */}
-        <div className="flex items-center gap-2 rounded-xl border border-[#b3ed97]/30 bg-[#142d25]/90 px-3 py-2 text-white shadow-2xl backdrop-blur-md">
-          <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-emerald-700/80 ring-2 ring-[#b3ed97]/50 text-xs font-bold text-white">
-            AK
-            <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-[#b3ed97] ring-2 ring-[#142d25]" />
-          </div>
-          <div className="text-left">
-            <div className="text-[10px] uppercase tracking-wider text-[#b3ed97] font-semibold">Controller</div>
-            <div className="text-xs font-bold text-white">Andrew K.</div>
-          </div>
-        </div>
-
-        {/* Revenue Metric Card with Sparkline */}
-        <div className="rounded-xl border border-[#b3ed97]/30 bg-[#142d25]/90 p-3 text-white shadow-2xl backdrop-blur-md min-w-[130px]">
-          <div className="text-[10px] text-emerald-200/70 font-medium">ARR / Revenue</div>
-          <div className="text-lg font-bold text-white tracking-tight flex items-center gap-1.5 mt-0.5">
-            $2.1M
-            <span className="text-[10px] font-semibold text-[#b3ed97] flex items-center">
-              <TrendingUp className="h-3 w-3" /> +14%
-            </span>
-          </div>
-          {/* Mini Sparkline Chart */}
-          <div className="mt-1.5 h-6 w-full">
-            <svg viewBox="0 0 100 24" className="h-full w-full overflow-visible" fill="none">
-              <defs>
-                <linearGradient id="campfireSparkGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#b3ed97" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#b3ed97" stopOpacity="0.0" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M0 18 Q 20 16, 35 12 T 70 8 T 100 3 L 100 24 L 0 24 Z"
-                fill="url(#campfireSparkGrad)"
-              />
-              <path
-                d="M0 18 Q 20 16, 35 12 T 70 8 T 100 3"
-                stroke="#b3ed97"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-              <circle cx="100" cy="3" r="2.5" fill="#b3ed97" />
-            </svg>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Floating Card 2: Middle-Right (AI Close Agent) */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="absolute top-[48%] -right-2 sm:right-2 md:right-4 z-30"
-      >
-        <div className="flex items-center gap-3 rounded-xl border border-[#b3ed97]/35 bg-[#142d25]/95 px-3.5 py-2.5 text-white shadow-2xl backdrop-blur-md">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#b3ed97]/20 text-[#b3ed97]">
-            <Sparkles className="h-4 w-4" />
-          </div>
-          <div className="text-left">
-            <div className="text-xs font-bold text-white flex items-center gap-1.5">
-              AI Close Agent
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#b3ed97] animate-pulse" />
+      {/* Floating Card 1: Top-Right (User Avatar + Metric Sparkline) */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`top-${slide.id}`}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+          className="absolute -top-2 right-1 sm:right-3 md:right-4 z-30 flex items-center gap-1.5"
+        >
+          {/* User Avatar Chip */}
+          <div className="flex items-center gap-1.5 rounded-lg border border-[#b3ed97]/30 bg-[#142d25]/95 px-2 py-1 text-white shadow-xl backdrop-blur-md">
+            <div className="relative flex h-6 w-6 items-center justify-center rounded-full bg-emerald-700/80 ring-1 ring-[#b3ed97]/50 text-[10px] font-bold text-white">
+              {slide.floatingCardTop.avatar}
+              <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-[#b3ed97] ring-1 ring-[#142d25]" />
             </div>
-            <div className="text-[10px] text-[#b3ed97]">Auto-reconciling 99.4%</div>
+            <div className="text-left">
+              <div className="text-[9px] uppercase tracking-wider text-[#b3ed97] font-semibold">
+                {slide.floatingCardTop.role}
+              </div>
+              <div className="text-[11px] font-bold text-white leading-tight">
+                {slide.floatingCardTop.name}
+              </div>
+            </div>
           </div>
-          {/* Active switch mockup */}
-          <div className="ml-1 flex h-5 w-9 items-center rounded-full bg-[#b3ed97] p-0.5 shadow-inner">
-            <div className="h-4 w-4 translate-x-4 rounded-full bg-[#142d25] shadow" />
-          </div>
-        </div>
-      </motion.div>
 
-      {/* Floating Card 3: Bottom-Left (Automated Burn & Spend Bar Chart) */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        className="absolute bottom-6 -left-2 sm:left-2 md:left-4 z-30"
-      >
-        <div className="rounded-xl border border-[#b3ed97]/35 bg-[#142d25]/95 p-3.5 text-white shadow-2xl backdrop-blur-md max-w-[200px]">
-          <div className="text-[10px] font-medium text-emerald-200/80">Close faster by spend</div>
-          <div className="mt-0.5 text-xs font-bold text-white">Cash runway: 18 mo</div>
-          {/* Mini Bar Chart */}
-          <div className="mt-2 flex items-end gap-1.5 h-10 w-full pt-1">
-            <div className="flex-1 rounded-t bg-[#b3ed97]/40 h-[45%]" />
-            <div className="flex-1 rounded-t bg-[#b3ed97]/55 h-[65%]" />
-            <div className="flex-1 rounded-t bg-[#b3ed97]/70 h-[50%]" />
-            <div className="flex-1 rounded-t bg-[#b3ed97]/85 h-[80%]" />
-            <div className="flex-1 rounded-t bg-[#b3ed97] h-[100%]" />
+          {/* Metric Box */}
+          <div className="rounded-lg border border-[#b3ed97]/30 bg-[#142d25]/95 px-2.5 py-1.5 text-white shadow-xl backdrop-blur-md min-w-[100px]">
+            <div className="text-[9px] text-emerald-200/70 font-medium">
+              {slide.floatingCardTop.metricLabel}
+            </div>
+            <div className="text-sm font-bold text-white tracking-tight flex items-center gap-1 mt-0.2">
+              {slide.floatingCardTop.metricValue}
+              <span className="text-[9px] font-semibold text-[#b3ed97] flex items-center">
+                <TrendingUp className="h-2.5 w-2.5" />
+                {slide.floatingCardTop.metricTrend}
+              </span>
+            </div>
+            <div className="mt-1 h-3.5 w-full">
+              <svg viewBox="0 0 90 20" className="h-full w-full overflow-visible" fill="none">
+                <path
+                  d={slide.floatingCardTop.chartPath}
+                  stroke="#b3ed97"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
           </div>
-          <div className="mt-1 flex justify-between text-[8px] text-[#b3ed97] font-semibold">
-            <span>Spend</span>
-            <span>Balanced</span>
-          </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </AnimatePresence>
 
-      {/* 3D Tilted Studio Monitor Canvas */}
+      {/* Floating Card 2: Middle-Right (AI Agent) */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`mid-${slide.id}`}
+          initial={{ opacity: 0, x: 10 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 10 }}
+          transition={{ duration: 0.3 }}
+          className="absolute top-[48%] -right-2 sm:right-1 md:right-2 z-30"
+        >
+          <div className="flex items-center gap-2.5 rounded-lg border border-[#b3ed97]/35 bg-[#142d25]/95 px-2.5 py-1.5 text-white shadow-xl backdrop-blur-md">
+            <div className="flex h-5 w-5 items-center justify-center rounded-md bg-[#b3ed97]/20 text-[#b3ed97]">
+              <Sparkles className="h-3 w-3" />
+            </div>
+            <div className="text-left">
+              <div className="text-[11px] font-bold text-white flex items-center gap-1">
+                {slide.floatingCardMid.title}
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#b3ed97] animate-pulse" />
+              </div>
+              <div className="text-[9px] text-[#b3ed97]">{slide.floatingCardMid.sub}</div>
+            </div>
+            {/* Active toggle */}
+            <div className="ml-1 flex h-4 w-7 items-center rounded-full bg-[#b3ed97] p-0.5 shadow-inner">
+              <div className="h-3 w-3 translate-x-3 rounded-full bg-[#142d25] shadow" />
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Floating Card 3: Bottom-Left (Automated Spend & Metric) */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`bot-${slide.id}`}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 10 }}
+          transition={{ duration: 0.3 }}
+          className="absolute bottom-5 -left-2 sm:left-1 md:left-2 z-30"
+        >
+          <div className="rounded-lg border border-[#b3ed97]/35 bg-[#142d25]/95 p-2.5 text-white shadow-xl backdrop-blur-md max-w-[160px]">
+            <div className="text-[9px] font-medium text-emerald-200/80">
+              {slide.floatingCardBottom.title}
+            </div>
+            <div className="mt-0.2 text-[11px] font-bold text-white">
+              {slide.floatingCardBottom.sub}
+            </div>
+            {/* Mini Bar Chart */}
+            <div className="mt-1.5 flex items-end gap-1 h-6 w-full pt-0.5">
+              {slide.floatingCardBottom.bars.map((bar, i) => (
+                <div
+                  key={i}
+                  className="flex-1 rounded-t bg-[#b3ed97]"
+                  style={{ height: `${bar}%`, opacity: 0.4 + i * 0.15 }}
+                />
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* 3D Tilted Studio Monitor Chassis (Scaled down like Campfire) */}
       <div
         className="relative z-10 flex flex-col items-center"
-        style={{
-          perspective: "1200px",
-        }}
+        style={{ perspective: "1100px" }}
       >
-        {/* Monitor Frame with 3D tilt */}
         <div
-          className="relative w-full rounded-2xl bg-[#090b0a] p-2 ring-1 ring-white/20 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.8)] transition-transform duration-500 hover:rotate-0"
+          className="relative w-full rounded-xl bg-[#090b0a] p-1.5 ring-1 ring-white/20 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.8)] transition-transform duration-500 hover:rotate-0"
           style={{
-            transform: "rotateY(-14deg) rotateX(4deg) translateZ(0)",
+            transform: "rotateY(-12deg) rotateX(3deg) translateZ(0)",
             transformStyle: "preserve-3d",
           }}
         >
           {/* Top Bezel Webcam Notch */}
-          <div className="absolute top-1 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
+          <div className="absolute top-0.5 left-1/2 -translate-x-1/2 flex items-center gap-1">
             <span className="h-1 w-1 rounded-full bg-slate-700" />
             <span className="h-0.5 w-0.5 rounded-full bg-emerald-400" />
           </div>
 
-          {/* Monitor Screen Glass (High-density ERP Interface) */}
-          <div className="relative overflow-hidden rounded-xl bg-white text-slate-800 shadow-inner">
+          {/* Screen Content Window */}
+          <div className="relative overflow-hidden rounded-lg bg-white text-slate-800 shadow-inner">
             {/* App Header */}
-            <div className="flex h-11 items-center justify-between border-b border-slate-100 bg-[#fafbfa] px-4">
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5">
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff862f]" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#b3ed97]" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-sky-400" />
+            <div className="flex h-9 items-center justify-between border-b border-slate-100 bg-[#fafbfa] px-3">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
+                  <span className="h-2 w-2 rounded-full bg-[#ff862f]" />
+                  <span className="h-2 w-2 rounded-full bg-[#b3ed97]" />
+                  <span className="h-2 w-2 rounded-full bg-sky-400" />
                 </div>
-                <div className="hidden sm:flex items-center gap-2 border-l border-slate-200 pl-3">
-                  <span className="font-heading text-xs font-bold tracking-tight text-[#142d25]">Katixo</span>
-                  <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[9px] font-semibold text-emerald-700 border border-emerald-200">
-                    Live ERP
+                <div className="flex items-center gap-1.5 border-l border-slate-200 pl-2">
+                  <span className="font-heading text-[11px] font-bold tracking-tight text-[#142d25]">
+                    {slide.headerApp}
+                  </span>
+                  <span className="rounded-full bg-emerald-50 px-1.5 py-0.2 text-[8px] font-bold text-emerald-700 border border-emerald-200">
+                    {slide.headerBadge}
                   </span>
                 </div>
               </div>
 
               {/* Search Bar */}
-              <div className="flex items-center gap-1.5 rounded-lg border border-slate-200/80 bg-white px-2.5 py-1 text-[11px] text-slate-400 w-44 sm:w-56 shadow-sm">
-                <Search className="h-3 w-3 text-slate-400" />
-                <span className="truncate">Search entries, GST, bank...</span>
+              <div className="flex items-center gap-1 rounded border border-slate-200/80 bg-white px-2 py-0.5 text-[10px] text-slate-400 w-36 sm:w-44 shadow-xs">
+                <Search className="h-2.5 w-2.5 text-slate-400" />
+                <span className="truncate">{slide.searchPlaceholder}</span>
               </div>
 
               {/* User greeting */}
-              <div className="flex items-center gap-2">
-                <Bell className="h-3.5 w-3.5 text-slate-400" />
-                <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-700">
-                  <span className="hidden sm:inline">Welcome,</span>
-                  <span>Andrew</span>
-                  <div className="h-5 w-5 rounded-full bg-[#142d25] text-white flex items-center justify-center text-[9px]">
-                    A
+              <div className="flex items-center gap-1.5">
+                <Bell className="h-3 w-3 text-slate-400" />
+                <div className="flex items-center gap-1 text-[10px] font-semibold text-slate-700">
+                  <span className="hidden sm:inline">{slide.userGreeting}</span>
+                  <div className="h-4 w-4 rounded-full bg-[#142d25] text-white flex items-center justify-center text-[8px]">
+                    {slide.userInitial}
                   </div>
                 </div>
               </div>
             </div>
 
             {/* App Body */}
-            <div className="grid grid-cols-[80px_1fr] sm:grid-cols-[130px_1fr] bg-[#f8faf8] min-h-[300px] sm:min-h-[340px]">
+            <div className="grid grid-cols-[70px_1fr] sm:grid-cols-[105px_1fr] bg-[#f8faf8] min-h-[260px] sm:min-h-[290px]">
               {/* Mini Left Sidebar */}
-              <div className="border-r border-slate-200/70 bg-white p-2 text-[11px] space-y-1">
-                <div className="rounded-md bg-emerald-50 px-2 py-1.5 font-semibold text-emerald-800 flex items-center justify-between">
-                  <span>Dashboard</span>
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              <div className="border-r border-slate-200/70 bg-white p-1.5 text-[10px] space-y-0.5">
+                <div className="rounded bg-emerald-50 px-1.5 py-1 font-semibold text-emerald-800 flex items-center justify-between text-[10px]">
+                  <span>{slide.sidebarActive}</span>
+                  <span className="h-1 w-1 rounded-full bg-emerald-500" />
                 </div>
-                <div className="px-2 py-1.5 text-slate-600 hover:text-slate-900 font-medium">Reconcile</div>
-                <div className="px-2 py-1.5 text-slate-600 hover:text-slate-900 font-medium">GST 2.0</div>
-                <div className="px-2 py-1.5 text-slate-600 hover:text-slate-900 font-medium">Journals</div>
-                <div className="px-2 py-1.5 text-slate-600 hover:text-slate-900 font-medium">Reports</div>
-                <div className="px-2 py-1.5 text-slate-400 font-medium hidden sm:block">Settings</div>
+                {slide.sidebarItems.map((item) => (
+                  <div
+                    key={item}
+                    className="px-1.5 py-1 text-slate-600 hover:text-slate-900 font-medium"
+                  >
+                    {item}
+                  </div>
+                ))}
               </div>
 
-              {/* Main Dashboard Panel */}
-              <div className="p-3 sm:p-4 space-y-3">
+              {/* Main Panel Content */}
+              <div className="p-2.5 sm:p-3 space-y-2">
                 {/* Metric Cards Row */}
-                <div className="grid grid-cols-3 gap-2">
-                  <div className="rounded-lg border border-slate-200/80 bg-white p-2.5 shadow-sm">
-                    <div className="text-[10px] text-slate-500 font-medium">ARR / Revenue</div>
-                    <div className="text-sm sm:text-base font-bold text-slate-900 mt-0.5">$2.1M</div>
-                    <div className="text-[9px] font-semibold text-emerald-600 flex items-center mt-0.5">
-                      +14.2% YoY
+                <div className="grid grid-cols-3 gap-1.5">
+                  {slide.metrics.map((m) => (
+                    <div
+                      key={m.label}
+                      className="rounded border border-slate-200/80 bg-white p-1.5 shadow-2xs"
+                    >
+                      <div className="text-[9px] text-slate-500 font-medium truncate">{m.label}</div>
+                      <div className="text-xs sm:text-sm font-bold text-slate-900">{m.value}</div>
+                      <div className={`text-[8px] font-semibold ${m.subColor} truncate`}>
+                        {m.sub}
+                      </div>
                     </div>
-                  </div>
-                  <div className="rounded-lg border border-slate-200/80 bg-white p-2.5 shadow-sm">
-                    <div className="text-[10px] text-slate-500 font-medium">Bank Match Rate</div>
-                    <div className="text-sm sm:text-base font-bold text-slate-900 mt-0.5">99.4%</div>
-                    <div className="text-[9px] font-semibold text-emerald-600 flex items-center mt-0.5">
-                      Autonomous
-                    </div>
-                  </div>
-                  <div className="rounded-lg border border-slate-200/80 bg-white p-2.5 shadow-sm">
-                    <div className="text-[10px] text-slate-500 font-medium">GST Compliance</div>
-                    <div className="text-sm sm:text-base font-bold text-slate-900 mt-0.5">100%</div>
-                    <div className="text-[9px] font-semibold text-[#142d25] flex items-center mt-0.5">
-                      Notification 9/2025
-                    </div>
-                  </div>
+                  ))}
                 </div>
 
-                {/* Cash Flow Graph + Active Trajectory */}
-                <div className="rounded-lg border border-slate-200/80 bg-white p-3 shadow-sm">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="text-xs font-bold text-slate-900">Cash Flow & Working Capital</div>
-                    <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                      Auto-Forecast
+                {/* Graph Panel */}
+                <div className="rounded border border-slate-200/80 bg-white p-2 shadow-2xs">
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="text-[10px] font-bold text-slate-900">{slide.chartTitle}</div>
+                    <span className="text-[8px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.2 rounded-full border border-emerald-200">
+                      {slide.chartTag}
                     </span>
                   </div>
-                  <div className="h-16 w-full">
-                    <svg viewBox="0 0 400 65" className="h-full w-full overflow-visible" fill="none">
-                      <defs>
-                        <linearGradient id="mainMonitorGrad" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#10b981" stopOpacity="0.3" />
-                          <stop offset="100%" stopColor="#10b981" stopOpacity="0.0" />
-                        </linearGradient>
-                      </defs>
+                  <div className="h-12 w-full">
+                    <svg viewBox="0 0 360 50" className="h-full w-full overflow-visible" fill="none">
                       <path
-                        d="M0 48 Q 60 42, 110 32 T 220 22 T 320 12 T 400 5 L 400 65 L 0 65 Z"
-                        fill="url(#mainMonitorGrad)"
+                        d="M0 40 Q 55 35, 100 28 T 190 20 T 270 12 T 360 4 L 360 50 L 0 50 Z"
+                        fill={slide.chartFill}
                       />
                       <path
-                        d="M0 48 Q 60 42, 110 32 T 220 22 T 320 12 T 400 5"
-                        stroke="#059669"
-                        strokeWidth="2.5"
+                        d="M0 40 Q 55 35, 100 28 T 190 20 T 270 12 T 360 4"
+                        stroke={slide.chartColor}
+                        strokeWidth="2"
                         strokeLinecap="round"
                       />
-                      <circle cx="400" cy="5" r="3.5" fill="#059669" />
+                      <circle cx="360" cy="4" r="2.5" fill={slide.chartColor} />
                     </svg>
                   </div>
                 </div>
 
-                {/* Month-End Close Checklist */}
-                <div className="rounded-lg border border-slate-200/80 bg-white p-3 shadow-sm">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                      <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
-                      Month-End Close Automation
+                {/* Checklist Panel */}
+                <div className="rounded border border-slate-200/80 bg-white p-2 shadow-2xs">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <div className="text-[10px] font-bold text-slate-900 flex items-center gap-1">
+                      <ShieldCheck className="h-3 w-3 text-emerald-600" />
+                      {slide.checklistTitle}
                     </div>
-                    <span className="text-[10px] text-slate-500 font-medium">3 of 4 Ready</span>
+                    <span className="text-[8px] text-slate-500 font-medium">
+                      {slide.checklistSubtitle}
+                    </span>
                   </div>
-                  <div className="space-y-1.5 text-[11px]">
-                    <div className="flex items-center justify-between rounded bg-slate-50 px-2 py-1">
-                      <span className="flex items-center gap-1.5 text-slate-700 font-medium">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
-                        Bank Feeds Autonomous Reconciliation
-                      </span>
-                      <span className="text-[10px] font-semibold text-emerald-700">Matched 99.4%</span>
-                    </div>
-                    <div className="flex items-center justify-between rounded bg-slate-50 px-2 py-1">
-                      <span className="flex items-center gap-1.5 text-slate-700 font-medium">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
-                        GST 2.0 Inward vs GSTR-2B ITC Check
-                      </span>
-                      <span className="text-[10px] font-semibold text-emerald-700">Reconciled</span>
-                    </div>
-                    <div className="flex items-center justify-between rounded bg-slate-50 px-2 py-1">
-                      <span className="flex items-center gap-1.5 text-slate-700 font-medium">
-                        <span className="h-3.5 w-3.5 rounded-full border-2 border-amber-500 flex items-center justify-center text-[8px] text-amber-600 font-bold">
-                          •
+                  <div className="space-y-1 text-[9px]">
+                    {slide.checklists.map((c, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center justify-between rounded bg-slate-50 px-1.5 py-0.5"
+                      >
+                        <span className="flex items-center gap-1 text-slate-700 font-medium truncate max-w-[190px]">
+                          {c.ready ? (
+                            <CheckCircle2 className="h-2.5 w-2.5 text-emerald-600 shrink-0" />
+                          ) : (
+                            <span className="h-2.5 w-2.5 rounded-full border border-amber-500 flex items-center justify-center text-[7px] text-amber-600 font-bold shrink-0">
+                              •
+                            </span>
+                          )}
+                          <span className="truncate">{c.text}</span>
                         </span>
-                        FIFO Cost Lot & Stock Movement Allocation
-                      </span>
-                      <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded">
-                        Reviewing 2 Lots
-                      </span>
-                    </div>
+                        <span className={`text-[8px] font-semibold ${c.statusColor} shrink-0`}>
+                          {c.status}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -360,36 +611,33 @@ export function CampfireStudioMonitor() {
           </div>
         </div>
 
-        {/* Apple-Style Metallic Stand (Underneath the Monitor) */}
+        {/* Scaled Metallic Stand (Underneath Monitor) */}
         <div
-          className="relative flex flex-col items-center -mt-2 z-0"
-          style={{
-            transform: "rotateY(-14deg) rotateX(4deg)",
-          }}
+          className="relative flex flex-col items-center -mt-1.5 z-0"
+          style={{ transform: "rotateY(-12deg) rotateX(3deg)" }}
         >
-          {/* Angled Metallic Stand Arm with Cable Pass-through Hole */}
           <div
-            className="relative h-20 w-16 shadow-xl"
+            className="relative h-14 w-12 shadow-lg"
             style={{
               background: "linear-gradient(180deg, #d4d4d8 0%, #a1a1aa 50%, #71717a 100%)",
-              clipPath: "polygon(20% 0%, 80% 0%, 95% 100%, 5% 100%)",
+              clipPath: "polygon(22% 0%, 78% 0%, 92% 100%, 8% 100%)",
             }}
           >
             {/* Center Oval Cable Pass-Through Hole */}
-            <div className="absolute top-5 left-1/2 -translate-x-1/2 h-7 w-7 rounded-full bg-[#142d25] ring-2 ring-[#71717a]" />
+            <div className="absolute top-3.5 left-1/2 -translate-x-1/2 h-5 w-5 rounded-full bg-[#142d25] ring-1 ring-[#71717a]" />
           </div>
 
-          {/* Aluminum Stand Base Plate (Resting on Desk Surface) */}
+          {/* Aluminum Stand Base Plate */}
           <div
-            className="h-3 w-40 rounded-sm shadow-2xl"
+            className="h-2 w-28 rounded-xs shadow-xl"
             style={{
               background: "linear-gradient(90deg, #a1a1aa 0%, #e4e4e7 50%, #71717a 100%)",
-              boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
+              boxShadow: "0 8px 18px rgba(0,0,0,0.5)",
             }}
           />
 
           {/* Soft Ground Contact Shadow */}
-          <div className="h-4 w-52 -mt-1 rounded-full bg-black/60 blur-md" />
+          <div className="h-3 w-36 -mt-0.5 rounded-full bg-black/60 blur-xs" />
         </div>
       </div>
     </div>
