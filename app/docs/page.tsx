@@ -1,32 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight, Rocket, Terminal, Receipt, FileText, Landmark, Boxes, Truck, Pill, Users, BarChart3, Bot, CheckCircle2 } from "lucide-react";
 import { brand } from "@/lib/brand";
 
 export const metadata: Metadata = {
-  title: "API Documentation",
-  description: `${brand.name} API reference — integrate accounting, hospital management, inventory, and GST compliance into your workflow.`,
+  title: "Introduction - Developer Documentation",
+  description: `Welcome to the ${brand.name} developer documentation. Explore REST APIs, multi-tenant auth, and automated financial workflows.`,
 };
 
-function QuickLink({ href, title, description }: { href: string; title: string; description: string }) {
-  return (
-    <Link
-      href={href}
-      className="group rounded-lg border border-slate-200 p-5 transition-all hover:border-accent/40 hover:shadow-md dark:border-white/10 dark:hover:border-accent/40"
-    >
-      <div className="font-semibold text-slate-900 group-hover:text-accent dark:text-white">{title}</div>
-      <div className="mt-1 text-sm text-slate-500 dark:text-slate-400">{description}</div>
-    </Link>
-  );
-}
-
-function ProductCard({
+function MintlifyCard({
   icon,
   title,
   description,
   href,
   badge,
 }: {
-  icon: string;
+  icon: React.ReactNode;
   title: string;
   description: string;
   href: string;
@@ -35,21 +24,29 @@ function ProductCard({
   return (
     <Link
       href={href}
-      className="group flex gap-4 rounded-xl border border-slate-200 p-6 transition-all hover:border-accent/40 hover:shadow-lg dark:border-white/10 dark:hover:border-accent/40"
+      className="group relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:border-[#142d25] hover:shadow-lg dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-[#b3ed97]/50"
     >
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-2xl dark:bg-white/8">
-        {icon}
-      </div>
       <div>
-        <div className="flex items-center gap-2">
-          <div className="font-semibold text-slate-900 group-hover:text-accent dark:text-white">{title}</div>
+        <div className="flex items-center justify-between">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-[#142d25] dark:bg-white/10 dark:text-[#b3ed97] transition-colors group-hover:bg-[#142d25] group-hover:text-white dark:group-hover:bg-[#b3ed97] dark:group-hover:text-[#142d25]">
+            {icon}
+          </div>
           {badge && (
-            <span className="rounded-full bg-accent/15 px-2 py-0.5 text-[10px] font-bold text-accent">
+            <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800">
               {badge}
             </span>
           )}
         </div>
-        <div className="mt-1 text-sm text-slate-500 dark:text-slate-400">{description}</div>
+        <h3 className="mt-4 text-base font-bold text-slate-900 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-[#b3ed97] transition-colors">
+          {title}
+        </h3>
+        <p className="mt-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+          {description}
+        </p>
+      </div>
+      <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-[#142d25] dark:text-[#b3ed97] opacity-0 group-hover:opacity-100 transition-opacity">
+        <span>Read guide</span>
+        <ArrowRight className="h-3 w-3" />
       </div>
     </Link>
   );
@@ -57,226 +54,163 @@ function ProductCard({
 
 export default function DocsOverview() {
   return (
-    <>
-      <h1 className="text-3xl font-bold text-slate-900 dark:text-white">{brand.name} API</h1>
-      <p className="mt-3 text-lg text-slate-600 dark:text-slate-400">
-        Build integrations with {brand.name}&apos;s product suite. Each product exposes
-        its own REST API with shared authentication, response format, and conventions.
-      </p>
-
-      <div className="mt-6 rounded-lg border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-800 dark:border-amber-800/40 dark:bg-amber-900/20 dark:text-amber-300">
-        <strong>Beta notice:</strong> The {brand.name} APIs are in active development. Endpoints
-        documented here are stable, but new endpoints and fields may be added. Breaking changes
-        will be announced with at least 30 days notice via the changelog.
-      </div>
-
-      <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">Products</h2>
-      <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-        Choose a product to explore its API reference.
-      </p>
-      <div className="mt-4 space-y-3">
-        <ProductCard
-          icon="📒"
-          title="Katasticho ERP"
-          description="Invoicing, contacts, items, inventory, GST, purchase bills, expenses, workflows — the full accounting and billing API."
-          href="/docs/invoices"
-        />
-        <ProductCard
-          icon="🏥"
-          title="Hospital OS"
-          description="Patient management, OPD, IPD, laboratory, operation theatre, pharmacy, and hospital billing."
-          href="/docs/hospital"
-          badge="Beta"
-        />
-      </div>
-
-      <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">Shared platform</h2>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        <QuickLink
-          href="/docs/authentication"
-          title="Authentication"
-          description="JWT tokens, OTP login, refresh flow, and role-based access."
-        />
-        <QuickLink
-          href="/docs/errors"
-          title="Errors"
-          description="Error response format, HTTP status codes, and validation."
-        />
-      </div>
-
-      <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">Base URLs</h2>
-      <div className="mt-3 space-y-3">
-        <div>
-          <div className="mb-1 text-xs font-semibold text-slate-500 dark:text-slate-400">Katasticho ERP</div>
-          <pre className="overflow-x-auto rounded-lg bg-slate-900 px-5 py-3 text-sm text-slate-200">
-            <code>https://api.katixo.com/api/v1</code>
-          </pre>
+    <div className="space-y-10">
+      {/* Header section (Campfire Mintlify style) */}
+      <div className="border-b border-slate-200 pb-8 dark:border-white/10">
+        <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-[#b3ed97]">
+          Getting started
         </div>
-        <div>
-          <div className="mb-1 text-xs font-semibold text-slate-500 dark:text-slate-400">Hospital OS</div>
-          <pre className="overflow-x-auto rounded-lg bg-slate-900 px-5 py-3 text-sm text-slate-200">
-            <code>https://hospital.katixo.com/api/v1</code>
-          </pre>
+        <h1 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+          Introduction
+        </h1>
+        <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl">
+          Welcome to the {brand.name} developer documentation. Build on top of India&apos;s most modern AI-native finance and operations ERP suite.
+        </p>
+      </div>
+
+      {/* Setting up Section */}
+      <div>
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">Setting up</h2>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          Everything you need to get started developing against our REST APIs.
+        </p>
+
+        <div className="mt-4">
+          <Link
+            href="/docs/authentication"
+            className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:border-[#142d25] hover:shadow-md dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-[#b3ed97]/50"
+          >
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-[#142d25] dark:bg-emerald-950/50 dark:text-[#b3ed97]">
+                <Rocket className="h-6 w-6" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-slate-900 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-[#b3ed97]">
+                  Quickstart & Authorization
+                </h3>
+                <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
+                  Follow our multi-tenant API onboarding, JWT authentication, and role authorization guide.
+                </p>
+              </div>
+            </div>
+            <ArrowRight className="h-5 w-5 text-slate-400 group-hover:text-[#142d25] dark:group-hover:text-[#b3ed97] group-hover:translate-x-1 transition-all" />
+          </Link>
         </div>
       </div>
-      <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-        All API requests must be made over HTTPS. HTTP requests are rejected.
-      </p>
 
-      <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">Quick start</h2>
-      <div className="mt-3 space-y-3 text-sm text-slate-600 dark:text-slate-400">
-        <p>1. Register and sign in to get a JWT access token (see <Link href="/docs/authentication" className="text-accent hover:underline">Authentication</Link>).</p>
-        <p>2. Make your first request:</p>
+      {/* Build with us Section (2-Column Campfire Card Grid) */}
+      <div>
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">Build with us!</h2>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          Use our APIs to create the workflows you need to get Katixo working best for your organization.
+        </p>
+
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          <MintlifyCard
+            icon={<Terminal className="h-5 w-5" />}
+            title="API Documentation"
+            description="Explore the full collection of Katasticho ERP and Hospital OS REST endpoints."
+            href="/docs/invoices"
+          />
+          <MintlifyCard
+            icon={<Receipt className="h-5 w-5" />}
+            title="Accounts Payable Workflows"
+            description="Manage purchase orders, goods receipts (GRN), 3-way matching, and bill payments."
+            href="/docs/procurement"
+            badge="New"
+          />
+          <MintlifyCard
+            icon={<FileText className="h-5 w-5" />}
+            title="Accounts Receivable & Challans"
+            description="Sales orders, delivery challans with stock deduction, and GST 2.0 invoice dispatch."
+            href="/docs/delivery-challans"
+            badge="New"
+          />
+          <MintlifyCard
+            icon={<Landmark className="h-5 w-5" />}
+            title="Autonomous Bank Feeds"
+            description="Automate statement parsing, rule-based matching, and one-click reconciliation."
+            href="/docs/banking"
+            badge="New"
+          />
+          <MintlifyCard
+            icon={<Boxes className="h-5 w-5" />}
+            title="FIFO Lots & Cost Consumption"
+            description="Lot-tracked valuation, blended cost consumption, and inter-warehouse stock transfers."
+            href="/docs/inventory-costing"
+            badge="New"
+          />
+          <MintlifyCard
+            icon={<Truck className="h-5 w-5" />}
+            title="FMCG Van Sales & Routes"
+            description="Beat planning, morning van stock transfer, visit check-in, and day-close cash reconciliation."
+            href="/docs/field-sales"
+            badge="New"
+          />
+          <MintlifyCard
+            icon={<Pill className="h-5 w-5" />}
+            title="Pharma Clinical & Drug Masters"
+            description="CDSCO interaction checking, FEFO lot auto-picking, and generic substitution matrix."
+            href="/docs/pharma"
+            badge="New"
+          />
+          <MintlifyCard
+            icon={<Users className="h-5 w-5" />}
+            title="Payroll & Statutory Slabs"
+            description="PF 12%, ESI, PT, and TDS calculations with automated journal entry generation."
+            href="/docs/payroll"
+            badge="New"
+          />
+          <MintlifyCard
+            icon={<BarChart3 className="h-5 w-5" />}
+            title="Custom Report Builder"
+            description="Create custom SQL-backed reports, configure column sets, and schedule automated cron emails."
+            href="/docs/custom-reports"
+            badge="New"
+          />
+          <MintlifyCard
+            icon={<Bot className="h-5 w-5" />}
+            title="AI Decision Engine & MCP"
+            description="Model Context Protocol tools, OCR bill scan, anomaly detection, and human review inbox."
+            href="/docs/ai"
+            badge="New"
+          />
+        </div>
       </div>
-      <pre className="mt-3 overflow-x-auto rounded-lg bg-slate-900 px-5 py-4 text-sm text-slate-200">
-        <code>{`curl https://api.katixo.com/api/v1/invoices \\
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIs..." \\
-  -H "Content-Type: application/json"`}</code>
-      </pre>
 
-      <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">Response format</h2>
-      <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
-        All APIs share a standard <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">ApiResponse</code> envelope:
-      </p>
-      <pre className="mt-3 overflow-x-auto rounded-lg bg-slate-900 px-5 py-4 text-sm text-slate-200">
-        <code>{`{
+      {/* Base URLs & Request Conventions */}
+      <div className="border-t border-slate-200 pt-8 dark:border-white/10">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">API Environments & Base URLs</h2>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">Katasticho Core ERP</div>
+            <code className="mt-1 block text-sm font-mono text-emerald-700 dark:text-[#b3ed97]">
+              https://api.katixo.com/api/v1
+            </code>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">Hospital OS Service</div>
+            <code className="mt-1 block text-sm font-mono text-emerald-700 dark:text-[#b3ed97]">
+              https://hospital.katixo.com/api/v1
+            </code>
+          </div>
+        </div>
+
+        <div className="mt-6">
+          <h3 className="text-base font-bold text-slate-900 dark:text-white">Standard Response Envelope</h3>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+            All endpoints return a uniform <code className="font-mono text-xs text-emerald-700 dark:text-[#b3ed97]">ApiResponse&lt;T&gt;</code> envelope:
+          </p>
+          <pre className="mt-3 overflow-x-auto rounded-xl bg-slate-950 p-4 text-xs font-mono text-slate-200">
+            <code>{`{
   "success": true,
   "message": "Resource retrieved successfully",
   "data": { ... },
   "errors": null
 }`}</code>
-      </pre>
-      <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
-        On error, <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">success</code> is <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">false</code> and the <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">errors</code> field contains validation details:
-      </p>
-      <pre className="mt-3 overflow-x-auto rounded-lg bg-slate-900 px-5 py-4 text-sm text-slate-200">
-        <code>{`{
-  "success": false,
-  "message": "Validation failed",
-  "data": null,
-  "errors": {
-    "invoiceDate": "must not be null",
-    "contactId": "must not be null"
-  }
-}`}</code>
-      </pre>
-
-      <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">Katasticho ERP resources</h2>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        <QuickLink
-          href="/docs/invoices"
-          title="Invoices"
-          description="Create, send, cancel, and manage GST-compliant invoices."
-        />
-        <QuickLink
-          href="/docs/items"
-          title="Items"
-          description="Product catalog with HSN codes, pricing, batches, and BOM."
-        />
-        <QuickLink
-          href="/docs/customers"
-          title="Contacts"
-          description="Manage customers, vendors, GST details, and contact persons."
-        />
-        <QuickLink
-          href="/docs/inventory"
-          title="Inventory"
-          description="Batch tracking, expiry alerts, and available stock queries."
-        />
-        <QuickLink
-          href="/docs/gst"
-          title="GST & Tax"
-          description="GST review center, GSTR-1, GSTR-3B data and exports."
-        />
-        <QuickLink
-          href="/docs/purchase-bills"
-          title="Purchase Bills"
-          description="Record purchase bills, manage attachments, and bulk post."
-        />
-        <QuickLink
-          href="/docs/expenses"
-          title="Expenses"
-          description="Track and categorize business expenses."
-        />
-        <QuickLink
-          href="/docs/recurring-invoices"
-          title="Recurring Invoices"
-          description="Automate invoice generation on a schedule."
-        />
-      </div>
-
-      <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">Hospital OS resources</h2>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        <QuickLink
-          href="/docs/hospital"
-          title="Overview"
-          description="Hospital OS platform architecture and getting started."
-        />
-        <QuickLink
-          href="/docs/hospital/patients"
-          title="Patients"
-          description="Patient registration, search, and medical records."
-        />
-        <QuickLink
-          href="/docs/hospital/opd"
-          title="OPD"
-          description="Appointments, queue management, and consultations."
-        />
-        <QuickLink
-          href="/docs/hospital/ipd"
-          title="IPD"
-          description="Admissions, bed management, and discharge summaries."
-        />
-        <QuickLink
-          href="/docs/hospital/laboratory"
-          title="Laboratory"
-          description="Test orders, sample tracking, and lab reports."
-        />
-        <QuickLink
-          href="/docs/hospital/billing"
-          title="Billing"
-          description="Patient billing, packages, payments, and receipts."
-        />
-      </div>
-
-      <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">Conventions</h2>
-      <div className="mt-3 space-y-4 text-sm text-slate-600 dark:text-slate-400">
-        <div>
-          <strong className="text-slate-900 dark:text-white">Pagination</strong> — List endpoints return paginated results using Spring Pageable. Use <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">page</code> (0-indexed), <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">size</code>, and <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">sort</code> query parameters. Default page size is 20.
-        </div>
-        <div>
-          <strong className="text-slate-900 dark:text-white">Paginated response</strong> — Paginated endpoints return a <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">PagedResponse</code> inside the <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">data</code> field:
+          </pre>
         </div>
       </div>
-      <pre className="mt-3 overflow-x-auto rounded-lg bg-slate-900 px-5 py-4 text-sm text-slate-200">
-        <code>{`{
-  "success": true,
-  "message": "...",
-  "data": {
-    "content": [ ... ],
-    "page": 0,
-    "size": 20,
-    "totalElements": 142,
-    "totalPages": 8,
-    "last": false
-  },
-  "errors": null
-}`}</code>
-      </pre>
-      <div className="mt-4 space-y-4 text-sm text-slate-600 dark:text-slate-400">
-        <div>
-          <strong className="text-slate-900 dark:text-white">Dates</strong> — Timestamps use ISO 8601 format. Financial dates use <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">YYYY-MM-DD</code> (LocalDate). Audit timestamps use Instant format.
-        </div>
-        <div>
-          <strong className="text-slate-900 dark:text-white">Amounts</strong> — All monetary amounts use <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">BigDecimal</code> with up to 2 decimal places. <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">1234.56</code> represents ₹1,234.56.
-        </div>
-        <div>
-          <strong className="text-slate-900 dark:text-white">IDs</strong> — All resource IDs are UUIDs (e.g., <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">550e8400-e29b-41d4-a716-446655440000</code>).
-        </div>
-        <div>
-          <strong className="text-slate-900 dark:text-white">Multi-tenancy</strong> — The tenant, group, and branch context is embedded in your JWT token. Both products share the same security and tenant library.
-        </div>
-      </div>
-    </>
+    </div>
   );
 }
