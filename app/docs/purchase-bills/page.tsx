@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { brand } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "Purchase Bills API — API Docs",
@@ -22,24 +23,125 @@ function Endpoint({ method, path }: { method: string; path: string }) {
 
 export default function PurchaseBillsPage() {
   return (
-    <>
-      <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Purchase Bills</h1>
-      <p className="mt-3 text-slate-600 dark:text-slate-400">
-        Record purchase bills from vendors, track payables, and manage the bill lifecycle
-        from draft to posted. Purchase bills automatically create journal entries and
-        update inventory when posted.
-      </p>
+    <div className="space-y-10">
+      {/* Page Header */}
+      <div className="border-b border-slate-200 pb-6 dark:border-white/10">
+        <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-[#b3ed97]">
+          Purchasing & Accounts Payable Guide
+        </div>
+        <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Purchase Bills & Vendor Payables (AP)
+        </h1>
+        <p className="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          Record vendor invoices, manage Accounts Payable (AP 2000), execute 3-way matching against Goods Receipt Notes (GRN),
+          claim eligible Input Tax Credit (ITC) under GSTR-2B, and process debit note returns in {brand.name}.
+        </p>
+      </div>
 
-      <h2 className="mt-8 text-xl font-bold text-slate-900 dark:text-white">Endpoints</h2>
-      <div className="mt-4 space-y-2">
-        <Endpoint method="GET" path="/api/v1/bills" />
-        <Endpoint method="GET" path="/api/v1/bills/{id}" />
-        <Endpoint method="POST" path="/api/v1/bills" />
-        <Endpoint method="PUT" path="/api/v1/bills/{id}" />
-        <Endpoint method="POST" path="/api/v1/bills/{id}/post" />
-        <Endpoint method="POST" path="/api/v1/bills/{id}/void" />
-        <Endpoint method="GET" path="/api/v1/bills/{id}/pdf" />
-        <Endpoint method="DELETE" path="/api/v1/bills/{id}" />
+      {/* 1. Module Overview */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          1. Module Overview: Accounts Payable & Input Tax Credit
+        </h2>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          In financial accounting, a Purchase Bill represents an approved commercial obligation to pay a supplier.
+          Unlike informal cash expense receipts, a formal Purchase Bill records supplier invoice details required for
+          statutory tax audits and Input Tax Credit (ITC) reconciliation:
+        </p>
+
+        <div className="grid gap-3 sm:grid-cols-3 text-xs">
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">3-Way Match Audit</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Matches bill quantities and unit prices against purchase orders and inspected GRN warehouse receipts.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">ITC GSTR-2B Reconciliation</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Tracks claimable Input CGST/SGST/IGST against government auto-drafted GSTR-2B statements.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Vendor Aging & Ledgers</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Maintains chronological debit/credit subledgers for every vendor with overdue payment scheduling.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Step-by-Step Creation Walkthrough */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          2. How to Create a Purchase Bill (Step-by-Step)
+        </h2>
+
+        <div className="rounded-xl border border-slate-200 p-5 dark:border-white/10 bg-white dark:bg-white/[0.02]">
+          <ol className="space-y-3.5 text-xs text-slate-600 dark:text-slate-400">
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">1</span>
+              <div>
+                <strong>Convert from GRN (Recommended) or Click "New Bill":</strong>
+                From an inspected Goods Receipt Note (GRN), click <em>"Convert to Bill"</em>. The system pulls the vendor, received quantities, and batch numbers. Alternatively, go to <strong>Purchases &gt; Bills &gt; "New Bill"</strong> for direct service bills.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">2</span>
+              <div>
+                <strong>Enter Supplier Invoice Number &amp; Date:</strong>
+                Record the vendor&apos;s physical invoice number (e.g. <em>INV/2026/8821</em>) and invoice date. This exact number is matched against GSTR-2B on the GST Portal.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">3</span>
+              <div>
+                <strong>Verify Tax Classifications:</strong>
+                Verify HSN codes, taxable subtotal, and GST rates. Katixo automatically confirms whether Input Tax Credit is claimable.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">4</span>
+              <div>
+                <strong>Post Bill:</strong>
+                Click <strong>"Post"</strong>. This officially enters the bill into Accounts Payable (2000), credits the vendor ledger, and debits the appropriate inventory asset or expense account.
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      {/* 3. Accounting Impact */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          3. Automated General Ledger Journal Posting
+        </h2>
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/[0.02] font-mono text-xs text-slate-800 dark:text-slate-200 space-y-1">
+          <p>• DEBIT: Inventory Asset (1200) or Purchase Expense — [Taxable Subtotal]</p>
+          <p>• DEBIT: Input CGST (1310) &amp; Input SGST (1320) or Input IGST (1330) — [ITC Claimable]</p>
+          <p>• CREDIT: Accounts Payable (2000) — [Gross Total Due to Supplier]</p>
+        </div>
+      </section>
+
+      {/* 4. Developer Reference Heading */}
+      <div className="border-t border-slate-200 pt-8 dark:border-white/10">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          Developer &amp; REST API Reference
+        </h2>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          Programmatically query, create, post, and void purchase bills via REST:
+        </p>
+
+        <div className="mt-4 space-y-2">
+          <Endpoint method="GET" path="/api/v1/bills" />
+          <Endpoint method="GET" path="/api/v1/bills/{id}" />
+          <Endpoint method="POST" path="/api/v1/bills" />
+          <Endpoint method="PUT" path="/api/v1/bills/{id}" />
+          <Endpoint method="POST" path="/api/v1/bills/{id}/post" />
+          <Endpoint method="POST" path="/api/v1/bills/{id}/void" />
+          <Endpoint method="GET" path="/api/v1/bills/{id}/pdf" />
+          <Endpoint method="DELETE" path="/api/v1/bills/{id}" />
+        </div>
       </div>
 
       <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">List purchase bills</h2>
@@ -264,6 +366,6 @@ export default function PurchaseBillsPage() {
         Read operations (list, get, PDF) additionally allow <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">VIEWER</code> and{" "}
         <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">OPERATOR</code>.
       </p>
-    </>
+    </div>
   );
 }

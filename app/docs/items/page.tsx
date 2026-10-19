@@ -43,19 +43,107 @@ function RoleBadge({ roles }: { roles: string[] }) {
 
 export default function ItemsPage() {
   return (
-    <>
-      <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Items</h1>
-      <p className="mt-3 text-slate-600 dark:text-slate-400">
-        Items represent products, services, and composite goods in your {brand.name} catalog.
-        Each item carries its HSN/SAC code, GST rate, unit of measurement, pricing, and
-        optional pharmacy fields &mdash; so invoices and inventory are computed correctly
-        without manual entry at billing time.
-      </p>
+    <div className="space-y-10">
+      {/* Page Header */}
+      <div className="border-b border-slate-200 pb-6 dark:border-white/10">
+        <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-[#b3ed97]">
+          Catalogue & Product Master Guide
+        </div>
+        <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Item Master, HSN Directory &amp; Pricing
+        </h1>
+        <p className="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          The foundational master dataset for your enterprise. Manage physical goods, services, Bill of Materials (BOM)
+          composites, universal HSN/SAC classifications, GST rates, barcode scanning, and multi-tier price lists in {brand.name}.
+        </p>
+      </div>
 
-      <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 px-5 py-4 text-sm text-blue-800 dark:border-blue-800/40 dark:bg-blue-900/20 dark:text-blue-300">
-        <strong>Module gate:</strong> All item endpoints require the{" "}
-        <code className="rounded bg-blue-100 px-1.5 py-0.5 text-xs dark:bg-blue-800/40">INVENTORY</code>{" "}
-        module to be enabled for your organization (<code className="text-xs">@RequiresModule(INVENTORY)</code>).
+      {/* 1. Module Overview */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          1. Module Overview: The Core Product Catalog
+        </h2>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Every transaction across Sales, Procurement, POS, and Warehousing references the Item Master.
+          Configuring accurate item metadata guarantees that GST rates, batch controls, and inventory cost calculations operate without manual intervention:
+        </p>
+
+        <div className="grid gap-3 sm:grid-cols-3 text-xs">
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Universal HSN Resolution</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Auto-resolves statutory 4, 6, or 8-digit HSN codes and applies correct GST 2.0 rates (0%, 5%, 12%, 18%, 28%).
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">BOM &amp; Composite Items</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Define multi-component assemblies (e.g. Gift Hampers, Manufacturing kits) with automatic component explosion upon sale.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Barcode &amp; Scanner Ready</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Supports EAN-13, UPC, and custom internal barcodes for lightning-fast point-of-sale and warehouse picking.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Step-by-Step UI Guide */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          2. How to Create an Item (Step-by-Step UI Guide)
+        </h2>
+
+        <div className="rounded-xl border border-slate-200 p-5 dark:border-white/10 bg-white dark:bg-white/[0.02]">
+          <ol className="space-y-3.5 text-xs text-slate-600 dark:text-slate-400">
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">1</span>
+              <div>
+                <strong>Go to Inventory &gt; Items &gt; Click "Add Item":</strong>
+                Choose Item Type: <em>Goods</em> (physical stock), <em>Service</em> (consulting, labor), or <em>Composite (BOM)</em>.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">2</span>
+              <div>
+                <strong>Enter SKU, Barcode &amp; Name:</strong>
+                Input your internal SKU code or scan the retail barcode. Name the product with clear pack size (e.g. <em>"Basmati Rice 5kg"</em>).
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">3</span>
+              <div>
+                <strong>Select HSN Code &amp; Tax:</strong>
+                Search the national HSN directory. Selecting the HSN code auto-fills the statutory GST rate.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">4</span>
+              <div>
+                <strong>Set Pricing, UoM &amp; Reorder Level:</strong>
+                Define standard Purchase Price, Selling Price (MRP), primary Unit of Measurement (e.g. BOX, PCS, KGS), and warehouse Reorder Level for automated shortage alerts.
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      {/* 3. Developer Reference Heading */}
+      <div className="border-t border-slate-200 pt-8 dark:border-white/10">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          Developer &amp; REST API Reference
+        </h2>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          Programmatically query, create, update, and bulk-import catalogue items via REST:
+        </p>
+
+        <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 px-5 py-4 text-sm text-blue-800 dark:border-blue-800/40 dark:bg-blue-900/20 dark:text-blue-300">
+          <strong>Module gate:</strong> All item endpoints require the{" "}
+          <code className="rounded bg-blue-100 px-1.5 py-0.5 text-xs dark:bg-blue-800/40">INVENTORY</code>{" "}
+          module to be enabled for your organization (<code className="text-xs">@RequiresModule(INVENTORY)</code>).
+        </div>
       </div>
 
       {/* ------------------------------------------------------------------ */}
@@ -832,6 +920,6 @@ export default function ItemsPage() {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }

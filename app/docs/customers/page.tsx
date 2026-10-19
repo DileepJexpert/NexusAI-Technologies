@@ -23,15 +23,102 @@ function Endpoint({ method, path }: { method: string; path: string }) {
 
 export default function ContactsPage() {
   return (
-    <>
-      <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Contacts</h1>
-      <p className="mt-3 text-slate-600 dark:text-slate-400">
-        Contacts represent customers, vendors, or both. Each contact stores GST details, billing and
-        shipping addresses, payment terms, bank information, and one or more contact persons. The API
-        uses JWT Bearer token authentication and returns all responses in the standard{" "}
-        <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">ApiResponse&lt;T&gt;</code>{" "}
-        envelope.
-      </p>
+    <div className="space-y-10">
+      {/* Page Header */}
+      <div className="border-b border-slate-200 pb-6 dark:border-white/10">
+        <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-[#b3ed97]">
+          Directory & Ledger Guide
+        </div>
+        <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Contacts, Customers &amp; Customer Ledgers
+        </h1>
+        <p className="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          The unified party directory in {brand.name}. Manage customer and vendor masters, credit limits,
+          statutory GSTIN numbers, billing and shipping addresses, and live chronological ledger statements.
+        </p>
+      </div>
+
+      {/* 1. Module Overview */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          1. Module Overview: Unified Contact Subledgers
+        </h2>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          In {brand.name}, contacts represent customers, vendors, or dual-role partners (who both buy and sell goods).
+          Every contact maintains a live chronological subledger tracking opening balances, invoices, payments, and credit notes:
+        </p>
+
+        <div className="grid gap-3 sm:grid-cols-3 text-xs">
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Credit Limit Enforcement</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Set maximum credit limits (e.g. ₹2,00,000). System alerts cashiers or blocks new orders when exceeded.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">GSTIN Validation</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Validates 15-character statutory GSTIN structure and auto-derives the state code for tax determination.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Outstanding Balance Invariant</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Outstanding = Opening Balance + Total Invoiced - Payments Received - Credit Notes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Step-by-Step UI Guide */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          2. How to Add a Contact (Step-by-Step UI Guide)
+        </h2>
+
+        <div className="rounded-xl border border-slate-200 p-5 dark:border-white/10 bg-white dark:bg-white/[0.02]">
+          <ol className="space-y-3.5 text-xs text-slate-600 dark:text-slate-400">
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">1</span>
+              <div>
+                <strong>Go to Contacts &gt; Click "Add Contact":</strong>
+                Choose Contact Type: <em>Customer</em>, <em>Vendor</em>, or <em>Both</em>.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">2</span>
+              <div>
+                <strong>Enter Business &amp; GST Details:</strong>
+                Input Trade Name, Legal Name, and 15-digit GSTIN. The system automatically confirms the Place of Supply state code.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">3</span>
+              <div>
+                <strong>Set Payment Terms &amp; Credit Limits:</strong>
+                Define agreed payment terms (e.g. Net 15, Net 30, Due on Receipt) and maximum credit limit in INR.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">4</span>
+              <div>
+                <strong>View Unified Statement of Accounts:</strong>
+                From any contact details page, click <em>"View Ledger"</em> to see all invoices, debit notes, receipts, and running balance.
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      {/* 3. Developer Reference Heading */}
+      <div className="border-t border-slate-200 pt-8 dark:border-white/10">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          Developer &amp; REST API Reference
+        </h2>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          Programmatically query, create, update, and fetch customer ledgers via REST:
+        </p>
+      </div>
 
       {/* ── Authentication ── */}
       <h2 className="mt-8 text-xl font-bold text-slate-900 dark:text-white">Authentication</h2>
@@ -824,6 +911,6 @@ export default function ContactsPage() {
   ]
 }`}</code>
       </pre>
-    </>
+    </div>
   );
 }

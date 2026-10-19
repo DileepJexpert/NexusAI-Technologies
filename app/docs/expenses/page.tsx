@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { brand } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "Expenses API — API Docs",
@@ -22,21 +23,109 @@ function Endpoint({ method, path }: { method: string; path: string }) {
 
 export default function ExpensesPage() {
   return (
-    <>
-      <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Expenses</h1>
-      <p className="mt-3 text-slate-600 dark:text-slate-400">
-        Record business expenses with automatic journal entry creation. Expenses can be
-        linked to vendors, projects, and customers (for billable expenses). Each expense
-        posts to the specified expense account and deducts from the paid-through account.
-      </p>
+    <div className="space-y-10">
+      {/* Page Header */}
+      <div className="border-b border-slate-200 pb-6 dark:border-white/10">
+        <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-[#b3ed97]">
+          Operations & Financial Accounting Guide
+        </div>
+        <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Expenses, Petty Cash &amp; Billable Costs
+        </h1>
+        <p className="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          Track day-to-day business operational overheads, manage office petty cash floats, categorize travel and utility costs,
+          recharge billable expenses to clients, and automatically post General Ledger journals in {brand.name}.
+        </p>
+      </div>
 
-      <h2 className="mt-8 text-xl font-bold text-slate-900 dark:text-white">Endpoints</h2>
-      <div className="mt-4 space-y-2">
-        <Endpoint method="GET" path="/api/v1/expenses" />
-        <Endpoint method="GET" path="/api/v1/expenses/{id}" />
-        <Endpoint method="POST" path="/api/v1/expenses" />
-        <Endpoint method="PUT" path="/api/v1/expenses/{id}" />
-        <Endpoint method="DELETE" path="/api/v1/expenses/{id}" />
+      {/* 1. Module Overview */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          1. Module Overview: Expenses vs. Purchase Bills
+        </h2>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          While <em>Purchase Bills</em> manage commercial vendor liabilities and Input Tax Credit (ITC),
+          the <em>Expenses</em> module is built for quick operational payments made directly from cash counters or bank accounts:
+        </p>
+
+        <div className="grid gap-3 sm:grid-cols-3 text-xs">
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Direct Ledger Deductions</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Debits the chosen operational expense account (e.g. Fuel, Rent, Tea) and immediately credits the Cash or Bank account.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Billable Client Costs</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Tag expenses to specific customers or client projects to include them in the next customer billing cycle.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Receipt Attachments</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Attach physical vouchers, fuel slips, and invoice scans for audit-ready compliance.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Step-by-Step UI Guide */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          2. How to Record an Expense (Step-by-Step UI Guide)
+        </h2>
+
+        <div className="rounded-xl border border-slate-200 p-5 dark:border-white/10 bg-white dark:bg-white/[0.02]">
+          <ol className="space-y-3.5 text-xs text-slate-600 dark:text-slate-400">
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">1</span>
+              <div>
+                <strong>Go to Accounting &gt; Expenses &gt; Click "Add Expense":</strong>
+                Choose the Expense Category (e.g. <em>Vehicle Fuel</em>, <em>Office Refreshments</em>, <em>Warehouse Repairs</em>).
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">2</span>
+              <div>
+                <strong>Select "Paid Through" Account:</strong>
+                Specify where the funds came from: <em>Petty Cash Float</em>, <em>HDFC Current Account</em>, or <em>Corporate Credit Card</em>.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">3</span>
+              <div>
+                <strong>Enter Amount &amp; GST Details (if applicable):</strong>
+                If the voucher includes tax, input GST components to claim input credit.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">4</span>
+              <div>
+                <strong>Save Expense:</strong>
+                Katixo immediately writes the General Ledger journal: DEBIT Expense Account (6xxx) / CREDIT Cash or Bank (1xxx).
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      {/* 3. Developer Reference Heading */}
+      <div className="border-t border-slate-200 pt-8 dark:border-white/10">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          Developer &amp; REST API Reference
+        </h2>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          Programmatically query, create, update, and categorize expenses via REST:
+        </p>
+
+        <div className="mt-4 space-y-2">
+          <Endpoint method="GET" path="/api/v1/expenses" />
+          <Endpoint method="GET" path="/api/v1/expenses/{id}" />
+          <Endpoint method="POST" path="/api/v1/expenses" />
+          <Endpoint method="PUT" path="/api/v1/expenses/{id}" />
+          <Endpoint method="DELETE" path="/api/v1/expenses/{id}" />
+        </div>
       </div>
 
       <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">List expenses</h2>
@@ -234,6 +323,6 @@ export default function ExpensesPage() {
   "createdAt": "2026-06-10T11:30:00Z"
 }`}</code>
       </pre>
-    </>
+    </div>
   );
 }

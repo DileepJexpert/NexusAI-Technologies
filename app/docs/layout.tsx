@@ -118,27 +118,27 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
               href="/docs"
               className={cn(
                 "relative py-3 transition-colors",
-                pathname === "/docs"
+                pathname !== "/docs/authentication" && pathname !== "/docs/errors" && pathname !== "/docs/changelog"
                   ? "text-[#142d25] font-bold dark:text-[#b3ed97]"
                   : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
               )}
             >
-              Guides
-              {pathname === "/docs" && (
+              Module Guides
+              {pathname !== "/docs/authentication" && pathname !== "/docs/errors" && pathname !== "/docs/changelog" && (
                 <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#142d25] dark:bg-[#b3ed97]" />
               )}
             </Link>
             <Link
-              href="/docs/invoices"
+              href="/docs/authentication"
               className={cn(
                 "relative py-3 transition-colors",
-                pathname !== "/docs" && pathname !== "/docs/changelog"
+                pathname === "/docs/authentication" || pathname === "/docs/errors"
                   ? "text-[#142d25] font-bold dark:text-[#b3ed97]"
                   : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
               )}
             >
               API Reference
-              {pathname !== "/docs" && pathname !== "/docs/changelog" && (
+              {(pathname === "/docs/authentication" || pathname === "/docs/errors") && (
                 <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#142d25] dark:bg-[#b3ed97]" />
               )}
             </Link>

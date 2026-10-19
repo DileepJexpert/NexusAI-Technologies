@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { brand } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "Recurring Invoices API — API Docs",
@@ -22,22 +23,110 @@ function Endpoint({ method, path }: { method: string; path: string }) {
 
 export default function RecurringInvoicesPage() {
   return (
-    <>
-      <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Recurring Invoices</h1>
-      <p className="mt-3 text-slate-600 dark:text-slate-400">
-        Set up recurring billing schedules to automatically generate invoices at regular intervals.
-        Useful for subscriptions, retainers, rent, and any repeating charges. Requires the{" "}
-        <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">RECURRING_BILLING</code> module.
-      </p>
+    <div className="space-y-10">
+      {/* Page Header */}
+      <div className="border-b border-slate-200 pb-6 dark:border-white/10">
+        <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-[#b3ed97]">
+          Subscription & Billing Automation Guide
+        </div>
+        <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Recurring Invoices &amp; Subscriptions
+        </h1>
+        <p className="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          Automate repeating billing cycles in {brand.name}. Ideal for Annual Maintenance Contracts (AMC),
+          monthly retainer agreements, facility leases, software subscriptions, and scheduled repeat client billings.
+        </p>
+      </div>
 
-      <h2 className="mt-8 text-xl font-bold text-slate-900 dark:text-white">Endpoints</h2>
-      <div className="mt-4 space-y-2">
-        <Endpoint method="GET" path="/api/v1/recurring-invoices" />
-        <Endpoint method="GET" path="/api/v1/recurring-invoices/{id}" />
-        <Endpoint method="POST" path="/api/v1/recurring-invoices" />
-        <Endpoint method="PUT" path="/api/v1/recurring-invoices/{id}" />
-        <Endpoint method="POST" path="/api/v1/recurring-invoices/{id}/stop" />
-        <Endpoint method="POST" path="/api/v1/recurring-invoices/{id}/resume" />
+      {/* 1. Module Overview */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          1. Module Overview: Automated Headless Invoicing
+        </h2>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Rather than manually re-creating identical monthly invoices for repeat clients, recurring profiles
+          automate invoice creation on designated schedule dates:
+        </p>
+
+        <div className="grid gap-3 sm:grid-cols-3 text-xs">
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Flexible Frequencies</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Configure Weekly, Monthly, Quarterly, Semi-Annual, or Annual generation cadences.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Auto-Send Option</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Automatically transitions invoices to SENT status and dispatches PDF copies via WhatsApp and Email.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Fixed Term or Perpetual</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Set fixed contract dates (e.g. 12 months) or keep perpetual until client cancellation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Step-by-Step UI Guide */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          2. How to Set Up a Recurring Profile (Step-by-Step UI Guide)
+        </h2>
+
+        <div className="rounded-xl border border-slate-200 p-5 dark:border-white/10 bg-white dark:bg-white/[0.02]">
+          <ol className="space-y-3.5 text-xs text-slate-600 dark:text-slate-400">
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">1</span>
+              <div>
+                <strong>Go to Sales &gt; Recurring Invoices &gt; Click "New Recurring Profile":</strong>
+                Select the customer contact.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">2</span>
+              <div>
+                <strong>Configure Schedule &amp; Term:</strong>
+                Choose frequency (e.g. <em>Monthly</em>), Start Date, and optional End Date. Enable <em>"Auto Send"</em> if you want the system to deliver the bill without manual review.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">3</span>
+              <div>
+                <strong>Define Invoice Template Lines:</strong>
+                Add retainer items, services, or rental lines with negotiated rates and GST.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">4</span>
+              <div>
+                <strong>Activate Profile:</strong>
+                Save the profile. On the due date, Katixo&apos;s cron job automatically generates the next invoice and increments the generation counter.
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      {/* 3. Developer Reference Heading */}
+      <div className="border-t border-slate-200 pt-8 dark:border-white/10">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          Developer &amp; REST API Reference
+        </h2>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          Programmatically query, create, stop, and resume recurring billing schedules via REST:
+        </p>
+
+        <div className="mt-4 space-y-2">
+          <Endpoint method="GET" path="/api/v1/recurring-invoices" />
+          <Endpoint method="GET" path="/api/v1/recurring-invoices/{id}" />
+          <Endpoint method="POST" path="/api/v1/recurring-invoices" />
+          <Endpoint method="PUT" path="/api/v1/recurring-invoices/{id}" />
+          <Endpoint method="POST" path="/api/v1/recurring-invoices/{id}/stop" />
+          <Endpoint method="POST" path="/api/v1/recurring-invoices/{id}/resume" />
+        </div>
       </div>
 
       <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">Create a recurring invoice</h2>
@@ -155,6 +244,6 @@ export default function RecurringInvoicesPage() {
   "createdAt": "2026-06-15T10:00:00Z"
 }`}</code>
       </pre>
-    </>
+    </div>
   );
 }

@@ -24,34 +24,140 @@ function Endpoint({ method, path }: { method: string; path: string }) {
 
 export default function InvoicesPage() {
   return (
-    <>
-      <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Invoices</h1>
-      <p className="mt-3 text-slate-600 dark:text-slate-400">
-        Create and manage GST-compliant tax invoices. Invoices are the core transactional record
-        in {brand.name} &mdash; each invoice automatically updates receivables, inventory, and GST
-        filing data. All endpoints require JWT Bearer token authentication.
-      </p>
-
-      {/* ------------------------------------------------------------------ */}
-      <h2 className="mt-8 text-xl font-bold text-slate-900 dark:text-white">Endpoints</h2>
-      <div className="mt-4 space-y-2">
-        <Endpoint method="GET" path="/api/v1/invoices" />
-        <Endpoint method="GET" path="/api/v1/invoices/{id}" />
-        <Endpoint method="POST" path="/api/v1/invoices" />
-        <Endpoint method="POST" path="/api/v1/invoices/{id}/send" />
-        <Endpoint method="POST" path="/api/v1/invoices/{id}/cancel" />
-        <Endpoint method="GET" path="/api/v1/invoices/{id}/pdf" />
-        <Endpoint method="POST" path="/api/v1/invoices/{id}/payments" />
-        <Endpoint method="GET" path="/api/v1/invoices/{id}/payments" />
-        <Endpoint method="DELETE" path="/api/v1/invoices/{id}/payments/{paymentId}" />
-        <Endpoint method="POST" path="/api/v1/invoices/bulk-send" />
-        <Endpoint method="POST" path="/api/v1/invoices/bulk-cancel" />
+    <div className="space-y-10">
+      {/* Page Header */}
+      <div className="border-b border-slate-200 pb-6 dark:border-white/10">
+        <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-[#b3ed97]">
+          Sales & Billing Guide
+        </div>
+        <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Tax Invoices & Sales Billing
+        </h1>
+        <p className="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          Create, send, and manage GST 2.0-compliant tax invoices in {brand.name}.
+          Learn how invoices automate customer receivables (AR), trigger stock deductions or inherit
+          from Delivery Challans, post compound General Ledger journals, and record customer payments.
+        </p>
       </div>
 
-      <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 px-5 py-4 text-sm text-blue-800 dark:border-blue-800/40 dark:bg-blue-900/20 dark:text-blue-300">
-        <strong>Authentication:</strong> All endpoints require a valid JWT Bearer token in the{" "}
-        <code className="rounded bg-blue-100 px-1.5 py-0.5 text-xs dark:bg-blue-900/40">Authorization</code> header.
-        All IDs are UUIDs.
+      {/* 1. Module Overview */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          1. Module Overview: The Core Commercial Sales Document
+        </h2>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Under <strong>Section 31 of the Central Goods and Services Tax (CGST) Act, 2017</strong>, a registered
+          business supplying taxable goods or services must issue a legal Tax Invoice. In Katixo ERP, the invoice
+          is the primary commercial engine connecting sales, inventory, and financial ledgers:
+        </p>
+
+        <div className="grid gap-3 sm:grid-cols-3 text-xs">
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">GST 2.0 Tax Splitting</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Compares Supplier State vs Customer Place of Supply (POS) to automatically apply CGST+SGST or IGST.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Dual Dispatch Mechanics</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Direct invoices deduct stock upon send; Delivery Challan-linked invoices reuse already-dispatched stock without duplication.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Live Accounts Receivable</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Instantly updates customer ledger, credit limit utilization, and aging buckets (0-30, 31-60, 60+ days).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Step-by-Step Creation Walkthrough */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          2. How to Create an Invoice (Step-by-Step UI Guide)
+        </h2>
+
+        <div className="rounded-xl border border-slate-200 p-5 dark:border-white/10 bg-white dark:bg-white/[0.02]">
+          <ol className="space-y-3.5 text-xs text-slate-600 dark:text-slate-400">
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">1</span>
+              <div>
+                <strong>Navigate to Sales &gt; Invoices &gt; Click "Create Invoice":</strong>
+                Select the customer contact. Katixo auto-populates their GSTIN, billing address, shipping address, and Place of Supply (State Code).
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">2</span>
+              <div>
+                <strong>Set Dates &amp; Payment Terms:</strong>
+                Choose the Invoice Date and Due Date (defaults automatically to the customer&apos;s configured payment terms, e.g. Net 30).
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">3</span>
+              <div>
+                <strong>Add Item Lines:</strong>
+                Search items by name or scan barcode. The system retrieves the statutory HSN code, unit price, and GST rate. Enter quantity and any line discount percentage.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">4</span>
+              <div>
+                <strong>Save as Draft or Click "Send":</strong>
+                Saving as <code className="text-blue-600">DRAFT</code> allows packing and verification. Clicking <strong>"Send"</strong> officially posts the invoice to the customer ledger, generates the PDF, and delivers it via WhatsApp or Email.
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      {/* 3. Accounting & Stock Mechanics */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          3. Automated General Ledger &amp; Stock Posting
+        </h2>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          When an invoice transitions from DRAFT to SENT, Katixo executes a balanced double-entry General Ledger journal:
+        </p>
+
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/[0.02] font-mono text-xs text-slate-800 dark:text-slate-200 space-y-1">
+          <p>• DEBIT: Accounts Receivable (1100) — [Gross Total with GST]</p>
+          <p>• CREDIT: Sales Revenue (4000) — [Taxable Subtotal]</p>
+          <p>• CREDIT: Output CGST / SGST (Intra-state) or Output IGST (Inter-state) — [GST Total]</p>
+          <p>• DEBIT: Cost of Goods Sold (5000) / CREDIT: Inventory Asset (1200) — [Blended FIFO Cost]</p>
+        </div>
+      </section>
+
+      {/* 4. Developer Reference Heading */}
+      <div className="border-t border-slate-200 pt-8 dark:border-white/10">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          Developer &amp; REST API Reference
+        </h2>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          Programmatically query, create, send, and record payments against tax invoices via REST endpoints.
+        </p>
+
+        <div className="mt-4 space-y-2">
+          <Endpoint method="GET" path="/api/v1/invoices" />
+          <Endpoint method="GET" path="/api/v1/invoices/{id}" />
+          <Endpoint method="POST" path="/api/v1/invoices" />
+          <Endpoint method="POST" path="/api/v1/invoices/{id}/send" />
+          <Endpoint method="POST" path="/api/v1/invoices/{id}/cancel" />
+          <Endpoint method="GET" path="/api/v1/invoices/{id}/pdf" />
+          <Endpoint method="POST" path="/api/v1/invoices/{id}/payments" />
+          <Endpoint method="GET" path="/api/v1/invoices/{id}/payments" />
+          <Endpoint method="DELETE" path="/api/v1/invoices/{id}/payments/{paymentId}" />
+          <Endpoint method="POST" path="/api/v1/invoices/bulk-send" />
+          <Endpoint method="POST" path="/api/v1/invoices/bulk-cancel" />
+        </div>
+
+        <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 px-5 py-4 text-sm text-blue-800 dark:border-blue-800/40 dark:bg-blue-900/20 dark:text-blue-300">
+          <strong>Authentication:</strong> All endpoints require a valid JWT Bearer token in the{" "}
+          <code className="rounded bg-blue-100 px-1.5 py-0.5 text-xs dark:bg-blue-900/40">Authorization</code> header.
+          All IDs are UUIDs.
+        </div>
       </div>
 
       {/* ------------------------------------------------------------------ */}
@@ -885,6 +991,6 @@ export default function InvoicesPage() {
   "errors": ["You do not have permission to cancel invoices"]
 }`}</code>
       </pre>
-    </>
+    </div>
   );
 }

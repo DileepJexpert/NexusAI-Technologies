@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { brand } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "Batches & Stock API — API Docs",
@@ -20,20 +21,107 @@ function Endpoint({ method, path }: { method: string; path: string }) {
 
 export default function InventoryPage() {
   return (
-    <>
-      <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Batches &amp; Stock</h1>
-      <p className="mt-3 text-slate-600 dark:text-slate-400">
-        Query batch-level stock for items with batch tracking enabled. Track expiry dates,
-        find near-expiry stock, and check available quantities per batch. Batch tracking
-        requires the <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">BATCH_EXPIRY</code> module
-        to be enabled for your organization.
-      </p>
+    <div className="space-y-10">
+      {/* Page Header */}
+      <div className="border-b border-slate-200 pb-6 dark:border-white/10">
+        <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-[#b3ed97]">
+          Inventory & Warehousing Guide
+        </div>
+        <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Batches, Expiry &amp; FEFO Inventory Management
+        </h1>
+        <p className="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          Master batch traceability, First-Expiry, First-Out (FEFO) auto-picking, cold-chain shelf-life tracking,
+          and supplier return settlements in {brand.name}. Built for pharmaceuticals, packaged foods, and FMCG.
+        </p>
+      </div>
 
-      <h2 className="mt-8 text-xl font-bold text-slate-900 dark:text-white">Endpoints</h2>
-      <div className="mt-4 space-y-2">
-        <Endpoint method="GET" path="/api/v1/batches/item/{itemId}" />
-        <Endpoint method="GET" path="/api/v1/batches/item/{itemId}/available" />
-        <Endpoint method="GET" path="/api/v1/batches/near-expiry" />
+      {/* 1. Module Overview */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          1. Module Overview: Why Batch &amp; Expiry Tracking is Critical
+        </h2>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          In pharmaceuticals (under CDSCO Drug Rules) and packaged foods (under FSSAI regulations), selling or
+          holding expired inventory is illegal and triggers severe penalties. Katixo provides complete lot-level traceability:
+        </p>
+
+        <div className="grid gap-3 sm:grid-cols-3 text-xs">
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">FEFO Dispatch Logic</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Dispatches automatically draw from the batch closest to expiration, preventing aged inventory accumulation.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Near-Expiry Alerts</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Proactively highlights lots reaching 30, 60, or 90 days to expiration with one-click supplier return drafting.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Batch-Level Audit</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Granular tracking of which customer received which batch number for rapid manufacturer recalls.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Step-by-Step UI Guide */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          2. How to Manage Batches (Step-by-Step UI Guide)
+        </h2>
+
+        <div className="rounded-xl border border-slate-200 p-5 dark:border-white/10 bg-white dark:bg-white/[0.02]">
+          <ol className="space-y-3.5 text-xs text-slate-600 dark:text-slate-400">
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">1</span>
+              <div>
+                <strong>Enable Batch Tracking on Items:</strong>
+                When creating or editing an item in <strong>Inventory &gt; Items</strong>, check the box <em>"Track Batches &amp; Expiry"</em>.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">2</span>
+              <div>
+                <strong>Capture Batches at Goods Receipt (GRN):</strong>
+                When goods arrive from a supplier, enter the manufacturer Batch Number, Manufacturing Date (MFG), and Expiry Date (EXP) on the Goods Receipt Note. Stock is activated in <code className="text-blue-600">stock_batch_balance</code>.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">3</span>
+              <div>
+                <strong>FEFO Picking During Dispatch:</strong>
+                During Delivery Challan or POS invoice creation, Katixo automatically prioritizes batches expiring earliest. Warehouse staff can override selection if customers request specific manufacturing dates.
+              </div>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-900 dark:bg-white/10 dark:text-white">4</span>
+              <div>
+                <strong>Near-Expiry Supplier Returns:</strong>
+                Open the <strong>Near Expiry Dashboard</strong>, filter by days to expiry, and select slow-moving batches to generate an automated Debit Note return to the manufacturer.
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      {/* 3. Developer Reference Heading */}
+      <div className="border-t border-slate-200 pt-8 dark:border-white/10">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          Developer &amp; REST API Reference
+        </h2>
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          Programmatically query item batches, available quantities, and near-expiry lots:
+        </p>
+
+        <div className="mt-4 space-y-2">
+          <Endpoint method="GET" path="/api/v1/batches/item/{itemId}" />
+          <Endpoint method="GET" path="/api/v1/batches/item/{itemId}/available" />
+          <Endpoint method="GET" path="/api/v1/batches/near-expiry" />
+        </div>
       </div>
 
       <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">Get batches by item</h2>
@@ -193,6 +281,6 @@ export default function InventoryPage() {
         The <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">BATCH_EXPIRY</code> module must
         be enabled for the organization, and individual items must have <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">trackBatches: true</code>.
       </p>
-    </>
+    </div>
   );
 }

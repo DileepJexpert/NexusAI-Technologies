@@ -1,9 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  ShieldCheck,
+  ArrowRight,
+  CheckCircle2,
+  AlertTriangle,
+  FileText,
+  Download,
+  FileSpreadsheet,
+  Layers,
+  Sparkles,
+} from "lucide-react";
+import { brand } from "@/lib/brand";
 
 export const metadata: Metadata = {
-  title: "GST & Tax API — API Docs",
-  description: "GST review center, GSTR-1 and GSTR-3B data, and export endpoints via the Katixo API.",
+  title: "GST 2.0 & Statutory Tax Compliance Guide — Katixo Docs",
+  description: `Complete guide to GST 2.0 reform compliance, national HSN directory, pre-filing review center, GSTR-1, GSTR-3B, and Input Tax Credit (ITC) in ${brand.name} ERP.`,
 };
 
 function Endpoint({ method, path }: { method: string; path: string }) {
@@ -12,255 +24,145 @@ function Endpoint({ method, path }: { method: string; path: string }) {
     POST: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
   };
   return (
-    <div className="flex items-center gap-3 rounded-lg border border-slate-200 px-4 py-3 dark:border-white/10">
-      <span className={`rounded px-2 py-0.5 text-xs font-bold ${colors[method] || ""}`}>{method}</span>
-      <code className="text-sm text-slate-700 dark:text-slate-300">{path}</code>
+    <div className="flex items-center gap-3 rounded-lg border border-slate-200 px-4 py-2.5 dark:border-white/10 text-xs">
+      <span className={`rounded px-2 py-0.5 font-bold ${colors[method] || ""}`}>{method}</span>
+      <code className="text-slate-700 dark:text-slate-300 font-mono">{path}</code>
     </div>
   );
 }
 
 export default function GSTPage() {
   return (
-    <>
-      <h1 className="text-3xl font-bold text-slate-900 dark:text-white">GST &amp; Tax</h1>
-      <p className="mt-3 text-slate-600 dark:text-slate-400">
-        Access GST filing data directly from your invoice and purchase records. The GST API
-        provides a review center for catching errors before filing, plus GSTR-1 and GSTR-3B
-        data endpoints with JSON and Excel export support. Requires the <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">GST</code> module.
-      </p>
-
-      <h2 className="mt-8 text-xl font-bold text-slate-900 dark:text-white">Endpoints</h2>
-      <div className="mt-4 space-y-2">
-        <Endpoint method="GET" path="/api/v1/gst/review-center" />
-        <Endpoint method="GET" path="/api/v1/gst/gstr1" />
-        <Endpoint method="GET" path="/api/v1/gst/gstr3b" />
-        <Endpoint method="GET" path="/api/v1/gst/gstr1/export" />
-        <Endpoint method="GET" path="/api/v1/gst/gstr3b/export" />
+    <div className="space-y-10">
+      {/* Page Header */}
+      <div className="border-b border-slate-200 pb-6 dark:border-white/10">
+        <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-[#b3ed97]">
+          Statutory Tax & Compliance Guide
+        </div>
+        <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          GST 2.0 Reform & Statutory Tax Compliance
+        </h1>
+        <p className="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          Built for India&apos;s post-GST 2.0 tax landscape (Notification 9/2025-CT(Rate)).
+          Manage automated intra-state vs inter-state tax splits, leverage the universal HSN directory,
+          audit filings with the Pre-Filing Review Center, and export GSTN-ready GSTR-1 and GSTR-3B returns.
+        </p>
       </div>
 
-      <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">Review center</h2>
-      <div className="mt-3">
-        <Endpoint method="GET" path="/api/v1/gst/review-center" />
-      </div>
-      <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
-        Returns a summary of potential issues in your GST data for a given return period —
-        missing GSTINs, mismatched HSN codes, invoices without place of supply, and other
-        common filing errors. Review and fix these before generating your returns.
-      </p>
-      <h3 className="mt-4 text-base font-bold text-slate-900 dark:text-white">Query parameters</h3>
-      <div className="mt-3 overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-slate-200 text-left dark:border-white/10">
-              <th className="pb-3 pr-4 font-semibold text-slate-900 dark:text-white">Parameter</th>
-              <th className="pb-3 pr-4 font-semibold text-slate-900 dark:text-white">Type</th>
-              <th className="pb-3 pr-4 font-semibold text-slate-900 dark:text-white">Required</th>
-              <th className="pb-3 font-semibold text-slate-900 dark:text-white">Description</th>
-            </tr>
-          </thead>
-          <tbody className="text-slate-600 dark:text-slate-400">
-            <tr className="border-b border-slate-100 dark:border-white/5">
-              <td className="py-2.5 pr-4"><code className="text-xs">month</code></td>
-              <td className="py-2.5 pr-4">int</td>
-              <td className="py-2.5 pr-4">Yes</td>
-              <td className="py-2.5">Month number (1–12).</td>
-            </tr>
-            <tr>
-              <td className="py-2.5 pr-4"><code className="text-xs">year</code></td>
-              <td className="py-2.5 pr-4">int</td>
-              <td className="py-2.5 pr-4">Yes</td>
-              <td className="py-2.5">Financial year (e.g., 2026).</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <pre className="mt-4 overflow-x-auto rounded-lg bg-slate-900 px-5 py-4 text-sm text-slate-200">
-        <code>{`curl "https://api.katixo.com/api/v1/gst/review-center?month=6&year=2026" \\
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIs..."`}</code>
-      </pre>
-      <pre className="mt-3 overflow-x-auto rounded-lg bg-slate-900 px-5 py-4 text-sm text-slate-200">
-        <code>{`{
-  "success": true,
-  "message": "Review center data retrieved",
-  "data": {
-    "period": "June 2026",
-    "totalInvoices": 142,
-    "totalPurchaseBills": 38,
-    "issues": [
-      {
-        "type": "MISSING_GSTIN",
-        "severity": "WARNING",
-        "count": 3,
-        "message": "3 B2B invoices missing customer GSTIN"
-      },
-      {
-        "type": "HSN_MISMATCH",
-        "severity": "ERROR",
-        "count": 1,
-        "message": "1 invoice has invalid HSN code"
-      }
-    ],
-    "readyToFile": false
-  },
-  "errors": null
-}`}</code>
-      </pre>
+      {/* 1. GST 2.0 Reform Architecture */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <ShieldCheck className="h-5 w-5 text-emerald-700 dark:text-[#b3ed97]" />
+          <span>1. Module Overview: India GST 2.0 Architecture</span>
+        </h2>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Following India&apos;s comprehensive GST rate rationalization, Katixo ERP natively enforces current statutory schedules:
+        </p>
 
-      <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">GSTR-1 data</h2>
-      <div className="mt-3">
-        <Endpoint method="GET" path="/api/v1/gst/gstr1" />
-      </div>
-      <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
-        Returns all outward supply data for a given return period, structured into the sections
-        required by the GSTR-1 form: B2B invoices, B2CS (B2C small), B2CL (B2C large),
-        credit/debit notes, HSN summary, and document summary.
-      </p>
-      <h3 className="mt-4 text-base font-bold text-slate-900 dark:text-white">Query parameters</h3>
-      <div className="mt-3 overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-slate-200 text-left dark:border-white/10">
-              <th className="pb-3 pr-4 font-semibold text-slate-900 dark:text-white">Parameter</th>
-              <th className="pb-3 pr-4 font-semibold text-slate-900 dark:text-white">Required</th>
-              <th className="pb-3 font-semibold text-slate-900 dark:text-white">Description</th>
-            </tr>
-          </thead>
-          <tbody className="text-slate-600 dark:text-slate-400">
-            <tr className="border-b border-slate-100 dark:border-white/5">
-              <td className="py-2.5 pr-4"><code className="text-xs">month</code></td>
-              <td className="py-2.5 pr-4">Yes</td>
-              <td className="py-2.5">Month number (1–12).</td>
-            </tr>
-            <tr>
-              <td className="py-2.5 pr-4"><code className="text-xs">year</code></td>
-              <td className="py-2.5 pr-4">Yes</td>
-              <td className="py-2.5">Financial year (e.g., 2026).</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <pre className="mt-4 overflow-x-auto rounded-lg bg-slate-900 px-5 py-4 text-sm text-slate-200">
-        <code>{`curl "https://api.katixo.com/api/v1/gst/gstr1?month=6&year=2026" \\
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIs..."`}</code>
-      </pre>
-      <pre className="mt-3 overflow-x-auto rounded-lg bg-slate-900 px-5 py-4 text-sm text-slate-200">
-        <code>{`{
-  "success": true,
-  "message": "GSTR-1 data retrieved",
-  "data": {
-    "month": 6,
-    "year": 2026,
-    "gstin": "27AAECS1234F1Z5",
-    "b2b": [
-      {
-        "customerGstin": "29BBBFM1234A1ZV",
-        "customerName": "Kumar Distributors",
-        "invoices": [
-          {
-            "invoiceNumber": "KTX/2026-27/0038",
-            "invoiceDate": "2026-06-05",
-            "totalAmount": 23600.00,
-            "placeOfSupply": "29",
-            "reverseCharge": false,
-            "items": [
-              {
-                "hsnCode": "07139090",
-                "taxableValue": 20000.00,
-                "igst": 1000.00,
-                "cgst": 0.00,
-                "sgst": 0.00,
-                "cess": 0.00
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "b2cs": [],
-    "creditNotes": [],
-    "debitNotes": [],
-    "hsnSummary": [],
-    "documentSummary": {
-      "invoicesIssued": 25,
-      "invoicesCancelled": 1,
-      "creditNotesIssued": 0,
-      "debitNotesIssued": 0
-    }
-  },
-  "errors": null
-}`}</code>
-      </pre>
+        <div className="grid gap-3 sm:grid-cols-3 text-xs">
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Pharma Chapter 30 (5%)</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Medicines (3001-3006) and medical devices (9018-9021) unified at 5%. 33 notified lifesaving drugs zero-rated.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Kirana & Retail FMCG</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Essential grocery staples and soaps at 5%, standard FMCG at 18%, luxury/tobacco at 28% with compensation cess.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-white/10 dark:bg-white/[0.02]">
+            <h4 className="font-bold text-slate-900 dark:text-white">Dynamic Place of Supply</h4>
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              Compares Supplier State vs Delivery State: Intra-state splits into CGST + SGST; Inter-state posts to IGST.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">GSTR-3B data</h2>
-      <div className="mt-3">
-        <Endpoint method="GET" path="/api/v1/gst/gstr3b" />
-      </div>
-      <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
-        Returns the summary tax liability data for GSTR-3B filing — output tax from sales,
-        input tax credit from purchases, and net tax payable, broken down by CGST, SGST, IGST, and cess.
-      </p>
-      <pre className="mt-4 overflow-x-auto rounded-lg bg-slate-900 px-5 py-4 text-sm text-slate-200">
-        <code>{`curl "https://api.katixo.com/api/v1/gst/gstr3b?month=6&year=2026" \\
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIs..."`}</code>
-      </pre>
-      <pre className="mt-3 overflow-x-auto rounded-lg bg-slate-900 px-5 py-4 text-sm text-slate-200">
-        <code>{`{
-  "success": true,
-  "message": "GSTR-3B data retrieved",
-  "data": {
-    "month": 6,
-    "year": 2026,
-    "outputTax": {
-      "cgst": 1121.25,
-      "sgst": 1121.25,
-      "igst": 1000.00,
-      "cess": 0.00,
-      "total": 3242.50
-    },
-    "inputTaxCredit": {
-      "cgst": 850.00,
-      "sgst": 850.00,
-      "igst": 500.00,
-      "cess": 0.00,
-      "total": 2200.00
-    },
-    "netPayable": {
-      "cgst": 271.25,
-      "sgst": 271.25,
-      "igst": 500.00,
-      "cess": 0.00,
-      "total": 1042.50
-    }
-  },
-  "errors": null
-}`}</code>
-      </pre>
+      {/* 2. Pre-Filing Review Center */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <AlertTriangle className="h-5 w-5 text-amber-600" />
+          <span>2. The Pre-Filing Review Center: Catching Errors Early</span>
+        </h2>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Uploading flawed return data to the GST Portal results in notices and blocked Input Tax Credit (ITC).
+          Katixo&apos;s <strong>Pre-Filing Review Center</strong> validates all transactions before export:
+        </p>
 
-      <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">Export endpoints</h2>
-      <div className="mt-3 space-y-2">
-        <Endpoint method="GET" path="/api/v1/gst/gstr1/export" />
-        <Endpoint method="GET" path="/api/v1/gst/gstr3b/export" />
-      </div>
-      <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
-        Download GSTR-1 and GSTR-3B data as Excel files ready for upload to the GST portal.
-        Pass the same <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">month</code> and <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">year</code> query
-        parameters. The response is an Excel file with <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</code>.
-      </p>
-      <pre className="mt-3 overflow-x-auto rounded-lg bg-slate-900 px-5 py-4 text-sm text-slate-200">
-        <code>{`curl "https://api.katixo.com/api/v1/gst/gstr1/export?month=6&year=2026" \\
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIs..." \\
-  -o gstr1_june_2026.xlsx`}</code>
-      </pre>
+        <div className="rounded-xl border border-slate-200 p-4 dark:border-white/10 bg-white dark:bg-white/[0.02] space-y-2.5 text-xs text-slate-600 dark:text-slate-400">
+          <div className="flex items-start gap-2">
+            <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+            <div>
+              <strong>Missing or Invalid Customer GSTINs:</strong> Flags B2B invoices that would be rejected as invalid on the portal.
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+            <div>
+              <strong>HSN Code Validation:</strong> Checks that all items have valid 4, 6, or 8-digit HSN codes matching CBIC master directories.
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+            <div>
+              <strong>Place of Supply (POS) Integrity:</strong> Ensures inter-state invoices have valid two-digit state codes (e.g. 27 for Maharashtra).
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+            <div>
+              <strong>Tax Split Precision:</strong> Guarantees that CGST and SGST equal each other to the exact paisa.
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <h2 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">Authorization</h2>
-      <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
-        GST endpoints require <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">OWNER</code>,{" "}
-        <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">ADMIN</code>, or{" "}
-        <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">ACCOUNTANT</code> role.
-        The <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs dark:bg-white/10">GST</code> module must be enabled
-        for your organization. See <Link href="/docs/authentication" className="text-accent hover:underline">Authentication</Link> for
-        role details.
-      </p>
-    </>
+      {/* 3. Generating GSTR-1 & GSTR-3B */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <FileSpreadsheet className="h-5 w-5 text-emerald-700 dark:text-[#b3ed97]" />
+          <span>3. Generating GSTR-1 & GSTR-3B Return Files</span>
+        </h2>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Export statutory return files with a single click:
+        </p>
+
+        <div className="grid gap-3 sm:grid-cols-2 text-xs">
+          <div className="rounded-xl border border-slate-200 p-4 dark:border-white/10 bg-white dark:bg-white/[0.02]">
+            <span className="font-bold text-slate-900 dark:text-white block mb-1">GSTR-1 Outward Supplies</span>
+            <p className="text-slate-600 dark:text-slate-400">
+              Aggregates Table 4 (B2B invoices), Table 5 (B2C Large), Table 7 (B2C Small), Table 9 (Credit/Debit Notes CDNR/CDNUR), and Table 12 (HSN summary). Export as JSON ready for direct upload to GSTN portal.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 p-4 dark:border-white/10 bg-white dark:bg-white/[0.02]">
+            <span className="font-bold text-slate-900 dark:text-white block mb-1">GSTR-3B Monthly Summary</span>
+            <p className="text-slate-600 dark:text-slate-400">
+              Summarizes total taxable turnover, output tax liability, eligible Input Tax Credit (ITC) from purchase bills, and net cash tax payable after ITC offset.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Developer & Integration Reference (Compact at bottom) */}
+      <section className="border-t border-slate-200 pt-8 dark:border-white/10 space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+            Developer & API Integration Reference
+          </h2>
+          <span className="text-xs text-slate-500">JWT Bearer Required</span>
+        </div>
+
+        <div className="space-y-2">
+          <Endpoint method="GET" path="/api/v1/gst/review-center" />
+          <Endpoint method="GET" path="/api/v1/gst/gstr1" />
+          <Endpoint method="GET" path="/api/v1/gst/gstr3b" />
+          <Endpoint method="GET" path="/api/v1/gst/gstr1/export" />
+          <Endpoint method="GET" path="/api/v1/gst/gstr3b/export" />
+        </div>
+      </section>
+    </div>
   );
 }
